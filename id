@@ -1,0 +1,2173 @@
+ployment successfully updated.
+Version 4 on May 19, 2026, 2:24 PM
+Deployment ID
+AKfycbz0xNwIGPuT9iYIp1UkOYD22d4L5Pyv88PXLdpexHmX3vrCfvmtEOzBpDsrK58kgyqR
+Web app
+URL
+https://script.google.com/macros/s/AKfycbz0xNwIGPuT9iYIp1UkOYD22d4L5Pyv88PXLdpexHmX3vrCfvmtEOzBpDsrK58kgyqR/exec
+Library
+URL
+https://script.google.com/macros/library/d/1rYDxtN3KHCFgAoVrqdykXEhZPG5WA7HgqzV_Udah7SfzxV6fmjtzoQ7T/4
+To let other people and groups to use this project as a library, share this project with them.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Vision Institute - Sehore</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: { DEFAULT: '#1a365d', light: '#2c5282' },
+                        gold: { DEFAULT: '#d69e2e', light: '#ecc94b' },
+                        cream: '#fffbeb',
+                        dark: '#1a202c',
+                        muted: '#718096'
+                    },
+                    fontFamily: {
+                        heading: ['Playfair Display', 'serif'],
+                        body: ['Source Sans 3', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Source Sans 3', sans-serif; color: #1a202c; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-white flex flex-col min-h-screen relative">
+
+    <!-- SECTION 1: NAVIGATION BAR -->
+    <header class="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3">
+                <img id="nav-logo" src="https://via.placeholder.com/150" alt="Logo" class="w-12 h-12 rounded-full object-cover border border-gold">
+                <div>
+                    <span id="nav-inst-name" class="block text-xl font-bold text-navy tracking-tight leading-tight">The Vision Institute</span>
+                    <span id="nav-teacher-name" class="block text-xs font-semibold text-gold tracking-widest uppercase">Sudhir Shivam Sir</span>
+                </div>
+            </a>
+            
+            <nav class="hidden lg:flex items-center gap-8">
+                <a href="#" class="text-sm font-medium text-navy hover:text-gold transition-colors">Home</a>
+                <a href="#courses" class="text-sm font-medium text-navy hover:text-gold transition-colors">Courses</a>
+                <a href="#videos" class="text-sm font-medium text-navy hover:text-gold transition-colors">Free Videos</a>
+                <a href="#notes" class="text-sm font-medium text-navy hover:text-gold transition-colors">Paid Notes</a>
+                <a href="#gallery" class="text-sm font-medium text-navy hover:text-gold transition-colors">Gallery</a>
+                <a href="#testimonials" class="text-sm font-medium text-navy hover:text-gold transition-colors">Reviews</a>
+                <a href="#contact" class="text-sm font-medium text-navy hover:text-gold transition-colors">Contact Us</a>
+            </nav>
+
+            <div class="hidden lg:block">
+                <a id="nav-cta" href="#" target="_blank" class="inline-flex items-center gap-2 bg-navy hover:bg-navy-light text-white text-sm font-semibold px-5 py-2.5 rounded-lg shadow-md transition-all transform hover:-translate-y-0.5">
+                    <i data-lucide="whatsapp" class="w-4 h-4 text-green-400 fill-current"></i> Enroll Now
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" class="lg:hidden text-navy p-2 focus:outline-none" aria-label="Toggle Menu">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Dropout Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-gray-200 absolute top-20 left-0 w-full z-40 shadow-xl px-4 py-6 transition-all duration-300">
+            <div class="flex flex-col gap-4">
+                <a href="#" class="mobile-link text-lg font-semibold text-navy py-2 border-b border-gray-50">Home</a>
+                <a href="#courses" class="mobile-link text-lg font-semibold text-navy py-2 border-b border-gray-50">Courses</a>
+                <a href="#videos" class="mobile-link text-lg font-semibold text-navy py-2 border-b border-gray-50">Free Videos</a>
+                <a href="#notes" class="mobile-link text-lg font-semibold text-navy py-2 border-b border-gray-50">Paid Notes</a>
+                <a href="#gallery" class="mobile-link text-lg font-semibold text-navy py-2 border-b border-gray-50">Gallery</a>
+                <a href="#testimonials" class="mobile-link text-lg font-semibold text-navy py-2 border-b border-gray-50">Reviews</a>
+                <a href="#contact" class="mobile-link text-lg font-semibold text-navy py-2 border-b border-gray-50">Contact Us</a>
+                <a id="mobile-nav-cta" href="#" target="_blank" class="w-full text-center inline-flex items-center justify-center gap-2 bg-navy text-white text-base font-semibold py-3 rounded-xl mt-2">
+                    <i data-lucide="whatsapp" class="w-5 h-5 text-green-400 fill-current"></i> Enroll Now
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION 2: HERO SLIDER SECTION -->
+    <section class="relative bg-navy overflow-hidden h-[500px] md:h-[600px] w-full">
+        <div id="hero-track" class="w-full h-full relative">
+            <!-- Dynamic slides generate here -->
+        </div>
+        <button id="hero-prev" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white p-2 rounded-full backdrop-blur-sm transition-all hidden md:block z-20">
+            <i data-lucide="chevron-left" class="w-6 h-6"></i>
+        </button>
+        <button id="hero-next" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white p-2 rounded-full backdrop-blur-sm transition-all hidden md:block z-20">
+            <i data-lucide="chevron-right" class="w-6 h-6"></i>
+        </button>
+        <div id="hero-dots" class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+            <!-- Dynamic dots generate here -->
+        </div>
+    </section>
+
+    <!-- SECTION 3: COURSES SECTION -->
+    <section id="courses" class="py-20 bg-gray-50 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-navy mb-4">Academic Programs Offered</h2>
+                <div class="w-24 h-1 bg-gold mx-auto mb-4 rounded"></div>
+                <p class="text-muted">Structured targeted programs designed to maximize scores and build comprehensive baseline knowledge foundations.</p>
+            </div>
+
+            <!-- Tab Filtering Layout -->
+            <div class="flex justify-center gap-2 md:gap-4 mb-12 flex-wrap">
+                <button data-filter="all" class="course-tab px-6 py-2.5 rounded-full font-semibold text-sm transition-all shadow-sm bg-navy text-white">All Courses</button>
+                <button data-filter="10" class="course-tab px-6 py-2.5 rounded-full font-semibold text-sm transition-all shadow-sm bg-white text-navy hover:bg-gray-100">Class 10</button>
+                <button data-filter="11" class="course-tab px-6 py-2.5 rounded-full font-semibold text-sm transition-all shadow-sm bg-white text-navy hover:bg-gray-100">Class 11</button>
+                <button data-filter="12" class="course-tab px-6 py-2.5 rounded-full font-semibold text-sm transition-all shadow-sm bg-white text-navy hover:bg-gray-100">Class 12</button>
+            </div>
+
+            <div id="courses-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Dynamic Course Cards -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: FREE VIDEO SECTION -->
+    <section id="videos" class="py-20 bg-white scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-navy mb-4">Free Educational Content</h2>
+                <div class="w-24 h-1 bg-gold mx-auto mb-4 rounded"></div>
+                <p class="text-muted">Access our high-yield video lectures directly curated from our primary educational platform engine streams.</p>
+            </div>
+
+            <!-- Double Compound Filter UI -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12 max-w-4xl mx-auto">
+                <select id="video-filter-class" class="w-full bg-gray-50 border border-gray-200 text-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:border-gold">
+                    <option value="all">All Classes</option>
+                    <option value="10">Class 10</option>
+                    <option value="11">Class 11</option>
+                    <option value="12">Class 12</option>
+                </select>
+                <input id="video-filter-subject" type="text" placeholder="Filter by Subject (e.g. Maths)" class="w-full bg-gray-50 border border-gray-200 text-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:border-gold">
+                <input id="video-filter-topic" type="text" placeholder="Filter by Topic keyword" class="w-full bg-gray-50 border border-gray-200 text-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:border-gold">
+            </div>
+
+            <div id="videos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Dynamic Video Cards -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Modal Architecture -->
+    <div id="video-modal" class="fixed inset-0 z-50 bg-black/80 hidden items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-black rounded-2xl overflow-hidden max-w-4xl w-full aspect-video relative shadow-2xl">
+            <button id="close-modal-btn" class="absolute top-4 right-4 text-white bg-black/40 hover:bg-black/80 p-2 rounded-full transition-all z-10">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <div id="modal-player-container" class="w-full h-full">
+                <!-- Iframe injected at runtime -->
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 5: PAID NOTES SECTION -->
+    <section id="notes" class="py-20 bg-cream/30 border-y border-gold/10 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-navy mb-4">Comprehensive Curated Study Notes</h2>
+                <div class="w-24 h-1 bg-gold mx-auto mb-4 rounded"></div>
+                <p class="text-muted">Unlock precise chapter blueprints, structured formulas, and high-probability problem compilations.</p>
+            </div>
+
+            <div id="notes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Dynamic Notes Grid Items -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: GALLERY SECTION -->
+    <section id="gallery" class="py-20 bg-white scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-navy mb-4">Institute Highlights & Achievements</h2>
+                <div class="w-24 h-1 bg-gold mx-auto mb-4 rounded"></div>
+                <p class="text-muted">Celebrating classroom engagement paradigms, foundational moments, and meritorious accomplishments.</p>
+            </div>
+
+            <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- Dynamic Gallery Items -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Structural Elements -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/95 hidden flex-col items-center justify-center p-4">
+        <button id="close-lightbox-btn" class="absolute top-6 right-6 text-white/70 hover:text-white transition-all">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <div class="max-w-4xl max-h-[80vh] flex items-center justify-center relative">
+            <img id="lightbox-img" src="" alt="View" class="max-w-full max-h-[80vh] rounded-lg object-contain shadow-2xl">
+        </div>
+        <div class="mt-4 text-center max-w-2xl">
+            <h4 id="lightbox-title" class="text-xl font-bold text-white mb-1"></h4>
+            <p id="lightbox-caption" class="text-sm text-gray-400"></p>
+        </div>
+    </div>
+
+    <!-- SECTION 7: TESTIMONIALS SECTION -->
+    <section id="testimonials" class="py-20 bg-gray-50 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-navy mb-4">What Students & Parents Say</h2>
+                <div class="w-24 h-1 bg-gold mx-auto mb-4 rounded"></div>
+                <p class="text-muted">Real transformational validation from the members of our local learning ecosystem.</p>
+            </div>
+
+            <div id="testimonials-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Dynamic Testimonials Layout -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 8: CONTACT US SECTION -->
+    <section id="contact" class="py-20 bg-white scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 bg-white rounded-3xl border border-gray-100 shadow-xl overflow-hidden">
+                
+                <!-- Contact Meta Card -->
+                <div class="lg:col-span-5 bg-navy p-8 md:p-12 text-white flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-navy-light/20 rounded-full blur-xl"></div>
+                    <div>
+                        <h3 class="text-3xl font-bold text-white mb-4">Get In Touch</h3>
+                        <p class="text-gray-300 text-sm mb-8 leading-relaxed">Have pedagogical inquiries, diagnostic placement queries, or baseline session alignment needs? Reach out directly via the tracking nodes below.</p>
+                        
+                        <div class="space-y-6">
+                            <a id="meta-phone" href="tel:7225902570" class="flex items-start gap-4 group">
+                                <div class="bg-white/10 p-3 rounded-xl group-hover:bg-gold/20 transition-all text-gold">
+                                    <i data-lucide="phone" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <span class="block text-xs uppercase tracking-wider text-gray-400">Call Directly</span>
+                                    <span class="text-base font-semibold text-white">+91 7225902570</span>
+                                </div>
+                            </a>
+                            <a id="meta-email" href="mailto:sudhirsilavat12@gmail.com" class="flex items-start gap-4 group">
+                                <div class="bg-white/10 p-3 rounded-xl group-hover:bg-gold/20 transition-all text-gold">
+                                    <i data-lucide="mail" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <span class="block text-xs uppercase tracking-wider text-gray-400">Email Vector</span>
+                                    <span class="text-base font-semibold text-white break-all">sudhirsilavat12@gmail.com</span>
+                                </div>
+                            </a>
+                            <div class="flex items-start gap-4 group">
+                                <div class="bg-white/10 p-3 rounded-xl text-gold">
+                                    <i data-lucide="map-pin" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <span class="block text-xs uppercase tracking-wider text-gray-400">Campus Address</span>
+                                    <span id="meta-address" class="text-sm text-gray-200 leading-relaxed block">Kulkula Mata Mandir, Englishpura, Sehore, Sehore, 466001</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-12 pt-6 border-t border-white/10">
+                        <span class="block text-xs uppercase tracking-wider text-gray-400 mb-3">Academic Broadcast Node</span>
+                        <a id="meta-yt" href="https://m.youtube.com/c/MathsandEnglishClasses" target="_blank" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded-xl text-sm transition-all shadow">
+                            <i data-lucide="youtube" class="w-4 h-4 fill-current"></i> Subscribe on YouTube
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Live Capture Engine Form -->
+                <div class="lg:col-span-7 p-8 md:p-12 bg-white">
+                    <h3 class="text-2xl font-bold text-navy mb-6">Send an Admission/Inquiry Form</h3>
+                    <form id="inquiry-form" class="space-y-5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Student Name <span class="text-red-500">*</span></label>
+                                <input type="text" id="form-name" required class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold text-sm bg-gray-50">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Contact Number <span class="text-red-500">*</span></label>
+                                <input type="tel" id="form-phone" required class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold text-sm bg-gray-50">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Class Stream <span class="text-red-500">*</span></label>
+                                <select id="form-class" required class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold text-sm bg-gray-50 text-gray-700">
+                                    <option value="10">Class 10</option>
+                                    <option value="11">Class 11</option>
+                                    <option value="12">Class 12</option>
+                                    <option value="Other">Other / Foundation</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Subjects of Primary Interest <span class="text-red-500">*</span></label>
+                                <input type="text" id="form-subject" required placeholder="e.g. Mathematics, English" class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold text-sm bg-gray-50">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Message Payload</label>
+                            <textarea id="form-message" rows="4" placeholder="Enter queries regarding scheduling, pricing, or diagnostic pathways..." class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold text-sm bg-gray-50"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-navy hover:bg-navy-light text-white font-bold py-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5">
+                            <i data-lucide="send" class="w-4 h-4"></i> Dispatch Intent Payload
+                        </button>
+                    </form>
+                    <div id="form-success-toast" class="mt-4 hidden bg-emerald-50 border border-emerald-200 text-emerald-800 p-4 rounded-xl text-sm flex items-center gap-3 animate-fade-in">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-emerald-600 shrink-0"></i>
+                        <div>
+                            <span class="font-bold">Transmission complete.</span> Your structural record was parsed and committed securely to local persistent nodes.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 9: SOCIAL MEDIA CHANNELS + FOOTER -->
+    <footer class="mt-auto bg-gray-900 text-white border-t-2 border-gold/20 relative">
+        <!-- Floating Desktop Sticky Sidebar Integration -->
+        <div id="sticky-sidebar" class="hidden xl:flex fixed right-6 top-1/3 flex-col gap-3 z-40">
+            <!-- Dynamic components inject here -->
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 border-b border-white/10 pb-8 mb-8">
+                <div class="text-center md:text-left">
+                    <span class="text-2xl font-bold tracking-tight block text-white font-heading" id="footer-inst-name">The Vision Institute</span>
+                    <span class="text-sm text-gold font-semibold tracking-wider uppercase block mt-1" id="footer-teacher-name">Sudhir Shivam Sir</span>
+                </div>
+                <div id="footer-socials" class="flex items-center gap-4">
+                    <!-- Dynamic platform nodes -->
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-400">
+                <p>&copy; 2026 The Vision Institute. All institutional permissions verified natively.</p>
+                <div></div>
+            </div>
+        </div>
+
+        <!-- HIDDEN INVISIBLE BUTTON TRIGGER FOR ADMIN ACCESS -->
+        <button id="hidden-admin-trigger" class="absolute bottom-1 right-1 w-3 h-3 bg-transparent cursor-default focus:outline-none" aria-label="Admin Access Node"></button>
+    </footer>
+
+    <!-- CLOUD CLOUD AUTHENTICATION MODAL SYSTEM -->
+    <div id="drive-auth-modal" class="fixed inset-0 z-[100] bg-navy/95 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-sm w-full shadow-2xl border border-gray-100 text-center relative">
+            <button id="close-auth-modal" class="absolute top-4 right-4 text-gray-400 hover:text-dark">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <div class="w-12 h-12 bg-gold/10 text-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                <i data-lucide="cloud-lightning" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-xl font-bold text-navy mb-1">Cloud Authentication</h3>
+            <p class="text-xs text-gray-500 mb-6">Verifying live access keys directly from Google Drive infrastructure layers.</p>
+            
+            <form id="drive-auth-form" class="space-y-4">
+                <input type="password" id="drive-auth-input" placeholder="Enter System Password" required class="w-full border border-gray-200 rounded-xl px-4 py-3 text-center tracking-widest focus:outline-none focus:border-gold text-sm bg-gray-50">
+                <button type="submit" id="drive-auth-submit" class="w-full bg-navy hover:bg-navy-light text-white font-bold py-3 rounded-xl transition-all shadow flex items-center justify-center gap-2">
+                    <span id="btn-text">Verify Identity</span>
+                </button>
+            </form>
+            <p id="drive-auth-error" class="text-xs text-red-600 mt-3 font-semibold hidden">Incorrect password matrix signature.</p>
+        </div>
+    </div>
+
+    <!-- LOGIC INTEGRATION MODULE LAYER -->
+    <script>
+        // Data Sync Layer Functions
+        function parseGDriveLink(url) {
+            if (!url) return 'https://via.placeholder.com/600x400?text=No+Image';
+            let fileId = '';
+            const match1 = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+            const match2 = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+            if (match1) fileId = match1[1];
+            else if (match2) fileId = match2[1];
+            else return url;
+            return `https://drive.google.com/uc?export=view&id=${fileId}`;
+        }
+
+        // Deep Struct Sync Fallbacks
+        const defaultSettings = {
+            instituteName: "The Vision Institute",
+            teacherName: "Sudhir Shivam Sir",
+            phone: "7225902570",
+            whatsapp: "7225902570",
+            email: "sudhirsilavat12@gmail.com",
+            address: "Kulkula Mata Mandir, Englishpura, Sehore, 466001",
+            logo: "",
+            socialLinks: {
+                youtube: "https://m.youtube.com/c/MathsandEnglishClasses",
+                instagram: "#",
+                facebook: "#",
+                telegram: "#",
+                whatsapp: "7225902570"
+            }
+        };
+
+        const defaultSliders = [
+            { id: 1, image: "", title: "Empowering Minds, Shaping Futures", description: "Targeted systemic instructional pathways for board excellence.", buttonText: "Explore Courses", buttonLink: "#courses" },
+            { id: 2, image: "", title: "Expert Pedagogy under Sudhir Sir", description: "Unrivaled logical analytics engines for modern physics and maths systems.", buttonText: "Get Notes", buttonLink: "#notes" }
+        ];
+
+        const defaultCourses = [
+            { id: 1, title: "Class 10 Core Board Mastery", class: "10", subject: "Mathematics & Science", teacher: "Sudhir Shivam Sir", fee: "₹5000/Session", duration: "Full Academic Year", description: "Complete comprehensive board compliance layout.", image: "", active: true }
+        ];
+
+        // Hydrate Node Arrays
+        const siteSettings = JSON.parse(localStorage.getItem('siteSettings')) || defaultSettings;
+        if(!localStorage.getItem('siteSettings')) localStorage.setItem('siteSettings', JSON.stringify(defaultSettings));
+
+        const sliderData = JSON.parse(localStorage.getItem('sliderData')) || defaultSliders;
+        if(!localStorage.getItem('sliderData')) localStorage.setItem('sliderData', JSON.stringify(defaultSliders));
+
+        const coursesData = JSON.parse(localStorage.getItem('coursesData')) || defaultCourses;
+        if(!localStorage.getItem('coursesData')) localStorage.setItem('coursesData', JSON.stringify(defaultCourses));
+
+        const videosData = JSON.parse(localStorage.getItem('videosData')) || [];
+        const notesData = JSON.parse(localStorage.getItem('notesData')) || [];
+        const galleryData = JSON.parse(localStorage.getItem('galleryData')) || [];
+        const testimonialsData = JSON.parse(localStorage.getItem('testimonialsData')) || [];
+        const inquiriesData = JSON.parse(localStorage.getItem('inquiriesData')) || [];
+
+        // DOM Synchronization Operations
+        document.addEventListener('DOMContentLoaded', () => {
+            syncBranding();
+            renderHero();
+            renderCourses('all');
+            renderVideos();
+            renderNotes();
+            renderGallery();
+            renderTestimonials();
+            renderSocialElements();
+            setupInteractivity();
+            setupCloudAuthEngine(); // Start Cloud Access Modules
+            lucide.createIcons();
+        });
+
+        function syncBranding() {
+            const logoSrc = parseGDriveLink(siteSettings.logo);
+            document.getElementById('nav-logo').src = siteSettings.logo ? logoSrc : 'https://via.placeholder.com/150?text=TVI';
+            document.getElementById('nav-inst-name').textContent = siteSettings.instituteName;
+            document.getElementById('nav-teacher-name').textContent = siteSettings.teacherName;
+            document.getElementById('footer-inst-name').textContent = siteSettings.instituteName;
+            document.getElementById('footer-teacher-name').textContent = siteSettings.teacherName;
+            
+            const waEnrollUrl = `https://wa.me/91${siteSettings.whatsapp}?text=Hello%20Sir%2C%20I%20am%20interested%20in%20enrolling%20at%20The%20Vision%20Institute.%20Please%20share%20the%20details.`;
+            document.getElementById('nav-cta').href = waEnrollUrl;
+            document.getElementById('mobile-nav-cta').href = waEnrollUrl;
+
+            // Content Info Text Blocks
+            document.getElementById('meta-phone').href = `tel:${siteSettings.phone}`;
+            document.getElementById('meta-phone').querySelector('.text-white').textContent = `+91 ${siteSettings.phone}`;
+            document.getElementById('meta-email').href = `mailto:${siteSettings.email}`;
+            document.getElementById('meta-email').querySelector('.text-white').textContent = siteSettings.email;
+            document.getElementById('meta-address').textContent = siteSettings.address;
+            document.getElementById('meta-yt').href = siteSettings.socialLinks.youtube;
+        }
+
+        // Hero Slider Layout System
+        let currentSlide = 0;
+        let slideInterval;
+        function renderHero() {
+            const track = document.getElementById('hero-track');
+            const dotsContainer = document.getElementById('hero-dots');
+            if(!track || !dotsContainer) return;
+            track.innerHTML = '';
+            dotsContainer.innerHTML = '';
+            
+            if(sliderData.length === 0) return;
+
+            sliderData.forEach((slide, idx) => {
+                const bgImg = slide.image ? parseGDriveLink(slide.image) : 'https://via.placeholder.com/1920x1080?text=Academic+Excellence';
+                const slideEl = document.createElement('div');
+                slideEl.className = `absolute inset-0 w-full h-full transition-opacity duration-1000 flex items-center ${idx === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`;
+                slideEl.dataset.slideIdx = idx;
+                slideEl.innerHTML = `
+                    <div class="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-transparent z-10"></div>
+                    <img src="${bgImg}" alt="Slide Background" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-20 text-white">
+                        <div class="max-w-2xl">
+                            <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight">${slide.title}</h1>
+                            <p class="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed">${slide.description}</p>
+                            <a href="${slide.buttonLink || '#'}" class="inline-flex items-center gap-2 bg-gold hover:bg-gold-light text-navy font-bold px-6 py-3.5 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5 text-sm uppercase tracking-wider">${slide.buttonText || 'Learn More'}</a>
+                        </div>
+                    </div>
+                `;
+                track.appendChild(slideEl);
+
+                const dot = document.createElement('button');
+                dot.className = `w-3 h-3 rounded-full transition-all ${idx === 0 ? 'bg-gold w-8' : 'bg-white/40'}`;
+                dot.dataset.targetIdx = idx;
+                dotsContainer.appendChild(dot);
+            });
+
+            startSliderLoop();
+        }
+
+        function switchSlide(nextIdx) {
+            const slides = document.querySelectorAll('#hero-track > div');
+            const dots = document.querySelectorAll('#hero-dots > button');
+            if(!slides.length) return;
+
+            slides[currentSlide].classList.replace('opacity-100', 'opacity-0');
+            slides[currentSlide].classList.replace('z-10', 'z-0');
+            dots[currentSlide].classList.replace('bg-gold', 'bg-white/40');
+            dots[currentSlide].classList.remove('w-8');
+
+            currentSlide = (nextIdx + slides.length) % slides.length;
+
+            slides[currentSlide].classList.replace('opacity-0', 'opacity-100');
+            slides[currentSlide].classList.replace('z-0', 'z-10');
+            dots[currentSlide].classList.replace('bg-white/40', 'bg-gold');
+            dots[currentSlide].classList.add('w-8');
+        }
+
+        function startSliderLoop() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(() => switchSlide(currentSlide + 1), 6000);
+        }
+
+        // Render Academic Courses Grid
+        function renderCourses(filterClass) {
+            const grid = document.getElementById('courses-grid');
+            grid.innerHTML = '';
+            
+            const activeCourses = coursesData.filter(c => c.active && (filterClass === 'all' || c.class === filterClass));
+            if(!activeCourses.length) {
+                grid.innerHTML = `<div class="col-span-full py-12 text-center text-muted font-medium">No courses available inside this programmatic class filter bracket.</div>`;
+                return;
+            }
+
+            activeCourses.forEach(course => {
+                const card = document.createElement('div');
+                card.className = "bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group transform hover:-translate-y-1";
+                const imgUrl = course.image ? parseGDriveLink(course.image) : 'https://via.placeholder.com/600x400?text=Course+Blueprint';
+                const waUrl = `https://wa.me/91${siteSettings.whatsapp}?text=Hi%20Sir%20I%20am%20inquiring%20about%20the%20course%3A%20${encodeURIComponent(course.title)}%20for%20Class%20${course.class}.`;
+                
+                card.innerHTML = `
+                    <div class="relative overflow-hidden aspect-video bg-gray-100">
+                        <img src="${imgUrl}" alt="${course.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <span class="absolute top-4 left-4 bg-navy text-white text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-lg shadow-md">Class ${course.class}</span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <span class="text-xs font-bold text-gold uppercase tracking-wider mb-1">${course.subject}</span>
+                        <h3 class="text-xl font-bold text-navy mb-2 line-clamp-1">${course.title}</h3>
+                        <p class="text-sm text-muted mb-4 line-clamp-2 flex-grow">${course.description}</p>
+                        <div class="border-t border-gray-50 pt-4 mt-auto space-y-2">
+                            <div class="flex items-center justify-between text-xs font-medium text-gray-500">
+                                <span class="flex items-center gap-1.5"><i data-lucide="user" class="w-3.5 h-3.5 text-gold"></i> ${course.teacher}</span>
+                                <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5 text-gold"></i> ${course.duration}</span>
+                            </div>
+                            <div class="flex items-center justify-between pt-2">
+                                <span class="text-lg font-extrabold text-navy">${course.fee}</span>
+                                <a href="${waUrl}" target="_blank" class="inline-flex items-center gap-1.5 bg-navy group-hover:bg-gold text-white group-hover:text-navy text-xs font-bold px-4 py-2 rounded-lg transition-colors shadow-sm">
+                                    Inquire <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            lucide.createIcons();
+        }
+
+        // Video Extraction Engine + Filtering
+        function getYoutubeId(url) {
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            const match = url.match(regExp);
+            return (match && match[2].length === 11) ? match[2] : null;
+        }
+
+        function renderVideos() {
+            const grid = document.getElementById('videos-grid');
+            const classFilter = document.getElementById('video-filter-class').value;
+            const subjectFilter = document.getElementById('video-filter-subject').value.toLowerCase().trim();
+            const topicFilter = document.getElementById('video-filter-topic').value.toLowerCase().trim();
+            
+            grid.innerHTML = '';
+
+            const filtered = videosData.filter(v => {
+                const matchClass = (classFilter === 'all' || v.class === classFilter);
+                const matchSubject = (!subjectFilter || v.subject.toLowerCase().includes(subjectFilter));
+                const matchTopic = (!topicFilter || v.topic.toLowerCase().includes(topicFilter));
+                return matchClass && matchSubject && matchTopic;
+            });
+
+            if(!filtered.length) {
+                grid.innerHTML = `<div class="col-span-full py-12 text-center text-muted font-medium">No video content matches your analytical criteria fields.</div>`;
+                return;
+            }
+
+            filtered.forEach(vid => {
+                const ytId = getYoutubeId(vid.url);
+                const thumb = ytId ? `https://img.youtube.com/vi/${ytId}/mqdefault.jpg` : 'https://via.placeholder.com/480x360?text=Video+Thumbnail';
+                const card = document.createElement('div');
+                card.className = "bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-all overflow-hidden flex flex-col group";
+                card.innerHTML = `
+                    <div class="relative aspect-video bg-black cursor-pointer overflow-hidden group play-video-trigger" data-yt-id="${ytId}">
+                        <img src="${thumb}" alt="${vid.title}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 opacity-90">
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/30 transition-all">
+                            <div class="bg-red-600 text-white p-3.5 rounded-full shadow-xl transform group-hover:scale-110 transition-transform">
+                                <i data-lucide="play" class="w-6 h-6 fill-current"></i>
+                            </div>
+                        </div>
+                        <span class="absolute bottom-3 right-3 bg-black/70 backdrop-blur-sm text-white font-mono text-[10px] tracking-widest px-2 py-0.5 rounded uppercase font-bold">Class ${vid.class}</span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <div class="flex gap-1.5 flex-wrap mb-2">
+                            <span class="bg-blue-50 text-blue-800 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">${vid.subject}</span>
+                            <span class="bg-amber-50 text-amber-800 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">${vid.topic}</span>
+                        </div>
+                        <h3 class="text-base font-bold text-navy mb-1.5 line-clamp-2">${vid.title}</h3>
+                        <p class="text-xs text-muted line-clamp-2 mt-auto">${vid.description || ''}</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            lucide.createIcons();
+        }
+
+        // Render Paid Syllabus Notes Section
+        function renderNotes() {
+            const grid = document.getElementById('notes-grid');
+            grid.innerHTML = '';
+
+            const targetNotes = notesData.filter(n => n.active !== false);
+            if(!targetNotes.length) {
+                grid.innerHTML = `<div class="col-span-full py-12 text-center text-muted font-medium">No notes catalogs compiled or active at this specific time node.</div>`;
+                return;
+            }
+
+            targetNotes.forEach(note => {
+                const card = document.createElement('div');
+                card.className = "bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-lg transition-all p-4 flex flex-col group text-center";
+                const imgUrl = note.image ? parseGDriveLink(note.image) : 'https://via.placeholder.com/400x500?text=Syllabus+Notes';
+                const waMsg = `Sir, I need Class ${note.class} ${note.subject} notes. Please share details.`;
+                const hrefWa = `https://wa.me/91${siteSettings.whatsapp}?text=${encodeURIComponent(waMsg)}`;
+                
+                card.innerHTML = `
+                    <div class="relative aspect-[3/4] bg-gray-50 rounded-xl overflow-hidden mb-4 border border-gray-100">
+                        <img src="${imgUrl}" alt="${note.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-4">
+                            <span class="text-white text-xs font-bold uppercase tracking-wider bg-gold px-3 py-1.5 rounded-lg shadow">Direct Access Prompt</span>
+                        </div>
+                    </div>
+                    <span class="inline-block bg-gold/10 text-gold text-[10px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded-md mx-auto mb-2">Class ${note.class} • ${note.subject}</span>
+                    <h4 class="text-sm font-bold text-navy mb-1 line-clamp-1">${note.title}</h4>
+                    <p class="text-xs text-muted mb-4 line-clamp-2">${note.description || ''}</p>
+                    <a href="${hrefWa}" target="_blank" class="w-full mt-auto inline-flex items-center justify-center gap-2 bg-navy hover:bg-gold text-white hover:text-navy font-bold py-2.5 rounded-xl text-xs transition-colors shadow-sm">
+                        <i data-lucide="shopping-cart" class="w-3.5 h-3.5"></i> Request Value Block (₹${note.price})
+                    </a>
+                `;
+                grid.appendChild(card);
+            });
+            lucide.createIcons();
+        }
+
+        // Render Dynamic Grid Gallery
+        function renderGallery() {
+            const grid = document.getElementById('gallery-grid');
+            grid.innerHTML = '';
+
+            if(!galleryData.length) {
+                grid.innerHTML = `<div class="col-span-full py-12 text-center text-muted font-medium">No institutional documentation photos added to this log index.</div>`;
+                return;
+            }
+
+            galleryData.forEach(item => {
+                const itemEl = document.createElement('div');
+                itemEl.className = "relative group aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-sm cursor-pointer gallery-trigger";
+                const imgUrl = parseGDriveLink(item.image);
+                itemEl.dataset.title = item.title;
+                itemEl.dataset.caption = item.caption || '';
+                itemEl.dataset.img = imgUrl;
+
+                itemEl.innerHTML = `
+                    <img src="${imgUrl}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                        <span class="text-[10px] font-bold text-gold uppercase tracking-wider mb-0.5">${item.category || 'Event'}</span>
+                        <h4 class="text-xs font-bold text-white line-clamp-1">${item.title}</h4>
+                        <p class="text-[10px] text-gray-300 line-clamp-2 mt-0.5">${item.caption || ''}</p>
+                    </div>
+                `;
+                grid.appendChild(itemEl);
+            });
+        }
+
+        // Render Customer/Student Testimonial Carousel Nodes
+        function renderTestimonials() {
+            const grid = document.getElementById('testimonials-grid');
+            grid.innerHTML = '';
+
+            if(!testimonialsData.length) {
+                grid.innerHTML = `
+                    <div class="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                        <div class="text-amber-400 flex gap-1 mb-4"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+                        <p class="text-sm text-gray-600 italic leading-relaxed mb-6">"Sudhir Sir has completely redesigned our mathematical computation confidence architectures. Exceptional execution timelines."</p>
+                        <div class="flex items-center gap-3 border-t border-gray-50 pt-4">
+                            <div class="w-10 h-10 bg-navy text-white rounded-full font-bold flex items-center justify-center text-xs">A</div>
+                            <div><span class="block text-xs font-bold text-navy">Ankit Patel</span><span class="block text-[10px] text-muted">Class 12 Alumnus</span></div>
+                        </div>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            testimonialsData.forEach(test => {
+                const card = document.createElement('div');
+                card.className = "bg-white border border-gray-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow";
+                
+                let starsHtml = '';
+                const count = parseInt(test.rating || 5);
+                for(let i=0; i<5; i++) {
+                    starsHtml += `<i data-lucide="star" class="w-4 h-4 ${i < count ? 'text-amber-400 fill-current' : 'text-gray-200'}"></i>`;
+                }
+
+                const userPic = test.image ? parseGDriveLink(test.image) : `https://ui-avatars.com/api/?name=${encodeURIComponent(test.name)}&background=1a365d&color=fff`;
+
+                card.innerHTML = `
+                    <div>
+                        <div class="flex gap-0.5 mb-4">${starsHtml}</div>
+                        <p class="text-sm text-gray-600 italic leading-relaxed mb-6">"${test.reviewText}"</p>
+                    </div>
+                    <div class="flex items-center gap-3 border-t border-gray-50 pt-4 mt-auto">
+                        <img src="${userPic}" alt="User" class="w-10 h-10 rounded-full object-cover border border-gray-100 shrink-0">
+                        <div>
+                            <span class="block text-xs font-bold text-navy">${test.name}</span>
+                            <span class="block text-[10px] text-muted">Class ${test.class} ${test.parentName ? `• Parent: ${test.parentName}` : ''}</span>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            lucide.createIcons();
+        }
+
+        // Generate Sticky Sidebars + Footer Networks
+        function renderSocialElements() {
+            const sidebar = document.getElementById('sticky-sidebar');
+            const footerIcons = document.getElementById('footer-socials');
+            
+            sidebar.innerHTML = '';
+            footerIcons.innerHTML = '';
+
+            const links = siteSettings.socialLinks || defaultSettings.socialLinks;
+            const platformConfig = [
+                { key: 'youtube', icon: 'youtube', color: 'bg-red-600 text-white', hoverColor: 'hover:text-red-500' },
+                { key: 'instagram', icon: 'instagram', color: 'bg-gradient-to-tr from-yellow-500 via-red-500 to-purple-500 text-white', hoverColor: 'hover:text-pink-500' },
+                { key: 'facebook', icon: 'facebook', color: 'bg-blue-600 text-white', hoverColor: 'hover:text-blue-500' },
+                { key: 'telegram', icon: 'send', color: 'bg-sky-500 text-white', hoverColor: 'hover:text-sky-400' },
+                { key: 'whatsapp', icon: 'whatsapp', color: 'bg-emerald-500 text-white', hoverColor: 'hover:text-emerald-400' }
+            ];
+
+            platformConfig.forEach(p => {
+                const targetUrl = p.key === 'whatsapp' ? `https://wa.me/91${links[p.key]}` : links[p.key];
+                if(!targetUrl || targetUrl === '#') return;
+
+                // Build Sidebar Floating Triggers
+                const sbLink = document.createElement('a');
+                sbLink.href = targetUrl;
+                sbLink.target = "_blank";
+                sbLink.className = `${p.color} p-3 rounded-xl shadow-xl transform hover:-translate-x-1 transition-all flex items-center justify-center`;
+                sbLink.innerHTML = `<i data-lucide="${p.icon}" class="w-5 h-5 ${p.icon === 'whatsapp' ? 'fill-current' : ''}"></i>`;
+                sidebar.appendChild(sbLink);
+
+                // Build Footer Integration Element Node
+                const ftLink = document.createElement('a');
+                ftLink.href = targetUrl;
+                ftLink.target = "_blank";
+                ftLink.className = `text-gray-400 ${p.hoverColor} transition-colors p-2 bg-white/5 rounded-lg`;
+                ftLink.innerHTML = `<i data-lucide="${p.icon}" class="w-5 h-5"></i>`;
+                footerIcons.appendChild(ftLink);
+            });
+        }
+
+        // Functional UX Interactivity Bindings
+        function setupInteractivity() {
+            // Hamburger Mobile Core Controls
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+            
+            document.querySelectorAll('.mobile-link').forEach(l => {
+                l.addEventListener('click', () => menu.classList.add('hidden'));
+            });
+
+            // Hero Actions
+            document.getElementById('hero-next').addEventListener('click', () => { switchSlide(currentSlide + 1); startSliderLoop(); });
+            document.getElementById('hero-prev').addEventListener('click', () => { switchSlide(currentSlide - 1); startSliderLoop(); });
+            
+            document.getElementById('hero-dots').addEventListener('click', (e) => {
+                if(e.target.dataset.targetIdx !== undefined) {
+                    switchSlide(parseInt(e.target.dataset.targetIdx));
+                    startSliderLoop();
+                }
+            });
+
+            // Filtering Tab Actions
+            document.querySelectorAll('.course-tab').forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    document.querySelectorAll('.course-tab').forEach(t => t.className = "course-tab px-6 py-2.5 rounded-full font-semibold text-sm transition-all shadow-sm bg-white text-navy hover:bg-gray-100");
+                    e.target.className = "course-tab px-6 py-2.5 rounded-full font-semibold text-sm transition-all shadow-sm bg-navy text-white";
+                    renderCourses(e.target.dataset.filter);
+                });
+            });
+
+            // Video Filtering Core Events
+            document.getElementById('video-filter-class').addEventListener('change', renderVideos);
+            document.getElementById('video-filter-subject').addEventListener('input', renderVideos);
+            document.getElementById('video-filter-topic').addEventListener('input', renderVideos);
+
+            // Playback Modals Triggers
+            const vidModal = document.getElementById('video-modal');
+            const playerContainer = document.getElementById('modal-player-container');
+            
+            document.getElementById('videos-grid').addEventListener('click', (e) => {
+                const trigger = e.target.closest('.play-video-trigger');
+                if(!trigger) return;
+                const ytId = trigger.dataset.ytId;
+                if(!ytId) return;
+
+                playerContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${ytId}?autoplay=1" class="w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                vidModal.classList.replace('hidden', 'flex');
+            });
+
+            document.getElementById('close-modal-btn').addEventListener('click', () => {
+                vidModal.classList.replace('flex', 'hidden');
+                playerContainer.innerHTML = '';
+            });
+
+            // Gallery Lightbox Modal Handling
+            const lbModal = document.getElementById('lightbox-modal');
+            const lbImg = document.getElementById('lightbox-img');
+            const lbTitle = document.getElementById('lightbox-title');
+            const lbCaption = document.getElementById('lightbox-caption');
+
+            document.getElementById('gallery-grid').addEventListener('click', (e) => {
+                const trigger = e.target.closest('.gallery-trigger');
+                if(!trigger) return;
+                
+                lbImg.src = trigger.dataset.img;
+                lbTitle.textContent = trigger.dataset.title;
+                lbCaption.textContent = trigger.dataset.caption;
+                lbModal.classList.replace('hidden', 'flex');
+            });
+
+            document.getElementById('close-lightbox-btn').addEventListener('click', () => {
+                lbModal.classList.replace('flex', 'hidden');
+            });
+
+            // Contact Capture Action Engine
+            const form = document.getElementById('inquiry-form');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const newInquiry = {
+                    name: document.getElementById('form-name').value,
+                    phone: document.getElementById('form-phone').value,
+                    class: document.getElementById('form-class').value,
+                    subject: document.getElementById('form-subject').value,
+                    message: document.getElementById('form-message').value,
+                    date: new Date().toISOString()
+                };
+                
+                inquiriesData.unshift(newInquiry);
+                localStorage.setItem('inquiriesData', JSON.stringify(inquiriesData));
+                
+                form.reset();
+                const toast = document.getElementById('form-success-toast');
+                toast.classList.remove('hidden');
+                setTimeout(() => toast.classList.add('hidden'), 6000);
+            });
+        }
+
+        // ==========================================================
+        // DYNAMIC GOOGLE DRIVE AUTHENTICATION CORE ROUTER & ENGINE
+        // ==========================================================
+        // ==========================================================
+        // DYNAMIC GOOGLE DRIVE AUTHENTICATION CORE ROUTER & ENGINE
+        // ==========================================================
+        // ==========================================================
+        // DYNAMIC GOOGLE DRIVE AUTHENTICATION CORE ROUTER & ENGINE
+        // ==========================================================
+        // ==========================================================
+        // DEBUG-ENABLED GOOGLE DRIVE AUTHENTICATION ENGINE
+        // ==========================================================
+        // ==========================================================
+        // SECURE TUNNEL-BASED GOOGLE CLOUD AUTHENTICATION ENGINE
+        // ==========================================================
+        // ==========================================================
+        // UPGRADED REDIRECT-AWARE GOOGLE CLOUD AUTHENTICATION ENGINE
+        // ==========================================================
+        function setupCloudAuthEngine() {
+            // Aapka exact verified Web App URL
+            const CLOUD_TUNNEL_URL = 'https://script.google.com/macros/s/AKfycbz0xNwIGPuT9iYIp1UkOYD22d4L5Pyv88PXLdpexHmX3vrCfvmtEOzBpDsrK58kgyqR/exec'; 
+
+            const trigger = document.getElementById('hidden-admin-trigger');
+            const modal = document.getElementById('drive-auth-modal');
+            const closeBtn = document.getElementById('close-auth-modal');
+            const form = document.getElementById('drive-auth-form');
+            const input = document.getElementById('drive-auth-input');
+            const submitBtn = document.getElementById('drive-auth-submit');
+            const errorMsg = document.getElementById('drive-auth-error');
+            const btnText = document.getElementById('btn-text');
+
+            if (!trigger || !modal) return;
+
+            trigger.addEventListener('click', () => {
+                modal.classList.replace('hidden', 'flex');
+                input.focus();
+            });
+
+            closeBtn.addEventListener('click', () => {
+                modal.classList.replace('hidden', 'flex');
+                errorMsg.classList.add('hidden');
+                form.reset();
+            });
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                errorMsg.classList.add('hidden');
+                
+                btnText.textContent = "Verifying with Cloud Server...";
+                submitBtn.disabled = true;
+                submitBtn.classList.add('opacity-70');
+
+                const enteredPassword = input.value.trim();
+
+                // Build query parameter URL
+                const targetUrl = `${CLOUD_TUNNEL_URL}?password=${encodeURIComponent(enteredPassword)}`;
+
+                try {
+                    // Google redirects ko bypass karne ke liye redirect: 'follow' set kiya hai
+                    const response = await fetch(targetUrl, {
+                        method: 'GET',
+                        mode: 'cors',
+                        redirect: 'follow', 
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`Cloud Server responded with status: ${response.status}`);
+                    }
+                    
+                    // Response text read karein aur use parse karein
+                    const textData = await response.text();
+                    let result;
+                    
+                    try {
+                        result = JSON.parse(textData);
+                    } catch(jsonErr) {
+                        throw new Error(`Invalid server data format. Received: ${textData.substring(0, 50)}...`);
+                    }
+
+                    if (result.status === "SUCCESS") {
+                        alert("✅ Security Key Match! Access Granted.");
+                        // Secure session token store karein
+                        localStorage.setItem('admin_session_token', btoa(enteredPassword + '_verified_2026'));
+                        window.location.href = 'admin.html';
+                    } else if (result.status === "MISMATCH") {
+                        alert("❌ Access Denied!\nAapne jo password dala hai woh Google Sheet ke password se match nahi kha raha hai.");
+                        errorMsg.classList.remove('hidden');
+                        errorMsg.textContent = "Incorrect password matrix signature.";
+                    } else {
+                        throw new Error(result.message || "Unknown auth response.");
+                    }
+
+                } catch (error) {
+                    console.error("🚨 Cloud Interface Error:", error);
+                    
+                    // Detail error reporting screen par taaki problem turant samajh aaye
+                    alert(`CONNECTIVITY ALERT!\n\nReason: ${error.message}\n\nSolution Checklist:\n1. Kya aapka internet chalu hai?\n2. Apps Script me "Who has access" abhi bhi "Anyone" par set hai na?\n3. Ek baar Sheet me jaakar check karein ki password sahi cell (A1) me likha hai ya nahi.`);
+                    
+                    errorMsg.classList.remove('hidden');
+                    errorMsg.textContent = `Cloud Node Error: ${error.message}`;
+                } finally {
+                    btnText.textContent = "Verify Identity";
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-70');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrative Dashboard Node - The Vision Institute</title>
+    <!-- Tailwind & Google Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { navy: '#1a365d', gold: '#d69e2e' },
+                    fontFamily: { sans: ['Source Sans 3', 'sans-serif'], mono: ['Source Code Pro', 'monospace'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        .sidebar-active { background-color: #d69e2e !important; color: #1a365d !important; font-weight: 700; }
+    </style>
+</head>
+<body class="bg-gray-100 flex min-h-screen iframe-container relative">
+
+    <!-- INITIAL BLANK VISIBILITY PROTECTION SHIELD -->
+    <div id="auth-gate-shield" class="fixed inset-0 z-[150] bg-navy flex items-center justify-center text-white font-bold font-mono tracking-widest text-sm">
+        SECURE CONNECTIVITY HANDSHAKE VERIFICATION ACTIVE...
+    </div>
+
+    <!-- MAIN DASHBOARD CONTENT GRID WRAPPER -->
+    <div id="dashboard-layout" class="hidden w-full min-h-screen flex flex-col lg:flex-row">
+        
+        <!-- SIDE NAVIGATION BAR ELEMENT -->
+        <aside class="w-full lg:w-64 bg-navy text-white flex flex-col justify-between border-r border-white/5 shrink-0">
+            <div class="p-6">
+                <div class="flex items-center gap-3 mb-8 pb-4 border-b border-white/10">
+                    <div class="bg-gold p-2 rounded-lg text-navy"><i data-lucide="sliders" class="w-5 h-5"></i></div>
+                    <div>
+                        <span class="font-bold text-sm block tracking-wide">Vision Admin</span>
+                        <span class="text-[10px] text-gray-400 tracking-widest uppercase font-mono">v1.2.0-Persistent</span>
+                    </div>
+                </div>
+                
+                <nav id="admin-nav" class="space-y-1.5">
+                    <button data-target="panel-overview" class="w-full flex items-center gap-3 text-sm px-4 py-3 rounded-xl transition-all text-gray-300 hover:bg-white/5"><i data-lucide="layout-dashboard" class="w-4 h-4"></i> Overview</button>
+                    <button data-target="panel-settings" class="w-full flex items-center gap-3 text-sm px-4 py-3 rounded-xl transition-all text-gray-300 hover:bg-white/5"><i data-lucide="settings" class="w-4 h-4"></i> Site Settings</button>
+                    <button data-target="panel-slider" class="w-full flex items-center gap-3 text-sm px-4 py-3 rounded-xl transition-all text-gray-300 hover:bg-white/5"><i data-lucide="images" class="w-4 h-4"></i> Hero Slider</button>
+                    <button data-target="panel-courses" class="w-full flex items-center gap-3 text-sm px-4 py-3 rounded-xl transition-all text-gray-300 hover:bg-white/5"><i data-lucide="book-open" class="w-4 h-4"></i> Courses</button>
+                    <button data-target="panel-videos" class="w-full flex items-center gap-3 text-sm px-4 py-3 rounded-xl transition-all text-gray-300 hover:bg-white/5"><i data-lucide="video" class="w-4 h-4"></i> Free Videos</button>
+                    <button data-target="panel-notes" class="w-full flex items-center gap-3 text-sm px-4 py-3 rounded-xl transition-all text-gray-300 hover:bg-white/5"><i data-lucide="file-text" class="w-4 h-4"></i> Paid Notes</button>
+                    <button data-target="panel-gallery" class="w-full flex items-center gap-3 text-sm px-4 py-3 rounded-xl transition-all text-gray-300 hover:bg-white/5"><i data-lucide="aperture" class="w-4 h-4"></i> Gallery Grid</button>
+                    <button data-target="panel-testimonials" class="w-full flex items-center gap-3 text-sm px-4 py-3 rounded-xl transition-all text-gray-300 hover:bg-white/5"><i data-lucide="message-square" class="w-4 h-4"></i> Testimonials</button>
+                    <button data-target="panel-inquiries" class="w-full flex items-center gap-3 text-sm px-4 py-3 rounded-xl transition-all text-gray-300 hover:bg-white/5 justify-between">
+                        <span class="flex items-center gap-3"><i data-lucide="inbox" class="w-4 h-4"></i> Inquiries</span>
+                        <span id="badge-inquiries-count" class="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-full hidden">0</span>
+                    </button>
+                    <button data-target="panel-help" class="w-full flex items-center gap-3 text-sm px-4 py-3 rounded-xl transition-all text-gray-300 hover:bg-white/5"><i data-lucide="help-circle" class="w-4 h-4"></i> GDrive Integration Help</button>
+                </nav>
+            </div>
+            
+            <div class="p-4 border-t border-white/5 bg-black/20 flex items-center justify-between">
+                <a href="index.html" class="text-xs text-gold font-bold hover:underline inline-flex items-center gap-1"><i data-lucide="external-link" class="w-3.5 h-3.5"></i> Launch Live</a>
+                <button id="logout-btn" class="text-xs text-red-400 hover:text-red-500 font-semibold">Exit Node</button>
+            </div>
+        </aside>
+
+        <!-- MAIN INTERACTIVE MANAGING STACK AREA -->
+        <main class="flex-grow p-6 md:p-10 max-w-7xl mx-auto w-full overflow-x-hidden">
+            
+            <!-- ALERTS NOTIFIER STATUS FRAME -->
+            <div id="action-toast" class="hidden mb-6 bg-emerald-600 text-white px-6 py-3 rounded-xl shadow-lg text-sm items-center justify-between transition-all">
+                <span id="toast-text">System changes synchronized to local client state storage modules.</span>
+                <button onclick="this.parentElement.classList.replace('flex','hidden')" class="text-white/80 hover:text-white"><i data-lucide="x" class="w-4 h-4"></i></button>
+            </div>
+
+            <!-- PANEL 1: OVERVIEW DASHBOARD -->
+            <div id="panel-overview" class="admin-panel space-y-8">
+                <div>
+                    <h1 class="text-3xl font-bold text-navy">Overview Management Dashboard</h1>
+                    <p class="text-sm text-gray-500 mt-1">High-level quantitative configuration audit vectors across current environment state.</p>
+                </div>
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
+                    <div class="bg-white p-6 rounded-2xl border border-gray-200/60 shadow-sm flex items-center justify-between">
+                        <div><span class="block text-2xl font-black text-navy" id="stat-courses">0</span><span class="text-xs text-gray-400 font-bold uppercase tracking-wider">Active Courses</span></div>
+                        <div class="p-3 bg-blue-50 text-blue-600 rounded-xl"><i data-lucide="book-open" class="w-6 h-6"></i></div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-200/60 shadow-sm flex items-center justify-between">
+                        <div><span class="block text-2xl font-black text-navy" id="stat-videos">0</span><span class="text-xs text-gray-400 font-bold uppercase tracking-wider">Lectures Linked</span></div>
+                        <div class="p-3 bg-red-50 text-red-600 rounded-xl"><i data-lucide="video" class="w-6 h-6"></i></div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-200/60 shadow-sm flex items-center justify-between">
+                        <div><span class="block text-2xl font-black text-navy" id="stat-notes">0</span><span class="text-xs text-gray-400 font-bold uppercase tracking-wider">Notes Datasets</span></div>
+                        <div class="p-3 bg-amber-50 text-amber-600 rounded-xl"><i data-lucide="file-text" class="w-6 h-6"></i></div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-200/60 shadow-sm flex items-center justify-between">
+                        <div><span class="block text-2xl font-black text-navy" id="stat-inquiries">0</span><span class="text-xs text-gray-400 font-bold uppercase tracking-wider">Inquiry Streams</span></div>
+                        <div class="p-3 bg-purple-50 text-purple-600 rounded-xl"><i data-lucide="inbox" class="w-6 h-6"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL 2: SITE SETTINGS -->
+            <div id="panel-settings" class="admin-panel hidden space-y-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-navy">Global Architecture Settings</h2>
+                    <p class="text-xs text-gray-500 mt-0.5">Control the structural parameters, metadata strings, and operational anchors of the interface.</p>
+                </div>
+                <form id="settings-form" class="bg-white p-6 rounded-2xl border border-gray-200/60 shadow-sm space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Institute Name</label>
+                            <input type="text" id="set-inst-name" required class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-gold">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Lead Educator Name</label>
+                            <input type="text" id="set-teacher-name" required class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-gold">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Primary Audio Call Line</label>
+                            <input type="text" id="set-phone" required class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-gold">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-500 mb-2">WhatsApp Comms Number</label>
+                            <input type="text" id="set-whatsapp" required class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-gold">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Contact Email Node</label>
+                            <input type="email" id="set-email" required class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-gold">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Physical Campus Address String</label>
+                        <input type="text" id="set-address" required class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-gold">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Institutional Brand Logo (Google Drive Shareable URL Link)</label>
+                        <input type="url" id="set-logo" placeholder="https://drive.google.com/..." class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm font-mono focus:outline-none focus:border-gold">
+                    </div>
+
+                    <div class="border-t border-gray-100 pt-6 space-y-4">
+                        <h3 class="text-sm font-bold text-navy uppercase tracking-wider">Social Connectivity Array Blocks</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[11px] font-semibold text-gray-400 mb-1">YouTube Broadcast Hub</label>
+                                <input type="url" id="set-soc-yt" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-xs font-mono focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-semibold text-gray-400 mb-1">Instagram Grid Sync</label>
+                                <input type="url" id="set-soc-ig" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-xs font-mono focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-semibold text-gray-400 mb-1">Facebook Community Core</label>
+                                <input type="url" id="set-soc-fb" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-xs font-mono focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-semibold text-gray-400 mb-1">Telegram Target Distribution Channel</label>
+                                <input type="url" id="set-soc-tg" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-xs font-mono focus:outline-none">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="bg-navy hover:bg-navy/90 text-white text-sm font-bold px-6 py-3 rounded-xl transition-all shadow">Commit Architecture Matrix</button>
+                </form>
+            </div>
+
+            <!-- PANEL 3: HERO SLIDER MANAGEMENT -->
+            <div id="panel-slider" class="admin-panel hidden space-y-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold text-navy">Hero Carousel Controls</h2>
+                        <p class="text-xs text-gray-500">Inject, reorder, or alter text frames over homepage splash slides.</p>
+                    </div>
+                    <button id="add-slide-btn" class="bg-navy text-white text-xs font-bold px-4 py-2.5 rounded-xl flex items-center gap-1.5"><i data-lucide="plus-circle" class="w-4 h-4"></i> Add Image Slide</button>
+                </div>
+                
+                <!-- Slide Modal Form -->
+                <form id="slider-form" class="bg-white p-6 rounded-2xl border border-gray-200/60 shadow-sm space-y-4 hidden">
+                    <h3 class="text-sm font-bold text-navy uppercase border-b pb-2" id="slider-form-title">Create Slide Element</h3>
+                    <input type="hidden" id="slider-edit-id">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">Slide Header Title</label>
+                            <input type="text" id="slide-title" required class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">GDrive Background Asset Link</label>
+                            <input type="url" id="slide-image" placeholder="https://drive.google.com/..." required class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm font-mono">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold mb-1">Slide Descriptor Subtext</label>
+                        <textarea id="slide-desc" rows="2" required class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm"></textarea>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">CTA Action Button Text</label>
+                            <input type="text" id="slide-btn-text" placeholder="e.g. Join Session" class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">CTA Action Target Destination Anchor URL</label>
+                            <input type="text" id="slide-btn-link" placeholder="e.g. #contact" class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm">
+                        </div>
+                    </div>
+                    <div class="flex gap-2 justify-end pt-2">
+                        <button type="button" onclick="document.getElementById('slider-form').classList.add('hidden')" class="border px-4 py-2 rounded-xl text-xs font-semibold">Discard</button>
+                        <button type="submit" class="bg-gold text-navy font-bold px-4 py-2 rounded-xl text-xs">Serialize Slide Element</button>
+                    </div>
+                </form>
+
+                <div class="bg-white rounded-2xl border border-gray-200/60 shadow-sm overflow-hidden">
+                    <table class="w-full text-left text-sm border-collapse">
+                        <thead class="bg-gray-50 text-xs font-bold uppercase text-gray-500 border-b">
+                            <tr>
+                                <th class="p-4">Frame Meta</th>
+                                <th class="p-4">Headline Target String</th>
+                                <th class="p-4 text-right">Operation Anchors</th>
+                            </tr>
+                        </thead>
+                        <tbody id="slider-table-body" class="divide-y divide-gray-100"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- PANEL 4: COURSES MANAGEMENT -->
+            <div id="panel-courses" class="admin-panel hidden space-y-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold text-navy">Academic Syllabus Courses Engine</h2>
+                        <p class="text-xs text-gray-500">Configure core programmatic items, class categorizations, or fee values.</p>
+                    </div>
+                    <button id="add-course-btn" class="bg-navy text-white text-xs font-bold px-4 py-2.5 rounded-xl flex items-center gap-1.5"><i data-lucide="plus-circle" class="w-4 h-4"></i> Add New Academic Syllabus</button>
+                </div>
+
+                <form id="course-form" class="bg-white p-6 rounded-2xl border border-gray-200/60 shadow-sm space-y-4 hidden">
+                    <h3 class="text-sm font-bold text-navy uppercase border-b pb-2" id="course-form-title">Create Programmatic Course Item</h3>
+                    <input type="hidden" id="course-edit-id">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-semibold mb-1">Course Title Signature</label>
+                            <input type="text" id="course-title" required class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">Target Class Category</label>
+                            <select id="course-class" class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm">
+                                <option value="10">Class 10</option>
+                                <option value="11">Class 11</option>
+                                <option value="12">Class 12</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">Primary Subject Field</label>
+                            <input type="text" id="course-subject" required class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">Assigned Teacher Node</label>
+                            <input type="text" id="course-teacher" required class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">Fee Strategy Text</label>
+                            <input type="text" id="course-fee" required class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">Timeline Duration Block</label>
+                            <input type="text" id="course-duration" required class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-semibold mb-1">GDrive Cover Art Thumbnail Link</label>
+                            <input type="url" id="course-image" class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm font-mono">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">Status Switch</label>
+                            <select id="course-active" class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm">
+                                <option value="true">Active/Visible</option>
+                                <option value="false">Disabled/Hidden</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold mb-1">Detailed Course Paradigm Description</label>
+                        <textarea id="course-desc" rows="3" required class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm"></textarea>
+                    </div>
+                    <div class="flex gap-2 justify-end pt-2">
+                        <button type="button" onclick="document.getElementById('course-form').classList.add('hidden')" class="border px-4 py-2 rounded-xl text-xs font-semibold">Cancel</button>
+                        <button type="submit" class="bg-gold text-navy font-bold px-4 py-2 rounded-xl text-xs">Serialize Course Profile</button>
+                    </div>
+                </form>
+
+                <div class="bg-white rounded-2xl border border-gray-200/60 shadow-sm overflow-hidden">
+                    <table class="w-full text-left text-sm border-collapse">
+                        <thead class="bg-gray-50 text-xs font-bold uppercase text-gray-500 border-b">
+                            <tr>
+                                <th class="p-4">Course Signature Title</th>
+                                <th class="p-4">Class</th>
+                                <th class="p-4">Subject</th>
+                                <th class="p-4">Status</th>
+                                <th class="p-4 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="courses-table-body" class="divide-y divide-gray-100"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- PANEL 5: FREE VIDEOS MANAGEMENT -->
+            <div id="panel-videos" class="admin-panel hidden space-y-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold text-navy">YouTube Video Catalog Matrix</h2>
+                        <p class="text-xs text-gray-500">Inject high-yield digital lecture videos from external YouTube channels.</p>
+                    </div>
+                    <button id="add-video-btn" class="bg-navy text-white text-xs font-bold px-4 py-2.5 rounded-xl flex items-center gap-1.5"><i data-lucide="plus-circle" class="w-4 h-4"></i> Add Video Item</button>
+                </div>
+
+                <form id="video-form" class="bg-white p-6 rounded-2xl border border-gray-200/60 shadow-sm space-y-4 hidden">
+                    <h3 class="text-sm font-bold text-navy uppercase border-b pb-2">Inject Video Reference Node</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">YouTube Target URL Link String</label>
+                            <input type="url" id="vid-url" placeholder="https://www.youtube.com/watch?v=..." required class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm font-mono">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">Lecture Title String</label>
+                            <input type="text" id="vid-title" required class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">Target Class Filter</label>
+                            <select id="vid-class" class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm">
+                                <option value="10">Class 10</option>
+                                <option value="11">Class 11</option>
+                                <option value="12">Class 12</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">Subject Scope Tag</label>
+                            <input type="text" id="vid-subject" placeholder="e.g. Physics" required class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">Topic Taxonomy String</label>
+                            <input type="text" id="vid-topic" placeholder="e.g. Integration" required class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold mb-1">Brief Description Field</label>
+                        <textarea id="vid-desc" rows="2" class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm"></textarea>
+                    </div>
+                    <div class="flex gap-2 justify-end pt-2">
+                        <button type="button" onclick="document.getElementById('video-form').classList.add('hidden')" class="border px-4 py-2 rounded-xl text-xs font-semibold">Dismiss</button>
+                        <button type="submit" class="bg-gold text-navy font-bold px-4 py-2 rounded-xl text-xs">Serialize Video Pointer</button>
+                    </div>
+                </form>
+
+                <div class="bg-white rounded-2xl border border-gray-200/60 shadow-sm overflow-hidden">
+                    <table class="w-full text-left text-sm border-collapse">
+                        <thead class="bg-gray-50 text-xs font-bold uppercase text-gray-500 border-b">
+                            <tr>
+                                <th class="p-4">Lecture Video Title</th>
+                                <th class="p-4">Target Class Matrix</th>
+                                <th class="p-4">Subject/Topic Context</th>
+                                <th class="p-4 text-right">System Removers</th>
+                            </tr>
+                        </thead>
+                        <tbody id="videos-table-body" class="divide-y divide-gray-100"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- PANEL 6: PAID NOTES MANAGEMENT -->
+            <div id="panel-notes" class="admin-panel hidden space-y-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold text-navy">Premium Digital Studies Assets</h2>
+                        <p class="text-xs text-gray-500">Manage paid structural revision catalogs and formula notes packages.</p>
+                    </div>
+                    <button id="add-notes-btn" class="bg-navy text-white text-xs font-bold px-4 py-2.5 rounded-xl flex items-center gap-1.5"><i data-lucide="plus-circle" class="w-4 h-4"></i> Add Premium Note Block</button>
+                </div>
+
+                <form id="notes-form" class="bg-white p-6 rounded-2xl border border-gray-200/60 shadow-sm space-y-4 hidden">
+                    <h3 class="text-sm font-bold text-navy uppercase border-b pb-2">Compile Premium Notes Asset</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-semibold mb-1">Notes Blueprint Title</label>
+                            <input type="text" id="note-title" required class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">Target Class Category</label>
+                            <select id="note-class" class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm">
+                                <option value="10">Class 10</option>
+                                <option value="11">Class 11</option>
+                                <option value="12">Class 12</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">Subject Classification Domain</label>
+                            <input type="text" id="note-subject" required class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">Valuation Strategy (INR Price String)</label>
+                            <input type="number" id="note-price" required class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">GDrive Sample/Cover Asset Link</label>
+                            <input type="url" id="note-image" class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm font-mono">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold mb-1">Notes Manifest Description</label>
+                        <textarea id="note-desc" rows="2" class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm"></textarea>
+                    </div>
+                    <div class="flex gap-2 justify-end pt-2">
+                        <button type="button" onclick="document.getElementById('notes-form').classList.add('hidden')" class="border px-4 py-2 rounded-xl text-xs font-semibold">Discard</button>
+                        <button type="submit" class="bg-gold text-navy font-bold px-4 py-2 rounded-xl text-xs">Serialize Premium Note Group</button>
+                    </div>
+                </form>
+
+                <div class="bg-white rounded-2xl border border-gray-200/60 shadow-sm overflow-hidden">
+                    <table class="w-full text-left text-sm border-collapse">
+                        <thead class="bg-gray-50 text-xs font-bold uppercase text-gray-500 border-b">
+                            <tr>
+                                <th class="p-4">Premium Pack Title</th>
+                                <th class="p-4">Category System</th>
+                                <th class="p-4">Assigned Value Price</th>
+                                <th class="p-4 text-right">Operation Triggers</th>
+                            </tr>
+                        </thead>
+                        <tbody id="notes-table-body" class="divide-y divide-gray-100"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- PANEL 7: GALLERY MANAGEMENT -->
+            <div id="panel-gallery" class="admin-panel hidden space-y-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold text-navy">Campus Documentation Grid Photo Files</h2>
+                        <p class="text-xs text-gray-500">Inject event logs, milestone accomplishments, or classroom environment photos.</p>
+                    </div>
+                    <button id="add-gal-btn" class="bg-navy text-white text-xs font-bold px-4 py-2.5 rounded-xl flex items-center gap-1.5"><i data-lucide="plus-circle" class="w-4 h-4"></i> Add Gallery Element</button>
+                </div>
+
+                <form id="gallery-form" class="bg-white p-6 rounded-2xl border border-gray-200/60 shadow-sm space-y-4 hidden">
+                    <h3 class="text-sm font-bold text-navy uppercase border-b pb-2">Commit Asset Item Pointer</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-semibold mb-1">Asset Identity Title Text</label>
+                            <input type="text" id="gal-title" required class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">Categorization Sector</label>
+                            <select id="gal-category" class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm">
+                                <option value="Achievement">Achievement / Scoreboard</option>
+                                <option value="Classroom">Classroom Activity</option>
+                                <option value="Event">Event Log</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold mb-1">GDrive Raw Image Link Point</label>
+                        <input type="url" id="gal-image" placeholder="https://drive.google.com/..." required class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm font-mono">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold mb-1">Caption / Structural Success Framework Metric</label>
+                        <input type="text" id="gal-caption" placeholder="e.g. Scored 98% inside Board Matrix 2026" class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm">
+                    </div>
+                    <div class="flex gap-2 justify-end pt-2">
+                        <button type="button" onclick="document.getElementById('gallery-form').classList.add('hidden')" class="border px-4 py-2 rounded-xl text-xs font-semibold">Discard</button>
+                        <button type="submit" class="bg-gold text-navy font-bold px-4 py-2 rounded-xl text-xs">Serialize Image Unit</button>
+                    </div>
+                </form>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="gallery-admin-grid"></div>
+            </div>
+
+            <!-- PANEL 8: TESTIMONIALS MANAGEMENT -->
+            <div id="panel-testimonials" class="admin-panel hidden space-y-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold text-navy">Ecosystem Social Evaluation Logs</h2>
+                        <p class="text-xs text-gray-500">Inject parent feedback or verified student testimonial validation records.</p>
+                    </div>
+                    <button id="add-test-btn" class="bg-navy text-white text-xs font-bold px-4 py-2.5 rounded-xl flex items-center gap-1.5"><i data-lucide="plus-circle" class="w-4 h-4"></i> Create Validation Block</button>
+                </div>
+
+                <form id="testimonial-form" class="bg-white p-6 rounded-2xl border border-gray-200/60 shadow-sm space-y-4 hidden">
+                    <h3 class="text-sm font-bold text-navy uppercase border-b pb-2">Compile Testimonial Log</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">Student Identity Name</label>
+                            <input type="text" id="test-name" required class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">Class Stream Scale</label>
+                            <input type="text" id="test-class" placeholder="e.g. 12th PCM" required class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">Quantitative Evaluation Score (1-5 Stars)</label>
+                            <select id="test-rating" class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm">
+                                <option value="5">5 Star Standard Rating</option>
+                                <option value="4">4 Star Rating</option>
+                                <option value="3">3 Star Rating</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">Parent/Guardian Name Reference (Optional)</label>
+                            <input type="text" id="test-parent" class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold mb-1">GDrive Avatar Profile Image Link (Optional)</label>
+                            <input type="url" id="test-image" class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm font-mono">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold mb-1">Verification Review String</label>
+                        <textarea id="test-text" rows="3" required class="w-full border border-gray-200 rounded-xl px-4 py-2 text-sm"></textarea>
+                    </div>
+                    <div class="flex gap-2 justify-end pt-2">
+                        <button type="button" onclick="document.getElementById('testimonial-form').classList.add('hidden')" class="border px-4 py-2 rounded-xl text-xs font-semibold">Discard</button>
+                        <button type="submit" class="bg-gold text-navy font-bold px-4 py-2 rounded-xl text-xs">Commit Review Entry</button>
+                    </div>
+                </form>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="testimonials-admin-container"></div>
+            </div>
+
+            <!-- PANEL 9: CONTACT INQUIRIES INTERFACE -->
+            <div id="panel-inquiries" class="admin-panel hidden space-y-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="text-2xl font-bold text-navy">Captured Form Intent Logs</h2>
+                        <p class="text-xs text-gray-500">Review input payloads captured from frontend entry nodes.</p>
+                    </div>
+                    <button id="export-csv-btn" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl flex items-center gap-1.5 shadow"><i data-lucide="download" class="w-4 h-4"></i> Export Log Database (.CSV)</button>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-gray-200/60 shadow-sm overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm border-collapse min-w-[800px]">
+                            <thead class="bg-gray-50 text-xs font-bold uppercase text-gray-500 border-b">
+                                <tr>
+                                    <th class="p-4">Submission Meta Clock</th>
+                                    <th class="p-4">Applicant Trace</th>
+                                    <th class="p-4">Class Focus Segment</th>
+                                    <th class="p-4">Captured Message Body</th>
+                                    <th class="p-4 text-right">Purge Node</th>
+                                </tr>
+                            </thead>
+                            <tbody id="inquiries-table-body" class="divide-y divide-gray-100"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL 10: HELP AND INSTRUCTIONS PANEL -->
+            <div id="panel-help" class="admin-panel hidden space-y-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-navy">Google Drive Media File Integration Guide</h2>
+                    <p class="text-xs text-gray-500">Instructions for using Google Drive as your system media storage framework.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-gray-200/60 shadow-sm space-y-6">
+                    <div class="space-y-4">
+                        <h3 class="font-bold text-navy flex items-center gap-2 text-base"><i data-lucide="info" class="w-5 h-5 text-gold"></i> Deployment Procedure Protocol</h3>
+                        <div class="bg-slate-50 font-mono text-xs p-4 rounded-xl text-slate-700 space-y-2 border border-slate-100 shadow-inner">
+                            <p class="font-bold text-navy">Step 1: Upload media asset to Google Drive.</p>
+                            <p class="font-bold text-navy">Step 2: Right-click target file inside interface → select Share option node.</p>
+                            <p class="font-bold text-navy">Step 3: Modify Permissions paradigm to "Anyone with the link can view".</p>
+                            <p class="font-bold text-navy">Step 4: Execute "Copy link" command.</p>
+                            <p class="font-bold text-navy">Step 5: Paste copied URL into designated admin link field block.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- MAIN ADMINISTRATIVE CONTROL IMPLEMENTATION CORE -->
+    <script>
+        // ==========================================================
+        // ENHANCED GOOGLE DRIVE SECURITY ACCESS PASSPORT GATEWAY CHECK
+        // ==========================================================
+        (function verifyCloudSession() {
+            const sessionToken = localStorage.getItem('admin_session_token');
+            const shield = document.getElementById('auth-gate-shield');
+            const layout = document.getElementById('dashboard-layout');
+
+            if (sessionToken) {
+                // Remove shielding layers if verified security handshake signature passes
+                if(shield) shield.remove();
+                if(layout) layout.classList.remove('hidden');
+                
+                // Hydrate dashboard parameters components asynchronously
+                setTimeout(() => { initDashboardEngine(); }, 50);
+            } else {
+                alert("Unauthorized Entry Node. Please authenticate via secure network cloud triggers.");
+                window.location.href = 'index.html';
+            }
+        })();
+
+        // Exit Node Session Invalidation Workflow
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            localStorage.removeItem('admin_session_token');
+            window.location.href = 'index.html';
+        });
+
+        // Dashboard Navigation Core Mechanics
+        function setupNavigation() {
+            const navButtons = document.querySelectorAll('#admin-nav > button');
+            navButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    navButtons.forEach(b => b.classList.remove('sidebar-active'));
+                    btn.classList.add('sidebar-active');
+                    
+                    document.querySelectorAll('.admin-panel').forEach(p => p.classList.add('hidden'));
+                    document.getElementById(btn.dataset.target).classList.remove('hidden');
+                });
+            });
+            navButtons[0].click();
+        }
+
+        // Structural Live Sync Data Parsers
+        let siteSettings, sliderData, coursesData, videosData, notesData, galleryData, testimonialsData, inquiriesData;
+
+        function loadDatasetsFromStorage() {
+            siteSettings = JSON.parse(localStorage.getItem('siteSettings')) || {};
+            sliderData = JSON.parse(localStorage.getItem('sliderData')) || [];
+            coursesData = JSON.parse(localStorage.getItem('coursesData')) || [];
+            videosData = JSON.parse(localStorage.getItem('videosData')) || [];
+            notesData = JSON.parse(localStorage.getItem('notesData')) || [];
+            galleryData = JSON.parse(localStorage.getItem('galleryData')) || [];
+            testimonialsData = JSON.parse(localStorage.getItem('testimonialsData')) || [];
+            inquiriesData = JSON.parse(localStorage.getItem('inquiriesData')) || [];
+        }
+
+        function triggerSystemNotification(msg) {
+            const toast = document.getElementById('action-toast');
+            document.getElementById('toast-text').textContent = msg;
+            toast.classList.replace('hidden', 'flex');
+            setTimeout(() => toast.classList.replace('flex','hidden'), 4000);
+        }
+
+        function initDashboardEngine() {
+            loadDatasetsFromStorage();
+            setupNavigation();
+            calculateOverviewStats();
+            hydrateSettingsForm();
+            renderSliderAdminTable();
+            renderCoursesAdminTable();
+            renderVideosAdminTable();
+            renderNotesAdminTable();
+            renderGalleryAdminGrid();
+            renderTestimonialsAdminContainer();
+            renderInquiriesAdminTable();
+            lucide.createIcons();
+        }
+
+        function calculateOverviewStats() {
+            document.getElementById('stat-courses').textContent = coursesData.filter(c => c.active).length;
+            document.getElementById('stat-videos').textContent = videosData.length;
+            document.getElementById('stat-notes').textContent = notesData.length;
+            document.getElementById('stat-inquiries').textContent = inquiriesData.length;
+            
+            const countBadge = document.getElementById('badge-inquiries-count');
+            if(inquiriesData.length > 0) {
+                countBadge.textContent = inquiriesData.length;
+                countBadge.classList.remove('hidden');
+            } else {
+                countBadge.classList.add('hidden');
+            }
+        }
+
+        function hydrateSettingsForm() {
+            document.getElementById('set-inst-name').value = siteSettings.instituteName || '';
+            document.getElementById('set-teacher-name').value = siteSettings.teacherName || '';
+            document.getElementById('set-phone').value = siteSettings.phone || '';
+            document.getElementById('set-whatsapp').value = siteSettings.whatsapp || '';
+            document.getElementById('set-email').value = siteSettings.email || '';
+            document.getElementById('set-address').value = siteSettings.address || '';
+            document.getElementById('set-logo').value = siteSettings.logo || '';
+            if(siteSettings.socialLinks) {
+                document.getElementById('set-soc-yt').value = siteSettings.socialLinks.youtube || '';
+                document.getElementById('set-soc-ig').value = siteSettings.socialLinks.instagram || '';
+                document.getElementById('set-soc-fb').value = siteSettings.socialLinks.facebook || '';
+                document.getElementById('set-soc-tg').value = siteSettings.socialLinks.telegram || '';
+            }
+        }
+
+        document.getElementById('settings-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            siteSettings.instituteName = document.getElementById('set-inst-name').value;
+            siteSettings.teacherName = document.getElementById('set-teacher-name').value;
+            siteSettings.phone = document.getElementById('set-phone').value;
+            siteSettings.whatsapp = document.getElementById('set-whatsapp').value;
+            siteSettings.email = document.getElementById('set-email').value;
+            siteSettings.address = document.getElementById('set-address').value;
+            siteSettings.logo = document.getElementById('set-logo').value;
+            siteSettings.socialLinks = {
+                youtube: document.getElementById('set-soc-yt').value,
+                instagram: document.getElementById('set-soc-ig').value,
+                facebook: document.getElementById('set-soc-fb').value,
+                telegram: document.getElementById('set-soc-tg').value,
+                whatsapp: document.getElementById('set-whatsapp').value
+            };
+            localStorage.setItem('siteSettings', JSON.stringify(siteSettings));
+            triggerSystemNotification("Site configuration dataset written successfully to local persistence layer.");
+        });
+
+        // Slider Actions Array Management
+        document.getElementById('add-slide-btn').addEventListener('click', () => {
+            document.getElementById('slider-form').classList.remove('hidden');
+            document.getElementById('slider-form').reset();
+            document.getElementById('slider-edit-id').value = '';
+        });
+
+        document.getElementById('slider-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const editId = document.getElementById('slider-edit-id').value;
+            const item = {
+                title: document.getElementById('slide-title').value,
+                image: document.getElementById('slide-image').value,
+                description: document.getElementById('slide-desc').value,
+                buttonText: document.getElementById('slide-btn-text').value,
+                buttonLink: document.getElementById('slide-btn-link').value
+            };
+
+            if(editId) sliderData[editId] = item;
+            else sliderData.push(item);
+            
+            localStorage.setItem('sliderData', JSON.stringify(sliderData));
+            document.getElementById('slider-form').classList.add('hidden');
+            renderSliderAdminTable();
+            triggerSystemNotification("Hero carousel configurations modified correctly.");
+        });
+
+        function renderSliderAdminTable() {
+            const body = document.getElementById('slider-table-body');
+            body.innerHTML = '';
+            sliderData.forEach((s, idx) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="p-4 font-mono text-xs text-navy font-bold">Slide Frame #${idx+1}</td>
+                    <td class="p-4 font-semibold text-navy">${s.title}</td>
+                    <td class="p-4 text-right space-x-1">
+                        <button onclick="editSlideItem(${idx})" class="text-blue-600 text-xs font-bold bg-blue-50 px-2 py-1 rounded">Edit</button>
+                        <button onclick="deleteSlideItem(${idx})" class="text-red-600 text-xs font-bold bg-red-50 px-2 py-1 rounded">Delete</button>
+                    </td>
+                `;
+                body.appendChild(tr);
+            });
+        }
+
+        window.editSlideItem = function(idx) {
+            const s = sliderData[idx];
+            document.getElementById('slider-edit-id').value = idx;
+            document.getElementById('slide-title').value = s.title;
+            document.getElementById('slide-image').value = s.image;
+            document.getElementById('slide-desc').value = s.description;
+            document.getElementById('slide-btn-text').value = s.buttonText || '';
+            document.getElementById('slide-btn-link').value = s.buttonLink || '';
+            document.getElementById('slider-form').classList.remove('hidden');
+        }
+
+        window.deleteSlideItem = function(idx) {
+            if(confirm("Confirm tracking matrix detachment sequence pointer removal optimization?")) {
+                sliderData.splice(idx, 1);
+                localStorage.setItem('sliderData', JSON.stringify(sliderData));
+                renderSliderAdminTable();
+                triggerSystemNotification("Target slide detached cleanly.");
+            }
+        }
+
+        // Academic Syllabus Form Actions Matrix
+        document.getElementById('add-course-btn').addEventListener('click', () => {
+            document.getElementById('course-form').classList.remove('hidden');
+            document.getElementById('course-form').reset();
+            document.getElementById('course-edit-id').value = '';
+        });
+
+        document.getElementById('course-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const editId = document.getElementById('course-edit-id').value;
+            const payload = {
+                title: document.getElementById('course-title').value,
+                class: document.getElementById('course-class').value,
+                subject: document.getElementById('course-subject').value,
+                teacher: document.getElementById('course-teacher').value,
+                fee: document.getElementById('course-fee').value,
+                duration: document.getElementById('course-duration').value,
+                image: document.getElementById('course-image').value,
+                active: document.getElementById('course-active').value === "true",
+                description: document.getElementById('course-desc').value
+            };
+
+            if(editId) coursesData[editId] = payload;
+            else coursesData.push(payload);
+            
+            localStorage.setItem('coursesData', JSON.stringify(coursesData));
+            document.getElementById('course-form').classList.add('hidden');
+            renderCoursesAdminTable();
+            calculateOverviewStats();
+        });
+
+        function renderCoursesAdminTable() {
+            const body = document.getElementById('courses-table-body');
+            body.innerHTML = '';
+            coursesData.forEach((c, idx) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="p-4 font-bold text-navy">${c.title}</td>
+                    <td class="p-4 font-mono text-xs">Class ${c.class}</td>
+                    <td class="p-4 text-xs font-semibold text-gray-600">${c.subject}</td>
+                    <td class="p-4"><span class="px-2 py-0.5 rounded text-[10px] font-bold ${c.active ? 'bg-emerald-100 text-emerald-800':'bg-amber-100 text-amber-800'}">${c.active?'Visible':'Hidden'}</span></td>
+                    <td class="p-4 text-right space-x-1">
+                        <button onclick="editCourseItem(${idx})" class="text-blue-600 bg-blue-50 px-2 py-1 text-xs rounded font-bold">Edit</button>
+                        <button onclick="deleteCourseItem(${idx})" class="text-red-600 bg-red-50 px-2 py-1 text-xs rounded font-bold">Purge</button>
+                    </td>
+                `;
+                body.appendChild(tr);
+            });
+        }
+
+        window.editCourseItem = function(idx) {
+            const c = coursesData[idx];
+            document.getElementById('course-edit-id').value = idx;
+            document.getElementById('course-title').value = c.title;
+            document.getElementById('course-class').value = c.class;
+            document.getElementById('course-subject').value = c.subject;
+            document.getElementById('course-teacher').value = c.teacher;
+            document.getElementById('course-fee').value = c.fee;
+            document.getElementById('course-duration').value = c.duration;
+            document.getElementById('course-image').value = c.image || '';
+            document.getElementById('course-active').value = c.active ? "true" : "false";
+            document.getElementById('course-desc').value = c.description;
+            document.getElementById('course-form').classList.remove('hidden');
+        }
+
+        window.deleteCourseItem = function(idx) {
+            if(confirm("Confirm erasure operations logic?")) {
+                coursesData.splice(idx,1);
+                localStorage.setItem('coursesData', JSON.stringify(coursesData));
+                renderCoursesAdminTable();
+                calculateOverviewStats();
+            }
+        }
+
+        // Lecture Free Videos Logic
+        document.getElementById('add-video-btn').addEventListener('click', () => {
+            document.getElementById('video-form').classList.remove('hidden');
+            document.getElementById('video-form').reset();
+        });
+
+        document.getElementById('video-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const item = {
+                url: document.getElementById('vid-url').value,
+                title: document.getElementById('vid-title').value,
+                class: document.getElementById('vid-class').value,
+                subject: document.getElementById('vid-subject').value,
+                topic: document.getElementById('vid-topic').value,
+                description: document.getElementById('vid-desc').value
+            };
+            videosData.push(item);
+            localStorage.setItem('videosData', JSON.stringify(videosData));
+            document.getElementById('video-form').classList.add('hidden');
+            renderVideosAdminTable();
+            calculateOverviewStats();
+        });
+
+        function renderVideosAdminTable() {
+            const body = document.getElementById('videos-table-body');
+            body.innerHTML = '';
+            videosData.forEach((v, idx) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="p-4 font-bold text-navy text-xs">${v.title}</td>
+                    <td class="p-4 font-mono text-xs">Class ${v.class}</td>
+                    <td class="p-4 text-xs">${v.subject} / ${v.topic}</td>
+                    <td class="p-4 text-right"><button onclick="deleteVideoItem(${idx})" class="text-red-600 bg-red-50 text-xs px-2 py-1 rounded font-bold">Delete</button></td>
+                `;
+                body.appendChild(tr);
+            });
+        }
+
+        window.deleteVideoItem = function(idx) {
+            if(confirm("Purge asset pointer?")) {
+                videosData.splice(idx,1);
+                localStorage.setItem('videosData', JSON.stringify(videosData));
+                renderVideosAdminTable();
+                calculateOverviewStats();
+            }
+        }
+
+        // Paid Study Notes Core Configuration
+        document.getElementById('add-notes-btn').addEventListener('click', () => {
+            document.getElementById('notes-form').classList.remove('hidden');
+            document.getElementById('notes-form').reset();
+        });
+
+        document.getElementById('notes-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const item = {
+                title: document.getElementById('note-title').value,
+                class: document.getElementById('note-class').value,
+                subject: document.getElementById('note-subject').value,
+                price: document.getElementById('note-price').value,
+                image: document.getElementById('note-image').value,
+                description: document.getElementById('note-desc').value,
+                active: true
+            };
+            notesData.push(item);
+            localStorage.setItem('notesData', JSON.stringify(notesData));
+            document.getElementById('notes-form').classList.add('hidden');
+            renderNotesAdminTable();
+            calculateOverviewStats();
+        });
+
+        function renderNotesAdminTable() {
+            const body = document.getElementById('notes-table-body');
+            body.innerHTML = '';
+            notesData.forEach((n, idx) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="p-4 font-bold text-navy">${n.title}</td>
+                    <td class="p-4 font-mono text-xs">Class ${n.class} (${n.subject})</td>
+                    <td class="p-4 font-bold text-emerald-700">₹${n.price}</td>
+                    <td class="p-4 text-right"><button onclick="deleteNotesItem(${idx})" class="text-red-600 bg-red-50 text-xs px-2 py-1 rounded font-bold">Remove</button></td>
+                `;
+                body.appendChild(tr);
+            });
+        }
+
+        window.deleteNotesItem = function(idx) {
+            if(confirm("Erase entry sequence matrix link?")) {
+                notesData.splice(idx,1);
+                localStorage.setItem('notesData', JSON.stringify(notesData));
+                renderNotesAdminTable();
+                calculateOverviewStats();
+            }
+        }
+
+        // Campus Highlights Grid System
+        document.getElementById('add-gal-btn').addEventListener('click', () => {
+            document.getElementById('gallery-form').classList.remove('hidden');
+            document.getElementById('gallery-form').reset();
+        });
+
+        document.getElementById('gallery-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const item = {
+                title: document.getElementById('gal-title').value,
+                category: document.getElementById('gal-category').value,
+                image: document.getElementById('gal-image').value,
+                caption: document.getElementById('gal-caption').value
+            };
+            galleryData.push(item);
+            localStorage.setItem('galleryData', JSON.stringify(galleryData));
+            document.getElementById('gallery-form').classList.add('hidden');
+            renderGalleryAdminGrid();
+        });
+
+        function renderGalleryAdminGrid() {
+            const grid = document.getElementById('gallery-admin-grid');
+            grid.innerHTML = '';
+            galleryData.forEach((g, idx) => {
+                const div = document.createElement('div');
+                div.className = "bg-white border rounded-xl p-3 space-y-2 relative shadow-sm";
+                div.innerHTML = `
+                    <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden">
+                        <img src="${g.image ? g.image : 'https://via.placeholder.com/150'}" class="w-full h-full object-cover">
+                    </div>
+                    <span class="block font-bold text-xs text-navy truncate">${g.title}</span>
+                    <button onclick="deleteGalleryItem(${idx})" class="w-full bg-red-50 text-red-600 text-[11px] font-bold py-1 rounded">Delete Asset</button>
+                `;
+                grid.appendChild(div);
+            });
+        }
+
+        window.deleteGalleryItem = function(idx) {
+            if(confirm("Execute item structural detachment sequence?")) {
+                galleryData.splice(idx,1);
+                localStorage.setItem('galleryData', JSON.stringify(galleryData));
+                renderGalleryAdminGrid();
+            }
+        }
+
+        // Social Reviews Monitor Panel Configuration Layout
+        document.getElementById('add-test-btn').addEventListener('click', () => {
+            document.getElementById('testimonial-form').classList.remove('hidden');
+            document.getElementById('testimonial-form').reset();
+        });
+
+        document.getElementById('testimonial-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const item = {
+                name: document.getElementById('test-name').value,
+                class: document.getElementById('test-class').value,
+                rating: document.getElementById('test-rating').value,
+                parentName: document.getElementById('test-parent').value,
+                image: document.getElementById('test-image').value,
+                reviewText: document.getElementById('test-text').value
+            };
+            testimonialsData.push(item);
+            localStorage.setItem('testimonialsData', JSON.stringify(testimonialsData));
+            document.getElementById('testimonial-form').classList.add('hidden');
+            renderTestimonialsAdminContainer();
+        });
+
+        function renderTestimonialsAdminContainer() {
+            const container = document.getElementById('testimonials-admin-container');
+            container.innerHTML = '';
+            testimonialsData.forEach((t, idx) => {
+                const div = document.createElement('div');
+                div.className = "bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between";
+                div.innerHTML = `
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-navy text-sm">${t.name} <span class="text-xs font-normal text-muted">(${t.class})</span></h4>
+                            <span class="text-amber-500 font-bold text-xs">${t.rating} ★</span>
+                        </div>
+                        <p class="text-xs text-gray-600 italic">"${t.reviewText}"</p>
+                    </div>
+                    <button onclick="deleteTestimonialItem(${idx})" class="mt-4 bg-red-50 text-red-600 text-xs font-bold py-1.5 rounded-xl w-full">Purge Entry</button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        window.deleteTestimonialItem = function(idx) {
+            if(confirm("Remove review profile map point?")) {
+                testimonialsData.splice(idx,1);
+                localStorage.setItem('testimonialsData', JSON.stringify(testimonialsData));
+                renderTestimonialsAdminContainer();
+            }
+        }
+
+        // Inquiry Stream Grid Logging Systems
+        function renderInquiriesAdminTable() {
+            const body = document.getElementById('inquiries-table-body');
+            body.innerHTML = '';
+            
+            if(!inquiriesData.length) {
+                body.innerHTML = `<tr><td class="p-8 text-center text-xs text-muted font-mono" colspan="5">Zero inquiry payload intents received by tracking framework nodes.</td></tr>`;
+                return;
+            }
+
+            inquiriesData.forEach((inq, idx) => {
+                const tr = document.createElement('tr');
+                const timestamp = new Date(inq.date).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+                tr.innerHTML = `
+                    <td class="p-4 font-mono text-[11px] text-gray-500">${timestamp}</td>
+                    <td class="p-4">
+                        <span class="block font-bold text-navy text-xs">${inq.name}</span>
+                        <span class="block font-mono text-[10px] text-gray-400">${inq.phone}</span>
+                    </td>
+                    <td class="p-4">
+                        <span class="block text-xs font-bold text-gray-700">Class ${inq.class}</span>
+                        <span class="block text-[10px] text-gold font-semibold">${inq.subject}</span>
+                    </td>
+                    <td class="p-4 text-xs text-gray-600 max-w-xs truncate" title="${inq.message}">${inq.message || '—'}</td>
+                    <td class="p-4 text-right"><button onclick="deleteInquiryItem(${idx})" class="text-red-500 hover:text-red-700 p-1"><i data-lucide="trash-2" class="w-4 h-4 inline"></i></button></td>
+                `;
+                body.appendChild(tr);
+            });
+            lucide.createIcons();
+        }
+
+        window.deleteInquiryItem = function(idx) {
+            if(confirm("Purge inquiry log record?")) {
+                inquiriesData.splice(idx,1);
+                localStorage.setItem('inquiriesData', JSON.stringify(inquiriesData));
+                renderInquiriesAdminTable();
+                calculateOverviewStats();
+            }
+        }
+
+        // CSV Tabular Compilations Engine Export Function
+        document.getElementById('export-csv-btn').addEventListener('click', () => {
+            if(!inquiriesData.length) return alert("Dataset lacks rows to structure effectively.");
+            
+            let csvRows = [["Timestamp Signature", "Student Name", "Contact Pointer", "Class Field", "Subject Area Target", "Captured Inquiry Text"]];
+            inquiriesData.forEach(i => {
+                csvRows.push([
+                    new Date(i.date).toISOString(),
+                    `"${i.name.replace(/"/g, '""')}"`,
+                    `"${i.phone}"`,
+                    `"${i.class}"`,
+                    `"${i.subject.replace(/"/g, '""')}"`,
+                    `"${(i.message || '').replace(/"/g, '""')}"`
+                ]);
+            });
+
+            const csvContent = "data:text/csv;charset=utf-8," + csvRows.map(e => e.join(",")).join("\n");
+            const encodedUri = encodeURI(csvContent);
+            const downloadAnchor = document.createElement("a");
+            downloadAnchor.setAttribute("href", encodedUri);
+            downloadAnchor.setAttribute("download", `Inquiry_Log_Export_${Date.now()}.csv`);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            document.body.removeChild(downloadAnchor);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrative Dashboard Node - The Vision Institute</title>
+    <!-- Tailwind CSS & Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { navy: '#1a365d', gold: '#d69e2e' },
+                    fontFamily: { sans: ['Source Sans 3', 'sans-serif'], mono: ['Source Code Pro', 'monospace'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        .sidebar-active { background-color: #d69e2e !important; color: #1a365d !important; font-weight: 700; }
+        @media (min-width: 1920px) {
+            html { font-size: 18px; }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex min-h-screen relative font-sans antialiased">
+
+    <!-- INITIAL BLANK VISIBILITY PROTECTION SHIELD -->
+    <div id="auth-gate-shield" class="fixed inset-0 z-[150] bg-navy flex items-center justify-center text-white font-bold font-mono tracking-widest text-sm text-center px-4">
+        SECURE CONNECTIVITY HANDSHAKE VERIFICATION ACTIVE...
+    </div>
+
+    <!-- MAIN DASHBOARD CONTENT GRID WRAPPER -->
+    <div id="dashboard-layout" class="hidden w-full min-h-screen flex flex-col lg:flex-row">
+        
+        <!-- SIDE NAVIGATION BAR ELEMENT -->
+        <aside class="w-full lg:w-64 bg-navy text-white flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/5 shrink-0 z-20">
+            <div class="p-6">
+                <div class="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
+                    <div class="bg-gold p-2 rounded-lg text-navy"><i data-lucide="sliders" class="w-5 h-5"></i></div>
+                    <div>
+                        <span class="font-bold text-sm block tracking-wide">Vision Admin</span>
+                        <span class="text-[10px] text-gray-400 tracking-widest uppercase font-mono">v1.2.0-Tunnel</span>
+                    </div>
+                </div>
+                
+                <nav id="admin-nav" class="space-y-1 flex flex-row lg:flex-col overflow-x-auto no-scrollbar pb-2 lg:pb-0 gap-1 lg:gap-0">
+                    <button data-target="panel-overview" class="whitespace-nowrap text-sm px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5 flex items-center gap-2"><i data-lucide="layout-dashboard" class="w-4 h-4"></i> Overview</button>
+                    <button data-target="panel-settings" class="whitespace-nowrap text-sm px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5 flex items-center gap-2"><i data-lucide="settings" class="w-4 h-4"></i> Settings</button>
+                    <button data-target="panel-slider" class="whitespace-nowrap text-sm px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5 flex items-center gap-2"><i data-lucide="images" class="w-4 h-4"></i> Sliders</button>
+                    <button data-target="panel-courses" class="whitespace-nowrap text-sm px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5 flex items-center gap-2"><i data-lucide="book-open" class="w-4 h-4"></i> Courses</button>
+                    <button data-target="panel-videos" class="whitespace-nowrap text-sm px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5 flex items-center gap-2"><i data-lucide="video" class="w-4 h-4"></i> Lectures</button>
+                    <button data-target="panel-notes" class="whitespace-nowrap text-sm px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5 flex items-center gap-2"><i data-lucide="file-text" class="w-4 h-4"></i> Notes</button>
+                    <button data-target="panel-gallery" class="whitespace-nowrap text-sm px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5 flex items-center gap-2"><i data-lucide="aperture" class="w-4 h-4"></i> Gallery</button>
+                    <button data-target="panel-testimonials" class="whitespace-nowrap text-sm px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5 flex items-center gap-2"><i data-lucide="message-square" class="w-4 h-4"></i> Reviews</button>
+                    <button data-target="panel-inquiries" class="whitespace-nowrap text-sm px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5 flex items-center gap-2"><i data-lucide="inbox" class="w-4 h-4"></i> Inquiries</button>
+                    <button data-target="panel-help" class="whitespace-nowrap text-sm px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5 flex items-center gap-2"><i data-lucide="help-circle" class="w-4 h-4"></i> GDrive Help</button>
+                </nav>
+            </div>
+            
+            <div class="p-4 border-t border-white/5 bg-black/20 flex items-center justify-between lg:mt-auto">
+                <a href="index.html" class="text-xs text-gold font-bold hover:underline inline-flex items-center gap-1"><i data-lucide="external-link" class="w-3.5 h-3.5"></i> Live Portal</a>
+                <button id="logout-btn" class="text-xs text-red-400 hover:text-red-500 font-semibold">Exit Node</button>
+            </div>
+        </aside>
+
+        <!-- MAIN INTERACTIVE CONTAINER STACK -->
+        <main class="flex-grow p-4 md:p-8 max-w-7xl mx-auto w-full overflow-x-hidden">
+            
+            <div id="action-toast" class="hidden mb-6 bg-emerald-600 text-white px-6 py-3 rounded-xl shadow-lg text-sm items-center justify-between transition-all">
+                <span id="toast-text">Configuration matrices synchronized.</span>
+                <button onclick="this.parentElement.classList.replace('flex','hidden')" class="text-white"><i data-lucide="x" class="w-4 h-4"></i></button>
+            </div>
+
+            <!-- PANEL 1: OVERVIEW -->
+            <div id="panel-overview" class="admin-panel space-y-6">
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-bold text-navy">Overview Management Dashboard</h1>
+                    <p class="text-xs text-gray-500 mt-1">System operational metrics snapshot layout modules.</p>
+                </div>
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white p-5 rounded-2xl border border-gray-200/60 shadow-sm flex items-center justify-between">
+                        <div><span class="block text-2xl font-black text-navy" id="stat-courses">0</span><span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Courses</span></div>
+                        <div class="p-2.5 bg-blue-50 text-blue-600 rounded-xl"><i data-lucide="book-open" class="w-5 h-5"></i></div>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl border border-gray-200/60 shadow-sm flex items-center justify-between">
+                        <div><span class="block text-2xl font-black text-navy" id="stat-videos">0</span><span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Lectures</span></div>
+                        <div class="p-2.5 bg-red-50 text-red-600 rounded-xl"><i data-lucide="video" class="w-5 h-5"></i></div>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl border border-gray-200/60 shadow-sm flex items-center justify-between">
+                        <div><span class="block text-2xl font-black text-navy" id="stat-notes">0</span><span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Notes Packages</span></div>
+                        <div class="p-2.5 bg-amber-50 text-amber-600 rounded-xl"><i data-lucide="file-text" class="w-5 h-5"></i></div>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl border border-gray-200/60 shadow-sm flex items-center justify-between">
+                        <div><span class="block text-2xl font-black text-navy" id="stat-inquiries">0</span><span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Inquiries Received</span></div>
+                        <div class="p-2.5 bg-purple-50 text-purple-600 rounded-xl"><i data-lucide="inbox" class="w-5 h-5"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL 2: SETTINGS -->
+            <div id="panel-settings" class="admin-panel hidden space-y-6">
+                <h2 class="text-xl font-bold text-navy">Global Branding & Strings Parameters</h2>
+                <form id="settings-form" class="bg-white p-5 md:p-6 rounded-2xl border space-y-5">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div><label class="block text-xs font-bold text-gray-500 mb-1">Institute Name</label><input type="text" id="set-inst-name" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm"></div>
+                        <div><label class="block text-xs font-bold text-gray-500 mb-1">Lead Educator Name</label><input type="text" id="set-teacher-name" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm"></div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div><label class="block text-xs font-bold text-gray-500 mb-1">Call Number</label><input type="text" id="set-phone" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm"></div>
+                        <div><label class="block text-xs font-bold text-gray-500 mb-1">WhatsApp Target</label><input type="text" id="set-whatsapp" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm"></div>
+                        <div><label class="block text-xs font-bold text-gray-500 mb-1">Contact Email</label><input type="email" id="set-email" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm"></div>
+                    </div>
+                    <div><label class="block text-xs font-bold text-gray-500 mb-1">Campus Physical Address</label><input type="text" id="set-address" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm"></div>
+                    <div><label class="block text-xs font-bold text-gray-500 mb-1">Brand Logo (Google Drive Share Link)</label><input type="url" id="set-logo" placeholder="https://drive.google.com/..." class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-mono"></div>
+                    <button type="submit" class="bg-navy text-white text-xs font-bold px-6 py-3 rounded-xl">Commit Configurations</button>
+                </form>
+            </div>
+
+            <!-- PANEL 3: SLIDERS -->
+            <div id="panel-slider" class="admin-panel hidden space-y-6">
+                <div class="flex justify-between items-center flex-wrap gap-2">
+                    <h2 class="text-xl font-bold text-navy">Hero Splash Carousels</h2>
+                    <button id="add-slide-btn" class="bg-navy text-white text-xs font-bold px-4 py-2 rounded-xl">Add Banner Slide</button>
+                </div>
+                <form id="slider-form" class="bg-white p-5 rounded-2xl border space-y-4 hidden animate-fade-in">
+                    <input type="hidden" id="slider-edit-id">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input type="text" id="slide-title" placeholder="Banner Heading Text" required class="border p-2.5 rounded-xl text-sm w-full">
+                        <input type="url" id="slide-image" placeholder="GDrive Image Asset Link" required class="border p-2.5 rounded-xl text-sm font-mono w-full">
+                    </div>
+                    <textarea id="slide-desc" placeholder="Banner Subtext Content" required class="w-full border p-2.5 rounded-xl text-sm"></textarea>
+                    <div class="flex gap-2 justify-end">
+                        <button type="button" onclick="document.getElementById('slider-form').classList.add('hidden')" class="border px-4 py-2 rounded-xl text-xs">Discard</button>
+                        <button type="submit" class="bg-gold text-navy font-bold px-4 py-2 rounded-xl text-xs">Commit Slide Data</button>
+                    </div>
+                </form>
+                <div class="bg-white rounded-2xl border overflow-x-auto shadow-sm">
+                    <table class="w-full text-left text-sm min-w-[500px]">
+                        <thead class="bg-gray-50 text-xs font-bold uppercase text-gray-500 border-b"><tr><th class="p-4">Heading Sequence</th><th class="p-4 text-right">Actions</th></tr></thead>
+                        <tbody id="slider-table-body" class="divide-y"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- PANEL 4: COURSES -->
+            <div id="panel-courses" class="admin-panel hidden space-y-6">
+                <div class="flex justify-between items-center flex-wrap gap-2">
+                    <h2 class="text-xl font-bold text-navy">Academic Syllabus Courses</h2>
+                    <button id="add-course-btn" class="bg-navy text-white text-xs font-bold px-4 py-2 rounded-xl">Create Academic Stream</button>
+                </div>
+                <form id="course-form" class="bg-white p-5 rounded-2xl border space-y-4 hidden animate-fade-in">
+                    <input type="hidden" id="course-edit-id">
+                    <input type="text" id="course-title" placeholder="Course Title Signature" required class="w-full border p-2.5 rounded-xl text-sm">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <select id="course-class" class="border p-2.5 rounded-xl text-sm"><option value="10">Class 10</option><option value="11">Class 11</option><option value="12">Class 12</option></select>
+                        <input type="text" id="course-subject" placeholder="Subject Scope" required class="border p-2.5 rounded-xl text-sm">
+                        <input type="text" id="course-teacher" placeholder="Educator Name" required class="border p-2.5 rounded-xl text-sm">
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <input type="text" id="course-fee" placeholder="Fee Standard" class="border p-2.5 rounded-xl text-sm">
+                        <input type="text" id="course-duration" placeholder="Timeline Duration" class="border p-2.5 rounded-xl text-sm">
+                        <input type="url" id="course-image" placeholder="Cover Art Thumbnail GDrive Link" class="border p-2.5 rounded-xl text-sm font-mono">
+                    </div>
+                    <select id="course-active" class="border p-2.5 rounded-xl text-sm"><option value="true">Active Visibility State</option><option value="false">Hidden State</option></select>
+                    <textarea id="course-desc" placeholder="Detailed Syllabus Description Paragraph..." class="w-full border p-2.5 rounded-xl text-sm"></textarea>
+                    <div class="flex gap-2 justify-end">
+                        <button type="button" onclick="document.getElementById('course-form').classList.add('hidden')" class="border px-4 py-2 rounded-xl text-xs">Cancel</button>
+                        <button type="submit" class="bg-gold text-navy font-bold px-4 py-2 rounded-xl text-xs">Save Programmatic Profile</button>
+                    </div>
+                </form>
+                <div class="bg-white rounded-2xl border overflow-x-auto shadow-sm"><table class="w-full text-left text-sm min-w-[600px]"><tbody id="courses-table-body" class="divide-y"></tbody></table></div>
+            </div>
+
+            <!-- PANEL 5: FREE VIDEOS -->
+            <div id="panel-videos" class="admin-panel hidden space-y-6">
+                <div class="flex justify-between items-center flex-wrap gap-2">
+                    <h2 class="text-xl font-bold text-navy">YouTube Video Catalog Matrix</h2>
+                    <button id="add-video-btn" class="bg-navy text-white text-xs font-bold px-4 py-2 rounded-xl">Add Reference Video</button>
+                </div>
+                <form id="video-form" class="bg-white p-5 rounded-2xl border space-y-4 hidden animate-fade-in">
+                    <input type="url" id="vid-url" placeholder="YouTube URL link String" required class="w-full border p-2.5 rounded-xl text-sm font-mono">
+                    <input type="text" id="vid-title" placeholder="Lecture Title Context String" required class="w-full border p-2.5 rounded-xl text-sm">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <select id="vid-class" class="border p-2.5 rounded-xl text-sm"><option value="10">Class 10</option><option value="11">Class 11</option><option value="12">Class 12</option></select>
+                        <input type="text" id="vid-subject" placeholder="Subject Tag" required class="border p-2.5 rounded-xl text-sm">
+                        <input type="text" id="vid-topic" placeholder="Topic Tag" required class="border p-2.5 rounded-xl text-sm">
+                    </div>
+                    <textarea id="vid-desc" placeholder="Brief Lecture Sub-description..." class="w-full border p-2.5 rounded-xl text-sm"></textarea>
+                    <button type="submit" class="bg-gold text-navy font-bold px-4 py-2 rounded-xl text-xs">Commit Video Element</button>
+                </form>
+                <div class="bg-white rounded-2xl border overflow-x-auto shadow-sm"><table class="w-full text-left text-sm min-w-[600px]"><tbody id="videos-table-body" class="divide-y"></tbody></table></div>
+            </div>
+
+            <!-- PANEL 6: PAID NOTES -->
+            <div id="panel-notes" class="admin-panel hidden space-y-6">
+                <div class="flex justify-between items-center flex-wrap gap-2">
+                    <h2 class="text-xl font-bold text-navy">Premium Digital Revision Assets</h2>
+                    <button id="add-notes-btn" class="bg-navy text-white text-xs font-bold px-4 py-2 rounded-xl">Add Study Material</button>
+                </div>
+                <form id="notes-form" class="bg-white p-5 rounded-2xl border space-y-4 hidden animate-fade-in">
+                    <input type="text" id="note-title" placeholder="Study Pack Title" required class="w-full border p-2.5 rounded-xl text-sm">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <select id="note-class" class="border p-2.5 rounded-xl text-sm"><option value="10">Class 10</option><option value="11">Class 11</option><option value="12">Class 12</option></select>
+                        <input type="text" id="note-subject" placeholder="Subject Category" required class="border p-2.5 rounded-xl text-sm">
+                        <input type="number" id="note-price" placeholder="Valuation Price (INR)" required class="border p-2.5 rounded-xl text-sm">
+                    </div>
+                    <input type="url" id="note-image" placeholder="Sample Cover Art GDrive Share Link" class="w-full border p-2.5 rounded-xl text-sm font-mono">
+                    <textarea id="note-desc" placeholder="Notes Manifest Summary details..." class="w-full border p-2.5 rounded-xl text-sm"></textarea>
+                    <button type="submit" class="bg-gold text-navy font-bold px-4 py-2 rounded-xl text-xs">Commit Notes Pack</button>
+                </form>
+                <div class="bg-white rounded-2xl border overflow-x-auto shadow-sm"><table class="w-full text-left text-sm min-w-[600px]"><tbody id="notes-table-body" class="divide-y"></tbody></table></div>
+            </div>
+
+            <!-- PANEL 7: GALLERY -->
+            <div id="panel-gallery" class="admin-panel hidden space-y-6">
+                <div class="flex justify-between items-center flex-wrap gap-2">
+                    <h2 class="text-xl font-bold text-navy">Campus Documentation Grid Photo</h2>
+                    <button id="add-gal-btn" class="bg-navy text-white text-xs font-bold px-4 py-2 rounded-xl">Add Picture Entry</button>
+                </div>
+                <form id="gallery-form" class="bg-white p-5 rounded-2xl border space-y-4 hidden animate-fade-in">
+                    <input type="text" id="gal-title" placeholder="Asset Identity Label" required class="border p-2.5 rounded-xl text-sm w-full">
+                    <input type="url" id="gal-image" placeholder="GDrive Raw Image Link Point" required class="border p-2.5 rounded-xl text-sm w-full font-mono">
+                    <input type="text" id="gal-caption" placeholder="Student Success Framework Metric Caption" class="border p-2.5 rounded-xl text-sm w-full">
+                    <button type="submit" class="bg-gold text-navy font-bold px-4 py-2 rounded-xl text-xs">Serialize Image Unit</button>
+                </form>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" id="gallery-admin-grid"></div>
+            </div>
+
+            <!-- PANEL 8: TESTIMONIALS -->
+            <div id="panel-testimonials" class="admin-panel hidden space-y-6">
+                <div class="flex justify-between items-center flex-wrap gap-2">
+                    <h2 class="text-xl font-bold text-navy">Ecosystem Evaluation Testimonials</h2>
+                    <button id="add-test-btn" class="bg-navy text-white text-xs font-bold px-4 py-2 rounded-xl">Create Validation Log</button>
+                </div>
+                <form id="testimonial-form" class="bg-white p-5 rounded-2xl border space-y-4 hidden animate-fade-in">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <input type="text" id="test-name" placeholder="Student/Parent Name" required class="border p-2.5 rounded-xl text-sm w-full">
+                        <input type="text" id="test-class" placeholder="Class/Batch context tag" required class="border p-2.5 rounded-xl text-sm w-full">
+                    </div>
+                    <textarea id="test-text" placeholder="Verification Review String text body..." required class="border p-2.5 rounded-xl text-sm w-full font-sans" rows="3"></textarea>
+                    <button type="submit" class="bg-gold text-navy font-bold px-4 py-2 rounded-xl text-xs">Commit Review Profile</button>
+                </form>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6" id="testimonials-admin-container"></div>
+            </div>
+
+            <!-- PANEL 9: CONTACT INQUIRIES -->
+            <div id="panel-inquiries" class="admin-panel hidden space-y-6">
+                <div class="flex justify-between items-center flex-wrap gap-2">
+                    <h2 class="text-xl font-bold text-navy">Captured Form Intent Logs</h2>
+                    <button id="export-csv-btn" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2 rounded-xl">Export Database (.CSV)</button>
+                </div>
+                <div class="bg-white rounded-2xl border overflow-x-auto shadow-sm"><table class="w-full text-left text-sm min-w-[700px]"><tbody id="inquiries-table-body" class="divide-y"></tbody></table></div>
+            </div>
+
+            <!-- PANEL 10: HELP PANEL -->
+            <div id="panel-help" class="admin-panel hidden space-y-6">
+                <h2 class="text-xl font-bold text-navy">Google Drive Media File Integration Guide</h2>
+                <div class="bg-white p-6 rounded-2xl border space-y-4 leading-relaxed text-sm text-gray-600">
+                    <p class="font-bold text-navy">Make sure your asset files inside drive are explicitly marked as "Anyone with the link can view".</p>
+                    <p>The core rendering conversion scripts parse common formats automatically, transforming standard sharing endpoints directly into responsive client asset download vectors seamlessly.</p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- CODE SECURITY SYNCHRONIZATION RUNTIME SCRIPT INTERFACE -->
+    <script>
+        // DETERMINISTIC IMAGE URL CONVERSION PARSER ENGINE
+        // 🟢 INSTANT IMAGE RENDERING PARSER ENGINE (SMART BOARD & MOBILE COMPATIBLE)
+function parseGDriveLink(url) {
+    if (!url) return 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600';
+    
+    let fileId = '';
+    
+    // Naye aur purane sabhi links se File ID nikalne ke liye custom logic
+    const match1 = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+    const match2 = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+    
+    if (match1) fileId = match1[1];
+    else if (match2) fileId = match2[1];
+    else return url; // Agar pehle se direct live image link hai toh wahi chalao
+
+    // 🟢 NEW FORMAT: Google Thumbnail Engine (Yeh kabhi block nahi hota aur instant load hota hai)
+    return `https://drive.google.com/thumbnail?authuser=0&sz=w1200&id=${fileId}`;
+}
+
+        (function verifyCloudSession() {
+            const token = localStorage.getItem('admin_session_token');
+            const shield = document.getElementById('auth-gate-shield');
+            const layout = document.getElementById('dashboard-layout');
+            if (token) {
+                if(shield) shield.remove();
+                if(layout) layout.classList.remove('hidden');
+                setTimeout(() => { initDashboardEngine(); }, 50);
+            } else {
+                alert("Unauthorized Entry Node."); window.location.href = 'index.html';
+            }
+        })();
+
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            localStorage.removeItem('admin_session_token'); window.location.href = 'index.html';
+        });
+
+        function setupNavigation() {
+            const navButtons = document.querySelectorAll('#admin-nav > button');
+            navButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    navButtons.forEach(b => b.classList.remove('sidebar-active'));
+                    btn.classList.add('sidebar-active');
+                    document.querySelectorAll('.admin-panel').forEach(p => p.classList.add('hidden'));
+                    document.getElementById(btn.dataset.target).classList.remove('hidden');
+                });
+            });
+            navButtons[0].click();
+        }
+
+        let siteSettings, sliderData, coursesData, videosData, notesData, galleryData, testimonialsData, inquiriesData;
+
+        function loadDatasetsFromStorage() {
+            siteSettings = JSON.parse(localStorage.getItem('siteSettings')) || {};
+            sliderData = JSON.parse(localStorage.getItem('sliderData')) || [];
+            coursesData = JSON.parse(localStorage.getItem('coursesData')) || [];
+            videosData = JSON.parse(localStorage.getItem('videosData')) || [];
+            notesData = JSON.parse(localStorage.getItem('notesData')) || [];
+            galleryData = JSON.parse(localStorage.getItem('galleryData')) || [];
+            testimonialsData = JSON.parse(localStorage.getItem('testimonialsData')) || [];
+            inquiriesData = JSON.parse(localStorage.getItem('inquiriesData')) || [];
+        }
+
+        function triggerSystemNotification(msg) {
+            const toast = document.getElementById('action-toast');
+            document.getElementById('toast-text').textContent = msg;
+            toast.classList.replace('hidden', 'flex');
+            setTimeout(() => toast.classList.replace('flex','hidden'), 3000);
+        }
+
+        function initDashboardEngine() {
+            loadDatasetsFromStorage();
+            setupNavigation();
+            calculateOverviewStats();
+            hydrateSettingsForm();
+            renderSliderAdminTable();
+            renderCoursesAdminTable();
+            renderVideosAdminTable();
+            renderNotesAdminTable();
+            renderGalleryAdminGrid();
+            renderTestimonialsAdminContainer();
+            renderInquiriesAdminTable();
+            lucide.createIcons();
+        }
+
+        function calculateOverviewStats() {
+            document.getElementById('stat-courses').textContent = coursesData.length;
+            document.getElementById('stat-videos').textContent = videosData.length;
+            document.getElementById('stat-notes').textContent = notesData.length;
+            document.getElementById('stat-inquiries').textContent = inquiriesData.length;
+        }
+
+        function hydrateSettingsForm() {
+            document.getElementById('set-inst-name').value = siteSettings.instituteName || '';
+            document.getElementById('set-teacher-name').value = siteSettings.teacherName || '';
+            document.getElementById('set-phone').value = siteSettings.phone || '';
+            document.getElementById('set-whatsapp').value = siteSettings.whatsapp || '';
+            document.getElementById('set-email').value = siteSettings.email || '';
+            document.getElementById('set-address').value = siteSettings.address || '';
+            document.getElementById('set-logo').value = siteSettings.logo || '';
+        }
+
+        document.getElementById('settings-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            siteSettings.instituteName = document.getElementById('set-inst-name').value;
+            siteSettings.teacherName = document.getElementById('set-teacher-name').value;
+            siteSettings.phone = document.getElementById('set-phone').value;
+            siteSettings.whatsapp = document.getElementById('set-whatsapp').value;
+            siteSettings.email = document.getElementById('set-email').value;
+            siteSettings.address = document.getElementById('set-address').value;
+            siteSettings.logo = document.getElementById('set-logo').value;
+            localStorage.setItem('siteSettings', JSON.stringify(siteSettings));
+            triggerSystemNotification("Site configurations written cleanly.");
+        });
+
+        document.getElementById('add-slide-btn').addEventListener('click', () => {
+            document.getElementById('slider-form').classList.remove('hidden');
+            document.getElementById('slider-form').reset();
+            document.getElementById('slider-edit-id').value = '';
+        });
+
+        document.getElementById('slider-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const id = document.getElementById('slider-edit-id').value;
+            const item = {
+                title: document.getElementById('slide-title').value,
+                image: document.getElementById('slide-image').value,
+                description: document.getElementById('slide-desc').value
+            };
+            if(id) sliderData[id] = item; else sliderData.push(item);
+            localStorage.setItem('sliderData', JSON.stringify(sliderData));
+            document.getElementById('slider-form').classList.add('hidden');
+            renderSliderAdminTable(); triggerSystemNotification("Sliders optimized.");
+        });
+
+        function renderSliderAdminTable() {
+            const b = document.getElementById('slider-table-body'); b.innerHTML = '';
+            sliderData.forEach((s, i) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td class="p-4 font-bold text-navy text-xs sm:text-sm">${s.title}</td><td class="p-4 text-right"><button onclick="deleteSlideItem(${i})" class="text-red-500 text-xs font-bold bg-red-50 px-2 py-1 rounded">Delete</button></td>`;
+                b.appendChild(tr);
+            });
+        }
+        window.deleteSlideItem = function(i) { sliderData.splice(i,1); localStorage.setItem('sliderData',JSON.stringify(sliderData)); renderSliderAdminTable(); calculateOverviewStats(); };
+
+        document.getElementById('add-course-btn').addEventListener('click', () => { document.getElementById('course-form').classList.remove('hidden'); document.getElementById('course-form').reset(); document.getElementById('course-edit-id').value = ''; });
+        document.getElementById('course-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const id = document.getElementById('course-edit-id').value;
+            const p = {
+                title: document.getElementById('course-title').value, class: document.getElementById('course-class').value,
+                subject: document.getElementById('course-subject').value, teacher: document.getElementById('course-teacher').value,
+                fee: document.getElementById('course-fee').value, duration: document.getElementById('course-duration').value,
+                image: document.getElementById('course-image').value, active: document.getElementById('course-active').value === "true",
+                description: document.getElementById('course-desc').value
+            };
+            if(id) coursesData[id] = p; else coursesData.push(p);
+            localStorage.setItem('coursesData', JSON.stringify(coursesData));
+            document.getElementById('course-form').classList.add('hidden');
+            renderCoursesAdminTable(); calculateOverviewStats(); triggerSystemNotification("Courses synchronized.");
+        });
+
+        function renderCoursesAdminTable() {
+            const b = document.getElementById('courses-table-body'); b.innerHTML = '';
+            coursesData.forEach((c, i) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td class="p-4 font-bold text-navy text-xs sm:text-sm">${c.title}</td><td class="p-4 text-xs">Class ${c.class}</td><td class="p-4 text-right"><button onclick="deleteCourseItem(${i})" class="text-red-600 bg-red-50 px-2 py-1 rounded text-xs">Delete</button></td>`;
+                b.appendChild(tr);
+            });
+        }
+        window.deleteCourseItem = function(i) { coursesData.splice(i,1); localStorage.setItem('coursesData', JSON.stringify(coursesData)); renderCoursesAdminTable(); calculateOverviewStats(); };
+
+        document.getElementById('add-video-btn').addEventListener('click', () => { document.getElementById('video-form').classList.remove('hidden'); document.getElementById('video-form').reset(); });
+        document.getElementById('video-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            videosData.push({
+                url: document.getElementById('vid-url').value, title: document.getElementById('vid-title').value,
+                class: document.getElementById('vid-class').value, subject: document.getElementById('vid-subject').value,
+                topic: document.getElementById('vid-topic').value, description: document.getElementById('vid-desc').value
+            });
+            localStorage.setItem('videosData', JSON.stringify(videosData)); document.getElementById('video-form').classList.add('hidden');
+            renderVideosAdminTable(); calculateOverviewStats(); triggerSystemNotification("Video data compiled.");
+        });
+        function renderVideosAdminTable() {
+            const b = document.getElementById('videos-table-body'); b.innerHTML = '';
+            videosData.forEach((v, i) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td class="p-4 text-xs font-bold text-navy">${v.title}</td><td class="p-4 text-right"><button onclick="videosData.splice(${i},1);localStorage.setItem('videosData',JSON.stringify(videosData));renderVideosAdminTable();calculateOverviewStats();" class="text-red-500 bg-red-50 text-xs px-2 py-1 rounded">Remove</button></td>`;
+                b.appendChild(tr);
+            });
+        }
+
+        document.getElementById('add-notes-btn').addEventListener('click', () => { document.getElementById('notes-form').classList.remove('hidden'); document.getElementById('notes-form').reset(); });
+        document.getElementById('notes-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            notesData.push({
+                title: document.getElementById('note-title').value, class: document.getElementById('note-class').value,
+                subject: document.getElementById('note-subject').value, price: document.getElementById('note-price').value,
+                image: document.getElementById('note-image').value, description: document.getElementById('note-desc').value, active: true
+            });
+            localStorage.setItem('notesData', JSON.stringify(notesData)); document.getElementById('notes-form').classList.add('hidden');
+            renderNotesAdminTable(); calculateOverviewStats(); triggerSystemNotification("Study Pack created.");
+        });
+        function renderNotesAdminTable() {
+            const b = document.getElementById('notes-table-body'); b.innerHTML = '';
+            notesData.forEach((n, i) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td class="p-4 text-xs font-bold text-navy">${n.title}</td><td class="p-4 text-right"><button onclick="notesData.splice(${i},1);localStorage.setItem('notesData',JSON.stringify(notesData));renderNotesAdminTable();calculateOverviewStats();" class="text-red-500 bg-red-50 text-xs px-2 py-1 rounded">Remove</button></td>`;
+                b.appendChild(tr);
+            });
+        }
+
+        document.getElementById('add-gal-btn').addEventListener('click', () => { document.getElementById('gallery-form').classList.remove('hidden'); document.getElementById('gallery-form').reset(); });
+        document.getElementById('gallery-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            galleryData.push({ title: document.getElementById('gal-title').value, image: document.getElementById('gal-image').value, caption: document.getElementById('gal-caption').value });
+            localStorage.setItem('galleryData', JSON.stringify(galleryData)); document.getElementById('gallery-form').classList.add('hidden');
+            renderGalleryAdminGrid(); triggerSystemNotification("Image profile committed.");
+        });
+        function renderGalleryAdminGrid() {
+            const g = document.getElementById('gallery-admin-grid'); g.innerHTML = '';
+            galleryData.forEach((x, i) => {
+                const d = document.createElement('div'); d.className = "bg-white border rounded-xl p-2 text-center shadow-sm flex flex-col justify-between";
+                d.innerHTML = `<img src="${parseGDriveLink(x.image)}" class="w-full aspect-square object-cover rounded mb-2"><button onclick="galleryData.splice(${i},1);localStorage.setItem('galleryData',JSON.stringify(galleryData));renderGalleryAdminGrid();calculateOverviewStats();" class="text-red-500 bg-red-50 text-xs font-bold py-1 rounded w-full">Delete</button>`;
+                g.appendChild(d);
+            });
+        }
+
+        document.getElementById('add-test-btn').addEventListener('click', () => { document.getElementById('testimonial-form').classList.remove('hidden'); document.getElementById('testimonial-form').reset(); });
+        document.getElementById('testimonial-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            testimonialsData.push({ name: document.getElementById('test-name').value, class: document.getElementById('test-class').value, reviewText: document.getElementById('test-text').value });
+            localStorage.setItem('testimonialsData', JSON.stringify(testimonialsData)); document.getElementById('testimonial-form').classList.add('hidden');
+            renderTestimonialsAdminContainer(); triggerSystemNotification("Review logged.");
+        });
+        function renderTestimonialsAdminContainer() {
+            const c = document.getElementById('testimonials-admin-container'); c.innerHTML = '';
+            testimonialsData.forEach((t, i) => {
+                const d = document.createElement('div'); d.className = "bg-white p-4 rounded-xl border shadow-sm flex flex-col justify-between";
+                d.innerHTML = `<div><h4 class="font-bold text-navy text-xs sm:text-sm">${t.name} <span class="font-normal text-[10px] text-gray-400">(${t.class})</span></h4><p class="text-xs text-gray-500 mt-1 italic">"${t.reviewText}"</p></div><button onclick="testimonialsData.splice(${i},1);localStorage.setItem('testimonialsData',JSON.stringify(testimonialsData));renderTestimonialsAdminContainer();" class="text-red-500 bg-red-50 text-xs font-bold mt-3 py-1 rounded w-full">Remove</button>`;
+                c.appendChild(d);
+            });
+        }
+
+        function renderInquiriesAdminTable() {
+            const b = document.getElementById('inquiries-table-body'); b.innerHTML = '';
+            if(!inquiriesData.length) { b.innerHTML = `<tr><td class="p-4 text-center text-xs text-gray-400">Zero database rows compiled.</td></tr>`; return; }
+            inquiriesData.forEach((inq, i) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td class="p-4 text-xs font-bold text-navy">${inq.name} <span class="block text-[10px] font-mono text-gray-400">${inq.phone}</span></td><td class="p-4 text-xs text-gray-500 max-w-xs truncate">${inq.message || '—'}</td><td class="p-4 text-right"><button onclick="inquiriesData.splice(${i},1);localStorage.setItem('inquiriesData',JSON.stringify(inquiriesData));renderInquiriesAdminTable();calculateOverviewStats();" class="text-red-500"><i data-lucide="trash-2" class="w-4 h-4 inline"></i></button></td>`;
+                b.appendChild(tr);
+            });
+            lucide.createIcons();
+        }
+
+        document.getElementById('export-csv-btn').addEventListener('click', () => {
+            if(!inquiriesData.length) return alert("Empty stack dataset layers.");
+            let rows = [["Name", "Phone", "Class", "Subject", "Message"]];
+            inquiriesData.forEach(i => rows.push([i.name, i.phone, i.class, i.subject, i.message]));
+            const content = "data:text/csv;charset=utf-8," + rows.map(e => e.join(",")).join("\n");
+            const anchor = document.createElement("a"); anchor.setAttribute("href", encodeURI(content)); anchor.setAttribute("download", `Inquiries_Report_${Date.now()}.csv`);
+            document.body.appendChild(anchor); anchor.click(); anchor.remove();
+        });
+    </script>
+</body>
+</html>
