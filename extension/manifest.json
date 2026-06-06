@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "The Vision Institute Portal Node",
+  "version": "2.0.0",
+  "description": "Secure Real-time Client Engine Syncing via Vercel Proxy Clusters",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://*.vercel.app/*",
+    "http://localhost:3000/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}

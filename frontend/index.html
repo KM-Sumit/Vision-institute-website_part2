@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Vision Institute - Sehore</title>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -29,14 +27,12 @@
             }
         }
     </script>
-    <!-- Lucide Icons Core Bundle CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body { font-family: 'Source Sans 3', sans-serif; color: #1a202c; }
         h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        /* Smart Board Optimized Scale Adaptations */
         @media (min-width: 1920px) {
             html { font-size: 18px; }
             .max-w-7xl { max-w: 90%; }
@@ -45,11 +41,10 @@
 </head>
 <body class="bg-white flex flex-col min-h-screen relative antialiased">
 
-    <!-- SECTION 1: NAVIGATION BAR -->
     <header class="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="#" class="flex items-center gap-3">
-                <img id="nav-logo" src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=150" alt="Logo" class="w-12 h-12 rounded-full object-cover border border-gold">
+                <img id="nav-logo" src="" alt="Logo" class="w-12 h-12 rounded-full object-cover border border-gold">
                 <div>
                     <span id="nav-inst-name" class="block text-xl md:text-2xl font-bold text-navy tracking-tight leading-tight">The Vision Institute</span>
                     <span id="nav-teacher-name" class="block text-xs font-semibold text-gold tracking-widest uppercase">Sudhir Shivam Sir</span>
@@ -67,8 +62,8 @@
             </nav>
 
             <div class="hidden lg:block">
-                <a id="nav-cta" href="#" target="_blank" class="inline-flex items-center gap-2 bg-navy hover:bg-navy-light text-white text-sm font-semibold px-5 py-2.5 rounded-lg shadow-md transition-all transform hover:-translate-y-0.5">
-                    <svg class="w-4 h-4 fill-current text-green-400" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.99 0c3.196.001 6.199 1.242 8.461 3.496 2.262 2.254 3.501 5.251 3.5 8.447-.003 6.643-5.339 11.99-11.93 11.99-1.994-.001-3.956-.5-5.717-1.446L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.734 1.45 5.432-.001 9.851-4.388 9.853-9.777.001-2.61-1.015-5.064-2.862-6.912C16.467 2.065 14.02 1.04 11.45 1.04c-5.436 0-9.856 4.387-9.859 9.779-.001 1.636.432 3.23 1.254 4.654L1.87 21.134l5.777-1.516c1.378.75 2.82 1.127 4.135 1.127l.006-.011zm11.366-7.6c-.29-.146-1.716-.847-1.98-.942-.266-.096-.459-.144-.653.146-.193.289-.748.942-.917 1.134-.168.192-.337.216-.627.072-.29-.145-1.223-.45-2.33-1.439-.86-.767-1.44-1.716-1.609-2.006-.169-.29-.018-.445.127-.589.13-.13.29-.337.434-.506.145-.169.193-.289.29-.481.096-.193.048-.361-.024-.506-.073-.145-.653-1.57-.895-2.15-.236-.569-.475-.491-.652-.5l-.556-.01c-.193 0-.507.072-.772.361-.265.289-1.013.99-1.013 2.41 0 1.42 1.037 2.793 1.182 2.986.145.193 2.04 3.114 4.943 4.368.69.298 1.23.476 1.65.61.693.22 1.324.19 1.823.115.556-.084 1.716-.7 1.958-1.374.242-.674.242-1.251.17-1.373-.073-.123-.266-.193-.557-.34z"/></svg> Enroll Now
+                <a id="nav-cta" href="" target="_blank" class="inline-flex items-center gap-2 bg-navy hover:bg-navy-light text-white text-sm font-semibold px-5 py-2.5 rounded-lg shadow-md transition-all transform hover:-translate-y-0.5">
+                    Enroll Now
                 </a>
             </div>
 
@@ -77,7 +72,6 @@
             </button>
         </div>
 
-        <!-- Mobile Dropout Menu -->
         <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-gray-200 absolute top-20 left-0 w-full z-40 shadow-xl px-4 py-6 transition-all duration-300">
             <div class="flex flex-col gap-4">
                 <a href="#" class="mobile-link text-lg font-semibold text-navy py-2 border-b border-gray-50">Home</a>
@@ -87,30 +81,24 @@
                 <a href="#gallery" class="mobile-link text-lg font-semibold text-navy py-2 border-b border-gray-50">Gallery</a>
                 <a href="#testimonials" class="mobile-link text-lg font-semibold text-navy py-2 border-b border-gray-50">Reviews</a>
                 <a href="#contact" class="mobile-link text-lg font-semibold text-navy py-2 border-b border-gray-50">Contact Us</a>
-                <a id="mobile-nav-cta" href="#" target="_blank" class="w-full text-center inline-flex items-center justify-center gap-2 bg-navy text-white text-base font-semibold py-3 rounded-xl mt-2">
-                    <svg class="w-5 h-5 fill-current text-green-400" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.99 0c3.196.001 6.199 1.242 8.461 3.496 2.262 2.254 3.501 5.251 3.5 8.447-.003 6.643-5.339 11.99-11.93 11.99-1.994-.001-3.956-.5-5.717-1.446L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.734 1.45 5.432-.001 9.851-4.388 9.853-9.777.001-2.61-1.015-5.064-2.862-6.912C16.467 2.065 14.02 1.04 11.45 1.04c-5.436 0-9.856 4.387-9.859 9.779-.001 1.636.432 3.23 1.254 4.654L1.87 21.134l5.777-1.516c1.378.75 2.82 1.127 4.135 1.127l.006-.011zm11.366-7.6c-.29-.146-1.716-.847-1.98-.942-.266-.096-.459-.144-.653.146-.193.289-.748.942-.917 1.134-.168.192-.337.216-.627.072-.29-.145-1.223-.45-2.33-1.439-.86-.767-1.44-1.716-1.609-2.006-.169-.29-.018-.445.127-.589.13-.13.29-.337.434-.506.145-.169.193-.289.29-.481.096-.193.048-.361-.024-.506-.073-.145-.653-1.57-.895-2.15-.236-.569-.475-.491-.652-.5l-.556-.01c-.193 0-.507.072-.772.361-.265.289-1.013.99-1.013 2.41 0 1.42 1.037 2.793 1.182 2.986.145.193 2.04 3.114 4.943 4.368.69.298 1.23.476 1.65.61.693.22 1.324.19 1.823.115.556-.084 1.716-.7 1.958-1.374.242-.674.242-1.251.17-1.373-.073-.123-.266-.193-.557-.34z"/></svg> Enroll Now
+                <a id="mobile-nav-cta" href="" target="_blank" class="w-full text-center inline-flex items-center justify-center gap-2 bg-navy text-white text-base font-semibold py-3 rounded-xl mt-2">
+                    Enroll Now
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- SECTION 2: HERO SLIDER SECTION -->
     <section class="relative bg-navy overflow-hidden h-[450px] sm:h-[550px] md:h-[650px] w-full">
-        <div id="hero-track" class="w-full h-full relative">
-            <!-- Dynamic slides generate here -->
-        </div>
+        <div id="hero-track" class="w-full h-full relative"></div>
         <button id="hero-prev" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white p-2.5 rounded-full backdrop-blur-sm transition-all hidden md:block z-20">
             <i data-lucide="chevron-left" class="w-6 h-6"></i>
         </button>
         <button id="hero-next" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white p-2.5 rounded-full backdrop-blur-sm transition-all hidden md:block z-20">
             <i data-lucide="chevron-right" class="w-6 h-6"></i>
         </button>
-        <div id="hero-dots" class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-            <!-- Dynamic dots generate here -->
-        </div>
+        <div id="hero-dots" class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20"></div>
     </section>
 
-    <!-- SECTION 3: COURSES SECTION -->
     <section id="courses" class="py-16 md:py-24 bg-gray-50 scroll-mt-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
@@ -119,7 +107,6 @@
                 <p class="text-muted text-sm md:text-base">Structured targeted programs designed to maximize scores and build comprehensive foundations.</p>
             </div>
 
-            <!-- Tab Filtering Layout -->
             <div class="flex justify-center gap-2 md:gap-4 mb-12 flex-wrap">
                 <button data-filter="all" class="course-tab px-5 py-2 rounded-full font-semibold text-sm transition-all shadow-sm bg-navy text-white">All Courses</button>
                 <button data-filter="10" class="course-tab px-5 py-2 rounded-full font-semibold text-sm transition-all shadow-sm bg-white text-navy hover:bg-gray-100">Class 10</button>
@@ -127,13 +114,10 @@
                 <button data-filter="12" class="course-tab px-5 py-2 rounded-full font-semibold text-sm transition-all shadow-sm bg-white text-navy hover:bg-gray-100">Class 12</button>
             </div>
 
-            <div id="courses-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                <!-- Dynamic Course Cards -->
-            </div>
+            <div id="courses-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"></div>
         </div>
     </section>
 
-    <!-- SECTION 4: FREE VIDEO SECTION -->
     <section id="videos" class="py-16 md:py-24 bg-white scroll-mt-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12">
@@ -142,7 +126,6 @@
                 <p class="text-muted text-sm md:text-base">Access our high-yield video lectures directly curated from our primary platforms.</p>
             </div>
 
-            <!-- Double Compound Filter UI -->
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-12 max-w-4xl mx-auto">
                 <select id="video-filter-class" class="w-full bg-gray-50 border border-gray-200 text-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-gold">
                     <option value="all">All Classes</option>
@@ -154,25 +137,19 @@
                 <input id="video-filter-topic" type="text" placeholder="Filter by Topic" class="w-full bg-gray-50 border border-gray-200 text-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-gold">
             </div>
 
-            <div id="videos-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                <!-- Dynamic Video Cards -->
-            </div>
+            <div id="videos-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"></div>
         </div>
     </section>
 
-    <!-- Video Modal Architecture -->
     <div id="video-modal" class="fixed inset-0 z-50 bg-black/80 hidden items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-black rounded-2xl overflow-hidden max-w-4xl w-full aspect-video relative shadow-2xl">
             <button id="close-modal-btn" class="absolute top-4 right-4 text-white bg-black/40 hover:bg-black/80 p-2 rounded-full transition-all z-10">
                 <i data-lucide="x" class="w-6 h-6"></i>
             </button>
-            <div id="modal-player-container" class="w-full h-full">
-                <!-- Iframe injected at runtime -->
-            </div>
+            <div id="modal-player-container" class="w-full h-full"></div>
         </div>
     </div>
 
-    <!-- SECTION 5: PAID NOTES SECTION -->
     <section id="notes" class="py-16 md:py-24 bg-cream/20 border-y border-gold/10 scroll-mt-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
@@ -181,13 +158,10 @@
                 <p class="text-muted text-sm md:text-base">Unlock precise blueprints, structures formulas, and high-probability compilations.</p>
             </div>
 
-            <div id="notes-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-                <!-- Dynamic Notes Grid Items -->
-            </div>
+            <div id="notes-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"></div>
         </div>
     </section>
 
-    <!-- SECTION 6: GALLERY SECTION -->
     <section id="gallery" class="py-16 md:py-24 bg-white scroll-mt-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
@@ -196,13 +170,10 @@
                 <p class="text-muted text-sm md:text-base">Celebrating classroom engagement, foundational moments, and accomplishments.</p>
             </div>
 
-            <div id="gallery-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-                <!-- Dynamic Gallery Items -->
-            </div>
+            <div id="gallery-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4"></div>
         </div>
     </section>
 
-    <!-- Lightbox Modal -->
     <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/95 hidden flex-col items-center justify-center p-4">
         <button id="close-lightbox-btn" class="absolute top-6 right-6 text-white/70 hover:text-white transition-all">
             <i data-lucide="x" class="w-8 h-8"></i>
@@ -216,7 +187,6 @@
         </div>
     </div>
 
-    <!-- SECTION 7: TESTIMONIALS SECTION -->
     <section id="testimonials" class="py-16 md:py-24 bg-gray-50 scroll-mt-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
@@ -225,18 +195,14 @@
                 <p class="text-muted text-sm md:text-base">Real transformational validation from members of our educational community.</p>
             </div>
 
-            <div id="testimonials-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                <!-- Dynamic Testimonials Layout -->
-            </div>
+            <div id="testimonials-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"></div>
         </div>
     </section>
 
-    <!-- SECTION 8: CONTACT US SECTION -->
     <section id="contact" class="py-16 md:py-24 bg-white scroll-mt-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:grid-cols-12 bg-white rounded-3xl border border-gray-100 shadow-xl overflow-hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-white rounded-3xl border border-gray-100 shadow-xl overflow-hidden">
                 
-                <!-- Contact Meta Card -->
                 <div class="lg:col-span-5 bg-navy p-6 md:p-12 text-white flex flex-col justify-between relative overflow-hidden">
                     <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-navy-light/20 rounded-full blur-xl"></div>
                     <div>
@@ -244,7 +210,7 @@
                         <p class="text-gray-300 text-sm mb-8 leading-relaxed">Have pedagogical inquiries, diagnostic placement queries, or baseline session assignment needs? Reach out directly via the pathways below.</p>
                         
                         <div class="space-y-6">
-                            <a id="meta-phone" href="tel:7225902570" class="flex items-start gap-4 group">
+                            <a id="meta-phone" href="" class="flex items-start gap-4 group">
                                 <div class="bg-white/10 p-3 rounded-xl group-hover:bg-gold/20 transition-all text-gold">
                                     <i data-lucide="phone" class="w-5 h-5"></i>
                                 </div>
@@ -253,7 +219,7 @@
                                     <span class="text-base font-semibold text-white">+91 7225902570</span>
                                 </div>
                             </a>
-                            <a id="meta-email" href="mailto:sudhirsilavat12@gmail.com" class="flex items-start gap-4 group">
+                            <a id="meta-email" href="" class="flex items-start gap-4 group">
                                 <div class="bg-white/10 p-3 rounded-xl group-hover:bg-gold/20 transition-all text-gold">
                                     <i data-lucide="mail" class="w-5 h-5"></i>
                                 </div>
@@ -276,13 +242,12 @@
                     
                     <div class="mt-12 pt-6 border-t border-white/10">
                         <span class="block text-xs uppercase tracking-wider text-gray-400 mb-3">Academic Broadcast Node</span>
-                        <a id="meta-yt" href="https://m.youtube.com/c/MathsandEnglishClasses" target="_blank" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded-xl text-sm transition-all shadow">
-                            <svg class="w-4 h-4 fill-current text-white" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg> Subscribe on YouTube
+                        <a id="meta-yt" href="" target="_blank" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded-xl text-sm transition-all shadow">
+                            Subscribe on YouTube
                         </a>
                     </div>
                 </div>
 
-                <!-- Live Capture Engine Form -->
                 <div class="lg:col-span-7 p-6 md:p-12 bg-white">
                     <h3 class="text-xl md:text-2xl font-bold text-navy mb-6">Send an Admission/Inquiry Form</h3>
                     <form id="inquiry-form" class="space-y-5">
@@ -330,140 +295,131 @@
         </div>
     </section>
 
-    <!-- SECTION 9: SOCIAL MEDIA CHANNELS + FOOTER -->
     <footer class="mt-auto bg-gray-900 text-white border-t-2 border-gold/20 relative">
-        <!-- Floating Desktop Sticky Sidebar Integration -->
-        <div id="sticky-sidebar" class="hidden xl:flex fixed right-6 top-1/3 flex-col gap-3 z-40">
-            <!-- Dynamic components inject here -->
-        </div>
-
+        <div id="sticky-sidebar" class="hidden xl:flex fixed right-6 top-1/3 flex-col gap-3 z-40"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="flex flex-col sm:flex-row items-center justify-between gap-6 border-b border-white/10 pb-8 mb-8">
                 <div class="text-center sm:text-left">
                     <span class="text-2xl font-bold tracking-tight block text-white font-heading" id="footer-inst-name">The Vision Institute</span>
                     <span class="text-sm text-gold font-semibold tracking-wider uppercase block mt-1" id="footer-teacher-name">Sudhir Shivam Sir</span>
                 </div>
-                <div id="footer-socials" class="flex items-center gap-4">
-                    <!-- Dynamic platform nodes -->
-                </div>
+                <div id="footer-socials" class="flex items-center gap-4"></div>
             </div>
             <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400 text-center sm:text-left">
                 <p>&copy; 2026 The Vision Institute. All institutional dimensions optimized natively.</p>
-                <div></div>
             </div>
         </div>
-
-        <!-- HIDDEN INVISIBLE TRIGGER FOR SECURE ADMINISTRATIVE PORTAL GATEWAY -->
-        <button id="hidden-admin-trigger" class="absolute bottom-2 right-2 w-4 h-4 bg-transparent cursor-default focus:outline-none" aria-label="Admin Trigger Node"></button>
     </footer>
 
-    <!-- CLOUD CLOUD AUTHENTICATION MODAL SYSTEM -->
-    <div id="drive-auth-modal" class="fixed inset-0 z-[100] bg-navy/95 backdrop-blur-md hidden items-center justify-center p-4">
-        <div class="bg-white rounded-3xl p-6 md:p-8 max-w-sm w-full shadow-2xl border border-gray-100 text-center relative animate-fade-in">
-            <button id="close-auth-modal" class="absolute top-4 right-4 text-gray-400 hover:text-dark focus:outline-none">
-                <i data-lucide="x" class="w-5 h-5"></i>
-            </button>
-            <div class="w-12 h-12 bg-gold/10 text-gold rounded-full flex items-center justify-center mx-auto mb-4">
-                <i data-lucide="cloud-lightning" class="w-6 h-6"></i>
-            </div>
-            <h3 class="text-xl font-bold text-navy mb-1">Cloud Authentication</h3>
-            <p class="text-xs text-gray-500 mb-6">Verifying live access keys directly from Google Apps Script infrastructure layers.</p>
-            
-            <form id="drive-auth-form" class="space-y-4">
-                <input type="password" id="drive-auth-input" placeholder="Enter System Password" required class="w-full border border-gray-200 rounded-xl px-4 py-3 text-center tracking-widest focus:outline-none focus:border-gold text-sm bg-gray-50">
-                <button type="submit" id="drive-auth-submit" class="w-full bg-navy hover:bg-navy-light text-white font-bold py-3 rounded-xl transition-all shadow flex items-center justify-center gap-2 text-sm uppercase tracking-wide">
-                    <span id="btn-text">Verify Identity</span>
-                </button>
-            </form>
-            <p id="drive-auth-error" class="text-xs text-red-600 mt-3 font-semibold hidden"></p>
-        </div>
-    </div>
-
-    <!-- SCRIPT APPLICATION CONFIGURATION LAYERS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
     <script>
-        // FIXED REGEX GOOGLE DRIVE URL CONVERSION PARSER
-        // 🟢 INSTANT IMAGE RENDERING PARSER ENGINE (SMART BOARD & MOBILE COMPATIBLE)
-function parseGDriveLink(url) {
-    if (!url) return 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600';
-    
-    let fileId = '';
-    
-    // Naye aur purane sabhi links se File ID nikalne ke liye custom logic
-    const match1 = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
-    const match2 = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
-    
-    if (match1) fileId = match1[1];
-    else if (match2) fileId = match2[1];
-    else return url; // Agar pehle se direct live image link hai toh wahi chalao
+        // GOOGLE THUMBNAIL PARSER ENGINE
+        function parseGDriveLink(url) {
+            if (!url) return 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600';
+            if (url.includes('drive.google.com/thumbnail') || url.includes('images.unsplash.com')) return url;
+            
+            let fileId = '';
+            const match1 = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+            const match2 = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+            
+            if (match1) fileId = match1[1];
+            else if (match2) fileId = match2[1];
+            else return url;
 
-    // 🟢 NEW FORMAT: Google Thumbnail Engine (Yeh kabhi block nahi hota aur instant load hota hai)
-    return `https://drive.google.com/thumbnail?authuser=0&sz=w1200&id=${fileId}`;
-}
+            return `https://drive.google.com/thumbnail?authuser=0&sz=w1200&id=${fileId}`;
+        }
 
-        // Structural Baseline Framework Hydration
-        const defaultSettings = {
-            instituteName: "The Vision Institute", teacherName: "Sudhir Shivam Sir",
-            phone: "7225902570", whatsapp: "7225902570", email: "sudhirsilavat12@gmail.com",
-            address: "Kulkula Mata Mandir, Englishpura, Sehore, 466001", logo: "",
-            socialLinks: { youtube: "https://m.youtube.com/c/MathsandEnglishClasses", instagram: "#", facebook: "#", whatsapp: "7225902570" }
-        };
+        function getYoutubeId(url) {
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            const match = url.match(regExp);
+            return (match && match[2].length === 11) ? match[2] : null;
+        }
 
-        const defaultSliders = [
-            { title: "Empowering Minds, Shaping Futures", description: "Targeted systemic instructional pathways for board excellence.", image: "" },
-            { title: "Expert Pedagogy under Sudhir Sir", description: "Unrivaled logical analytics structures for Physics and English systems.", image: "" }
-        ];
+        // ==========================================================
+        // 🔴 PRODUCTION SECURITY ROUTER GATEWAY
+        // ==========================================================
+        // NETLIFY PAR DEPLOY KARNE SE PEHLE IS LOCALHOST LINK KO APNE LIVE VERCEL/RENDER LINK SE BADLEIN
+        const BACKEND_API = "http://localhost:3000"; 
+        const DECRYPTION_KEY_MATRIX = "ImranSir@VisionEncryption2026NodeKey";
 
-        const defaultCourses = [
-            { title: "Class 10 Core Board Mastery", class: "10", subject: "Mathematics & Science", teacher: "Sudhir Shivam Sir", fee: "₹5000/Session", duration: "Full Academic Year", description: "Complete comprehensive board compliance layout setup.", image: "", active: true }
-        ];
+        // Global master database layers references
+        let activeCloudState = { siteSettings: {}, sliderData: [], courses: [], lectures: [], notes: [], galleryData: [], testimonialsData: [] };
 
-        const siteSettings = JSON.parse(localStorage.getItem('siteSettings')) || defaultSettings;
-        if(!localStorage.getItem('siteSettings')) localStorage.setItem('siteSettings', JSON.stringify(defaultSettings));
+        // Engine Hydration Router Entry Point
+        document.addEventListener('DOMContentLoaded', loadDecryptedPortalDataset);
 
-        const sliderData = JSON.parse(localStorage.getItem('sliderData')) || defaultSliders;
-        if(!localStorage.getItem('sliderData')) localStorage.setItem('sliderData', JSON.stringify(defaultSliders));
+        // ==========================================================
+        // 🔓 ENCRYPTED HANDSHAKE SYNCHRONIZATION MECHANISM
+        // ==========================================================
+        async function loadDecryptedPortalDataset() {
+            // Placeholder states configurations loaders
+            document.getElementById('courses-grid').innerHTML = '<div class="col-span-full py-8 text-center text-navy font-bold animate-pulse">Syncing dynamic syllabus streams from Encrypted Cloud JSON...</div>';
+            document.getElementById('videos-grid').innerHTML = '<div class="col-span-full py-8 text-center text-navy font-bold animate-pulse">Syncing active lecture streams from Encrypted Cloud JSON...</div>';
+            document.getElementById('notes-grid').innerHTML = '<div class="col-span-full py-8 text-center text-navy font-bold animate-pulse">Syncing premium study assets from Encrypted Cloud JSON...</div>';
 
-        const coursesData = JSON.parse(localStorage.getItem('coursesData')) || defaultCourses;
-        if(!localStorage.getItem('coursesData')) localStorage.setItem('coursesData', JSON.stringify(defaultCourses));
+            try {
+                const response = await fetch(`${BACKEND_API}/api/getData?cb=${Date.now()}`);
+                if(!response.ok) throw new Error("Cloud encryption handshake proxy system timeout.");
+                
+                const responseData = await response.json();
+                if(!responseData.payload) throw new Error("Invalid payload fingerprint structural integrity damage.");
 
-        const videosData = JSON.parse(localStorage.getItem('videosData')) || [];
-        const notesData = JSON.parse(localStorage.getItem('notesData')) || [];
-        const galleryData = JSON.parse(localStorage.getItem('galleryData')) || [];
-        const testimonialsData = JSON.parse(localStorage.getItem('testimonialsData')) || [];
-        const inquiriesData = JSON.parse(localStorage.getItem('inquiriesData')) || [];
+                // DECRYPT DATA LIVE ON RUNTIME CLIENT SCOPE
+                const bytes = CryptoJS.AES.decrypt(responseData.payload, DECRYPTION_KEY_MATRIX);
+                const rawJsonString = bytes.toString(CryptoJS.enc.Utf8);
+                
+                if(!rawJsonString) throw new Error("Token mismatch alignment configuration signature error.");
+                activeCloudState = JSON.parse(rawJsonString);
 
-        document.addEventListener('DOMContentLoaded', () => {
-            syncBranding();
-            renderHero();
-            renderCourses('all');
-            renderVideos();
-            renderNotes();
-            renderGallery();
-            renderTestimonials();
-            renderSocialElements();
-            setupInteractivity();
-            setupCloudAuthEngine();
-            lucide.createIcons();
-        });
+                // Run Interface compilation sequences loops
+                syncBranding();
+                renderHero();
+                renderCourses(activeCloudState.courses || []);
+                renderVideos(activeCloudState.lectures || []);
+                renderNotes(activeCloudState.notes || []);
+                renderGallery();
+                renderTestimonials();
+                renderSocialElements();
+                setupInteractivity();
+                lucide.createIcons();
+
+            } catch(err) {
+                console.error("Critical Handshake Interrupted. Loading local safe memory profiles:", err.message);
+                // Fallback to offline cached storage configurations if proxy drops
+                activeCloudState.siteSettings = JSON.parse(localStorage.getItem('siteSettings')) || {};
+                activeCloudState.sliderData = JSON.parse(localStorage.getItem('sliderData')) || [];
+                renderCourses(JSON.parse(localStorage.getItem('coursesData')) || []);
+                renderVideos(JSON.parse(localStorage.getItem('videosData')) || []);
+                renderNotes(JSON.parse(localStorage.getItem('notesData')) || []);
+                syncBranding();
+                renderHero();
+                renderGallery();
+                renderTestimonials();
+                renderSocialElements();
+                setupInteractivity();
+                lucide.createIcons();
+            }
+        }
 
         function syncBranding() {
-            const logoSrc = parseGDriveLink(siteSettings.logo);
-            document.getElementById('nav-logo').src = siteSettings.logo ? logoSrc : 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=150';
-            document.getElementById('nav-inst-name').textContent = siteSettings.instituteName;
-            document.getElementById('nav-teacher-name').textContent = siteSettings.teacherName;
-            document.getElementById('footer-inst-name').textContent = siteSettings.instituteName;
-            document.getElementById('footer-teacher-name').textContent = siteSettings.teacherName;
+            const s = activeCloudState.siteSettings || {};
+            const logoSrc = parseGDriveLink(s.logo);
+            document.getElementById('nav-logo').src = s.logo ? logoSrc : 'https://drive.google.com/thumbnail?authuser=0&sz=w300&id=1HD8SvrMRTXbgbDb8po314FEmsC7GwwNh';
+            document.getElementById('nav-inst-name').textContent = s.instituteName || "The Vision Institute";
+            document.getElementById('nav-teacher-name').textContent = s.teacherName || "Sudhir Shivam Sir";
+            document.getElementById('footer-inst-name').textContent = s.instituteName || "The Vision Institute";
+            document.getElementById('footer-teacher-name').textContent = s.teacherName || "Sudhir Shivam Sir";
             
-            const waEnrollUrl = `https://wa.me/91${siteSettings.whatsapp}?text=Hello%20Sir%2C%20I%20am%20interested%20in%20enrolling%20at%20The%20Vision%20Institute.`;
+            const waEnrollUrl = `https://wa.me/91${s.whatsapp || '7225902570'}?text=Hello%20Sir%2C%20I%20am%20interested%20in%20enrolling%20at%20The%20Vision%20Institute.`;
             document.getElementById('nav-cta').href = waEnrollUrl;
             document.getElementById('mobile-nav-cta').href = waEnrollUrl;
 
-            document.getElementById('meta-phone').href = `tel:${siteSettings.phone}`;
-            document.getElementById('meta-phone').querySelector('.text-white').textContent = `+91 ${siteSettings.phone}`;
-            document.getElementById('meta-email').href = `mailto:${siteSettings.email}`;
-            document.getElementById('meta-email').querySelector('.text-white').textContent = siteSettings.email;
-            document.getElementById('meta-address').textContent = siteSettings.address;
-            document.getElementById('meta-yt').href = siteSettings.socialLinks.youtube;
+            document.getElementById('meta-phone').href = `tel:${s.phone || '7225902570'}`;
+            document.getElementById('meta-phone').querySelector('.text-white').textContent = `+91 ${s.phone || '7225902570'}`;
+            document.getElementById('meta-email').href = `mailto:${s.email || 'sudhirsilavat12@gmail.com'}`;
+            document.getElementById('meta-email').querySelector('.text-white').textContent = s.email || 'sudhirsilavat12@gmail.com';
+            document.getElementById('meta-address').textContent = s.address || 'Kulkula Mata Mandir, Englishpura, Sehore, 466001';
+            document.getElementById('meta-yt').href = (s.socialLinks || {}).youtube || "https://m.youtube.com/c/MathsandEnglishClasses";
         }
 
         let currentSlide = 0; let slideInterval;
@@ -473,8 +429,12 @@ function parseGDriveLink(url) {
             if(!track || !dotsContainer) return;
             track.innerHTML = ''; dotsContainer.innerHTML = '';
             
-            sliderData.forEach((slide, idx) => {
-                const bgImg = slide.image ? parseGDriveLink(slide.image) : 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=1200';
+            const list = activeCloudState.sliderData && activeCloudState.sliderData.length ? activeCloudState.sliderData : [
+                { title: "Empowering Minds, Shaping Futures", description: "Targeted systemic instructional pathways for board excellence under Sudhir Sir.", image: "" }
+            ];
+            
+            list.forEach((slide, idx) => {
+                const bgImg = slide.image ? parseGDriveLink(slide.image) : 'https://drive.google.com/thumbnail?authuser=0&sz=w1200&id=1HD8SvrMRTXbgbDb8po314FEmsC7GwwNh';
                 const slideEl = document.createElement('div');
                 slideEl.className = `absolute inset-0 w-full h-full transition-opacity duration-1000 flex items-center ${idx === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`;
                 slideEl.innerHTML = `
@@ -494,7 +454,11 @@ function parseGDriveLink(url) {
                 dot.dataset.targetIdx = idx;
                 dotsContainer.appendChild(dot);
             });
-            startSliderLoop();
+            clearInterval(slideInterval);
+            slideInterval = setInterval(() => {
+                const slides = document.querySelectorAll('#hero-track > div');
+                if(slides.length) switchSlide((currentSlide + 1) % slides.length);
+            }, 6000);
         }
 
         function switchSlide(nextIdx) {
@@ -503,24 +467,23 @@ function parseGDriveLink(url) {
             if(!slides.length || !dots.length) return;
             slides[currentSlide].className = "absolute inset-0 w-full h-full transition-opacity duration-1000 flex items-center opacity-0 z-0";
             dots[currentSlide].className = "w-3 h-3 rounded-full transition-all bg-white/40";
-            currentSlide = (nextIdx + slides.length) % slides.length;
+            currentSlide = nextIdx;
             slides[currentSlide].className = "absolute inset-0 w-full h-full transition-opacity duration-1000 flex items-center opacity-100 z-10";
             dots[currentSlide].className = "w-3 h-3 rounded-full transition-all bg-gold w-8";
         }
-        function startSliderLoop() { clearInterval(slideInterval); slideInterval = setInterval(() => switchSlide(currentSlide + 1), 6000); }
 
-        function renderCourses(filterClass) {
+        function renderCourses(list) {
             const grid = document.getElementById('courses-grid'); grid.innerHTML = '';
-            const activeCourses = coursesData.filter(c => c.active && (filterClass === 'all' || c.class === filterClass));
-            if(!activeCourses.length) {
-                grid.innerHTML = `<div class="col-span-full py-12 text-center text-muted font-medium">No active streams found.</div>`;
+            if(!list.length) {
+                grid.innerHTML = `<div class="col-span-full py-12 text-center text-muted font-medium">No active program vectors deployed inside encrypted matrix sheet layers.</div>`;
                 return;
             }
-            activeCourses.forEach(course => {
+            list.forEach(course => {
                 const card = document.createElement('div');
                 card.className = "bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group transform hover:-translate-y-1";
-                const imgUrl = course.image ? parseGDriveLink(course.image) : 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600';
-                const waUrl = `https://wa.me/91${siteSettings.whatsapp}?text=Hello%20Sir%2C%20I%20am%20inquiring%20about%20the%20course%3A%20${encodeURIComponent(course.title)}`;
+                const imgUrl = course.image ? parseGDriveLink(course.image) : 'https://drive.google.com/thumbnail?authuser=0&sz=w600&id=1HD8SvrMRTXbgbDb8po314FEmsC7GwwNh';
+                const s = activeCloudState.siteSettings || {};
+                const waUrl = `https://wa.me/91${s.whatsapp || '7225902570'}?text=Hello%20Sir%2C%20I%20am%20inquiring%20about%20the%20course%3A%20${encodeURIComponent(course.title)}`;
                 card.innerHTML = `
                     <div class="relative overflow-hidden aspect-video bg-gray-100">
                         <img src="${imgUrl}" alt="Course" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
@@ -544,34 +507,16 @@ function parseGDriveLink(url) {
                 `;
                 grid.appendChild(card);
             });
-            lucide.createIcons();
+            localStorage.setItem('coursesData', JSON.stringify(list));
         }
 
-        function getYoutubeId(url) {
-            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-            const match = url.match(regExp);
-            return (match && match[2].length === 11) ? match[2] : null;
-        }
-
-        function renderVideos() {
-            const grid = document.getElementById('videos-grid');
-            const classFilter = document.getElementById('video-filter-class').value;
-            const subjectFilter = document.getElementById('video-filter-subject').value.toLowerCase().trim();
-            const topicFilter = document.getElementById('video-filter-topic').value.toLowerCase().trim();
-            grid.innerHTML = '';
-
-            const filtered = videosData.filter(v => {
-                return (classFilter === 'all' || v.class === classFilter) &&
-                       (!subjectFilter || v.subject.toLowerCase().includes(subjectFilter)) &&
-                       (!topicFilter || v.topic.toLowerCase().includes(topicFilter));
-            });
-
-            if(!filtered.length) {
-                grid.innerHTML = `<div class="col-span-full py-12 text-center text-muted font-medium">No lectures found matching your dynamic filter parameters.</div>`;
+        function renderVideos(list) {
+            const grid = document.getElementById('videos-grid'); grid.innerHTML = '';
+            if(!list.length) {
+                grid.innerHTML = `<div class="col-span-full py-12 text-center text-muted font-medium">No live media nodes referenced inside cloud layers.</div>`;
                 return;
             }
-
-            filtered.forEach(vid => {
+            list.forEach(vid => {
                 const ytId = getYoutubeId(vid.url);
                 const thumb = ytId ? `https://img.youtube.com/vi/${ytId}/mqdefault.jpg` : 'https://images.unsplash.com/photo-1610483178736-9a155d220093?w=480';
                 const card = document.createElement('div');
@@ -596,20 +541,21 @@ function parseGDriveLink(url) {
                 `;
                 grid.appendChild(card);
             });
+            localStorage.setItem('videosData', JSON.stringify(list));
         }
 
-        function renderNotes() {
+        function renderNotes(list) {
             const grid = document.getElementById('notes-grid'); grid.innerHTML = '';
-            const targetNotes = notesData.filter(n => n.active !== false);
-            if(!targetNotes.length) {
-                grid.innerHTML = `<div class="col-span-full py-12 text-center text-muted font-medium">No notes catalogs compiled yet.</div>`;
+            if(!list.length) {
+                grid.innerHTML = `<div class="col-span-full py-12 text-center text-muted font-medium">No materials packets inside sheet matrices rows.</div>`;
                 return;
             }
-            targetNotes.forEach(note => {
+            list.forEach(note => {
                 const card = document.createElement('div');
                 card.className = "bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-lg transition-all p-3 flex flex-col group text-center";
-                const imgUrl = note.image ? parseGDriveLink(note.image) : 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=400';
-                const hrefWa = `https://wa.me/91${siteSettings.whatsapp}?text=Sir%2C%20I%20need%20Class%20${note.class}%20${encodeURIComponent(note.subject)}%20notes.`;
+                const imgUrl = note.image ? parseGDriveLink(note.image) : 'https://drive.google.com/thumbnail?authuser=0&sz=w600&id=1HD8SvrMRTXbgbDb8po314FEmsC7GwwNh';
+                const s = activeCloudState.siteSettings || {};
+                const hrefWa = `https://wa.me/91${s.whatsapp || '7225902570'}?text=Sir%2C%20I%20need%20Class%20${note.class}%20${encodeURIComponent(note.subject)}%20notes.`;
                 card.innerHTML = `
                     <div class="relative aspect-[3/4] bg-gray-50 rounded-xl overflow-hidden mb-3">
                         <img src="${imgUrl}" alt="Notes" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
@@ -620,15 +566,17 @@ function parseGDriveLink(url) {
                 `;
                 grid.appendChild(card);
             });
+            localStorage.setItem('notesData', JSON.stringify(list));
         }
 
         function renderGallery() {
             const grid = document.getElementById('gallery-grid'); grid.innerHTML = '';
-            if(!galleryData.length) {
-                grid.innerHTML = `<div class="col-span-full py-12 text-center text-muted">No illustrations available inside matrix.</div>`;
+            const list = activeCloudState.galleryData || [];
+            if(!list.length) {
+                grid.innerHTML = `<div class="col-span-full py-12 text-center text-muted">No high-resolution snapshots logged.</div>`;
                 return;
             }
-            galleryData.forEach(item => {
+            list.forEach(item => {
                 const itemEl = document.createElement('div');
                 itemEl.className = "relative group aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-sm cursor-pointer gallery-trigger";
                 const imgUrl = parseGDriveLink(item.image);
@@ -641,19 +589,20 @@ function parseGDriveLink(url) {
                 `;
                 grid.appendChild(itemEl);
             });
-            lucide.createIcons();
+            localStorage.setItem('galleryData', JSON.stringify(list));
         }
 
         function renderTestimonials() {
             const grid = document.getElementById('testimonials-grid'); grid.innerHTML = '';
-            if(!testimonialsData.length) {
-                grid.innerHTML = `<div class="col-span-full py-6 text-center text-muted">Real transformational validation logs.</div>`;
+            const list = activeCloudState.testimonialsData || [];
+            if(!list.length) {
+                grid.innerHTML = `<div class="col-span-full py-6 text-center text-muted">No operational reviews logged yet.</div>`;
                 return;
             }
-            testimonialsData.forEach(test => {
+            list.forEach(test => {
                 const card = document.createElement('div');
                 card.className = "bg-white border border-gray-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between";
-                const userPic = test.image ? parseGDriveLink(test.image) : `https://ui-avatars.com/api/?name=${encodeURIComponent(test.name)}&background=1a365d&color=fff`;
+                const userPic = `https://ui-avatars.com/api/?name=${encodeURIComponent(test.name)}&background=1a365d&color=fff`;
                 card.innerHTML = `
                     <p class="text-sm text-gray-600 italic mb-6 leading-relaxed">"${test.reviewText}"</p>
                     <div class="flex items-center gap-3 pt-4 border-t border-gray-50 mt-auto">
@@ -663,6 +612,7 @@ function parseGDriveLink(url) {
                 `;
                 grid.appendChild(card);
             });
+            localStorage.setItem('testimonialsData', JSON.stringify(list));
         }
 
         function renderSocialElements() {
@@ -670,33 +620,29 @@ function parseGDriveLink(url) {
             const footerIcons = document.getElementById('footer-socials');
             if(!sidebar || !footerIcons) return;
             sidebar.innerHTML = ''; footerIcons.innerHTML = '';
-            const links = siteSettings.socialLinks || defaultSettings.socialLinks;
             
+            const s = activeCloudState.siteSettings || {};
+            const youtubeUrl = s.socialLinks ? s.socialLinks.youtube : "https://m.youtube.com/c/MathsandEnglishClasses";
+            const whatsappNum = s.whatsapp || "7225902570";
+
             const icons = {
                 youtube: '<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93 .502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>',
-                whatsapp: '<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.99 0c3.196.001 6.199 1.242 8.461 3.496 2.262 2.254 3.501 5.251 3.5 8.447-.003 6.643-5.339 11.99-11.93 11.99-1.994-.001-3.956-.5-5.717-1.446L0 24zm6.59-4.846c1.6 .95 3.188 1.449 4.734 1.45 5.432-.001 9.851-4.388 9.853-9.777.001-2.61-1.015-5.064-2.862-6.912C16.467 2.065 14.02 1.04 11.45 1.04c-5.436 0-9.856 4.387-9.859 9.779-.001 1.636.432 3.23 1.254 4.654L1.87 21.134l5.777-1.516c1.378.75 2.82 1.127 4.135 1.127l.006-.011zm11.366-7.6c-.29-.146-1.716-.847-1.98-.942-.266-.096-.459-.144-.653.146-.193.289-.748.942-.917 1.134-.168.192-.337.216-.627.072-.29-.145-1.223-.45-2.33-1.439-.86-.767-1.44-1.716-1.609-2.006-.169-.29-.018-.445.127-.589.13-.13.29-.337.434-.506.145-.169.193-.289.29-.481.096-.193.048-.361-.024-.506-.073-.145-.653-1.57-.895-2.15-.236-.569-.475-.491-.652-.5l-.556-.01c-.193 0-.507.072-.772.361-.265.289-1.013.99-1.013 2.41 0 1.42 1.037 2.793 1.182 2.986.145.193 2.04 3.114 4.943 4.368.69.298 1.23.476 1.65.61.693.22 1.324.19 1.823.115.556-.084 1.716-.7 1.958-1.374.242-.674.242-1.251.17-1.373-.073-.123-.266-.193-.557-.34z"/></svg>',
-                instagram: '<svg class="w-5 h-5 stroke-current fill-none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" w="20" h="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>',
-                facebook: '<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>'
+                whatsapp: '<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.99 0c3.196.001 6.199 1.242 8.461 3.496 2.262 2.254 3.501 5.251 3.5 8.447-.003 6.643-5.339 11.99-11.93 11.99-1.994-.001-3.956-.5-5.717-1.446L0 24zm6.59-4.846c1.6 .95 3.188 1.449 4.734 1.45 5.432-.001 9.851-4.388 9.853-9.777.001-2.61-1.015-5.064-2.862-6.912C16.467 2.065 14.02 1.04 11.45 1.04c-5.436 0-9.856 4.387-9.859 9.779-.001 1.636.432 3.23 1.254 4.654L1.87 21.134l5.777-1.516c1.378.75 2.82 1.127 4.135 1.127l.006-.011zm11.366-7.6c-.29-.146-1.716-.847-1.98-.942-.266-.096-.459-.144-.653.146-.193.289-.748.942-.917 1.134-.168.192-.337.216-.627.072-.29-.145-1.223-.45-2.33-1.439-.86-.767-1.44-1.716-1.609-2.006-.169-.29-.018-.445.127-.589.13-.13.29-.337.434-.506.145-.169.193-.289.29-.481.096-.193.048-.361-.024-.506-.073-.145-.653-1.57-.895-2.15-.236-.569-.475-.491-.652-.5l-.556-.01c-.193 0-.507.072-.772.361-.265.289-1.013.99-1.013 2.41 0 1.42 1.037 2.793 1.182 2.986.145.193 2.04 3.114 4.943 4.368.69.298 1.23.476 1.65.61.693.22 1.324.19 1.823.115.556-.084 1.716-.7 1.958-1.374.242-.674.242-1.251.17-1.373-.073-.123-.266-.193-.557-.34z"/></svg>'
             };
 
-            const configs = [
-                { key: 'youtube', color: 'bg-red-600' },
-                { key: 'instagram', color: 'bg-gradient-to-tr from-yellow-500 to-purple-600' },
-                { key: 'facebook', color: 'bg-blue-600' },
-                { key: 'whatsapp', color: 'bg-emerald-500' }
+            const channels = [
+                { key: 'youtube', url: youtubeUrl, color: 'bg-red-600' },
+                { key: 'whatsapp', url: `https://wa.me/91${whatsappNum}`, color: 'bg-emerald-500' }
             ];
 
-            configs.forEach(p => {
-                const url = p.key === 'whatsapp' ? `https://wa.me/91${links[p.key]}` : links[p.key];
-                if(!url || url === '#') return;
+            channels.forEach(ch => {
+                const sb = document.createElement('a'); sb.href = ch.url; sb.target = "_blank";
+                sb.className = `${ch.color} text-white p-3 rounded-xl flex items-center justify-center shadow-md transform hover:-translate-x-1 transition-all`;
+                sb.innerHTML = icons[ch.key]; sidebar.appendChild(sb);
 
-                const sb = document.createElement('a'); sb.href = url; sb.target = "_blank";
-                sb.className = `${p.color} text-white p-3 rounded-xl flex items-center justify-center shadow-md transform hover:-translate-x-1 transition-all`;
-                sb.innerHTML = icons[p.key]; sidebar.appendChild(sb);
-
-                const ft = document.createElement('a'); ft.href = url; ft.target = "_blank";
+                const ft = document.createElement('a'); ft.href = ch.url; ft.target = "_blank";
                 ft.className = "text-gray-400 hover:text-white p-2 bg-white/5 rounded-lg transition-colors flex items-center justify-center";
-                ft.innerHTML = icons[p.key]; footerIcons.appendChild(ft);
+                ft.innerHTML = icons[ch.key]; footerIcons.appendChild(ft);
             });
         }
 
@@ -712,13 +658,31 @@ function parseGDriveLink(url) {
                 tab.addEventListener('click', (e) => {
                     document.querySelectorAll('.course-tab').forEach(t => t.className = "course-tab px-5 py-2 rounded-full font-semibold text-sm transition-all shadow-sm bg-white text-navy hover:bg-gray-100");
                     e.target.className = "course-tab px-5 py-2 rounded-full font-semibold text-sm transition-all shadow-sm bg-navy text-white";
-                    renderCourses(e.target.dataset.filter);
+                    
+                    const activeFilter = e.target.dataset.filter;
+                    const cached = activeCloudState.courses || [];
+                    const filtered = activeFilter === 'all' ? cached : cached.filter(c => c.class === activeFilter);
+                    renderCourses(filtered);
                 });
             });
 
-            document.getElementById('video-filter-class').addEventListener('change', renderVideos);
-            document.getElementById('video-filter-subject').addEventListener('input', renderVideos);
-            document.getElementById('video-filter-topic').addEventListener('input', renderVideos);
+            document.getElementById('video-filter-class').addEventListener('change', runLocalFilters);
+            document.getElementById('video-filter-subject').addEventListener('input', runLocalFilters);
+            document.getElementById('video-filter-topic').addEventListener('input', runLocalFilters);
+
+            function runLocalFilters() {
+                const classFilter = document.getElementById('video-filter-class').value;
+                const subjFilter = document.getElementById('video-filter-subject').value.toLowerCase().trim();
+                const topFilter = document.getElementById('video-filter-topic').value.toLowerCase().trim();
+                const cached = activeCloudState.lectures || [];
+                
+                const filtered = cached.filter(v => {
+                    return (classFilter === 'all' || v.class === classFilter) &&
+                           (!subjFilter || v.subject.toLowerCase().includes(subjFilter)) &&
+                           (!topFilter || v.topic.toLowerCase().includes(topFilter));
+                });
+                renderVideos(filtered);
+            }
 
             document.getElementById('videos-grid').addEventListener('click', (e) => {
                 const trigger = e.target.closest('.play-video-trigger');
@@ -746,99 +710,35 @@ function parseGDriveLink(url) {
                 document.getElementById('lightbox-modal').classList.replace('flex', 'hidden');
             });
 
-            document.getElementById('inquiry-form').addEventListener('submit', (e) => {
+            document.getElementById('inquiry-form').addEventListener('submit', async (e) => {
                 e.preventDefault();
-                inquiriesData.unshift({
-                    name: document.getElementById('form-name').value, phone: document.getElementById('form-phone').value,
-                    class: document.getElementById('form-class').value, subject: document.getElementById('form-subject').value,
-                    message: document.getElementById('form-message').value, date: new Date().toISOString()
-                });
-                localStorage.setItem('inquiriesData', JSON.stringify(inquiriesData));
+                const name = document.getElementById('form-name').value;
+                const phone = document.getElementById('form-phone').value;
+                const targetStream = document.getElementById('form-class').value;
+                const subject = document.getElementById('form-subject').value;
+                const msg = document.getElementById('form-message').value;
+
+                const newInquiry = { name, phone, class: targetStream, subject, message: msg, date: new Date().toISOString() };
+                
+                if(!activeCloudState.inquiriesData) activeCloudState.inquiriesData = [];
+                activeCloudState.inquiriesData.unshift(newInquiry);
+
+                // Push locally parsed inquiry matrix logs to Google Drive through background process
+                try {
+                    await fetch(`${BACKEND_API}/api/update`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ password: "ImranSir@VisionEncryption2026NodeKey", data: activeCloudState })
+                    });
+                } catch(err) { console.log("Background synchronization delay buffer."); }
+
+                const s = activeCloudState.siteSettings || {};
+                const whatsAppPayload = `Hello Sir, I want to inquire about admission.%0AName: ${encodeURIComponent(name)}%0AContact: ${encodeURIComponent(phone)}%0AClass: ${encodeURIComponent(targetStream)}%0ASubject: ${encodeURIComponent(subject)}%0AMessage: ${encodeURIComponent(msg)}`;
+                window.open(`https://wa.me/91${s.whatsapp || '7225902570'}?text=${whatsAppPayload}`, '_blank');
+                
                 document.getElementById('inquiry-form').reset();
                 document.getElementById('form-success-toast').classList.remove('hidden');
                 setTimeout(() => document.getElementById('form-success-toast').classList.add('hidden'), 5000);
-            });
-        }
-
-        // ==========================================================
-        // UPGRADED REDIRECT-AWARE GOOGLE CLOUD AUTHENTICATION ENGINE
-        // ==========================================================
-        function setupCloudAuthEngine() {
-            // Version 4 Deployment URL Tunnel Verification Entry Point
-            const CLOUD_TUNNEL_URL = 'https://script.google.com/macros/s/AKfycbz0xNwIGPuT9iYIp1UkOYD22d4L5Pyv88PXLdpexHmX3vrCfvmtEOzBpDsrK58kgyqR/exec'; 
-
-            const trigger = document.getElementById('hidden-admin-trigger');
-            const modal = document.getElementById('drive-auth-modal');
-            const closeBtn = document.getElementById('close-auth-modal');
-            const form = document.getElementById('drive-auth-form');
-            const input = document.getElementById('drive-auth-input');
-            const submitBtn = document.getElementById('drive-auth-submit');
-            const errorMsg = document.getElementById('drive-auth-error');
-            const btnText = document.getElementById('btn-text');
-
-            if (!trigger || !modal) return;
-
-            trigger.addEventListener('click', () => {
-                modal.classList.replace('hidden', 'flex');
-                input.focus();
-            });
-
-            closeBtn.addEventListener('click', () => {
-                modal.classList.replace('flex', 'hidden');
-                errorMsg.classList.add('hidden');
-                form.reset();
-            });
-
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                errorMsg.classList.add('hidden');
-                
-                btnText.textContent = "Verifying with Cloud Server...";
-                submitBtn.disabled = true;
-                submitBtn.classList.add('opacity-70');
-
-                const enteredPassword = input.value.trim();
-                const targetUrl = `${CLOUD_TUNNEL_URL}?password=${encodeURIComponent(enteredPassword)}`;
-
-                try {
-                    const response = await fetch(targetUrl, {
-                        method: 'GET',
-                        mode: 'cors',
-                        redirect: 'follow', 
-                        headers: { 'Accept': 'application/json' }
-                    });
-
-                    if (!response.ok) throw new Error(`Cloud response code rejection: ${response.status}`);
-                    
-                    const textData = await response.text();
-                    let result;
-                    try {
-                        result = JSON.parse(textData);
-                    } catch(jsonErr) {
-                        throw new Error(`Invalid structural response data.`);
-                    }
-
-                    if (result.status === "SUCCESS") {
-                        alert("✅ Security Key Match! Access Granted.");
-                        localStorage.setItem('admin_session_token', btoa(enteredPassword + '_verified_2026'));
-                        window.location.href = 'admin.html';
-                    } else if (result.status === "MISMATCH") {
-                        alert("❌ Access Denied!\nPassword mismatch on cloud cluster.");
-                        errorMsg.classList.remove('hidden');
-                        errorMsg.textContent = "Incorrect password matrix signature.";
-                    } else {
-                        throw new Error(result.message || "Unknown auth validation response.");
-                    }
-                } catch (error) {
-                    console.error("Cloud Interface Exception:", error);
-                    alert(`CONNECTIVITY ALERT!\n\nReason: ${error.message}\n\nPlease check your server credentials layout nodes.`);
-                    errorMsg.classList.remove('hidden');
-                    errorMsg.textContent = `Cloud Node Error: ${error.message}`;
-                } finally {
-                    btnText.textContent = "Verify Identity";
-                    submitBtn.disabled = false;
-                    submitBtn.classList.remove('opacity-70');
-                }
             });
         }
     </script>
