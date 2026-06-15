@@ -4,6 +4,8 @@
   "main": "api/getData.js",
   "dependencies": {
     "googleapis": "^140.0.0",
-    "crypto-js": "^4.2.0"
+    "crypto-js": "^4.2.0",
+    "express": "^4.19.2",
+    "cors": "^2.8.5"
   }
 }

@@ -404,7 +404,7 @@
         function syncBranding() {
             const s = activeCloudState.siteSettings || {};
             const logoSrc = parseGDriveLink(s.logo);
-            document.getElementById('nav-logo').src = s.logo ? logoSrc : 'https://drive.google.com/thumbnail?authuser=0&sz=w300&id=1HD8SvrMRTXbgbDb8po314FEmsC7GwwNh';
+            document.getElementById('nav-logo').src = s.logo ? logoSrc : 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=150';
             document.getElementById('nav-inst-name').textContent = s.instituteName || "The Vision Institute";
             document.getElementById('nav-teacher-name').textContent = s.teacherName || "Sudhir Shivam Sir";
             document.getElementById('footer-inst-name').textContent = s.instituteName || "The Vision Institute";
@@ -434,7 +434,7 @@
             ];
             
             list.forEach((slide, idx) => {
-                const bgImg = slide.image ? parseGDriveLink(slide.image) : 'https://drive.google.com/thumbnail?authuser=0&sz=w1200&id=1HD8SvrMRTXbgbDb8po314FEmsC7GwwNh';
+                const bgImg = slide.image ? parseGDriveLink(slide.image) : 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200';
                 const slideEl = document.createElement('div');
                 slideEl.className = `absolute inset-0 w-full h-full transition-opacity duration-1000 flex items-center ${idx === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`;
                 slideEl.innerHTML = `
@@ -481,7 +481,7 @@
             list.forEach(course => {
                 const card = document.createElement('div');
                 card.className = "bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group transform hover:-translate-y-1";
-                const imgUrl = course.image ? parseGDriveLink(course.image) : 'https://drive.google.com/thumbnail?authuser=0&sz=w600&id=1HD8SvrMRTXbgbDb8po314FEmsC7GwwNh';
+                const imgUrl = course.image ? parseGDriveLink(course.image) : 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600';
                 const s = activeCloudState.siteSettings || {};
                 const waUrl = `https://wa.me/91${s.whatsapp || '7225902570'}?text=Hello%20Sir%2C%20I%20am%20inquiring%20about%20the%20course%3A%20${encodeURIComponent(course.title)}`;
                 card.innerHTML = `
@@ -553,7 +553,7 @@
             list.forEach(note => {
                 const card = document.createElement('div');
                 card.className = "bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-lg transition-all p-3 flex flex-col group text-center";
-                const imgUrl = note.image ? parseGDriveLink(note.image) : 'https://drive.google.com/thumbnail?authuser=0&sz=w600&id=1HD8SvrMRTXbgbDb8po314FEmsC7GwwNh';
+                const imgUrl = note.image ? parseGDriveLink(note.image) : 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600';
                 const s = activeCloudState.siteSettings || {};
                 const hrefWa = `https://wa.me/91${s.whatsapp || '7225902570'}?text=Sir%2C%20I%20need%20Class%20${note.class}%20${encodeURIComponent(note.subject)}%20notes.`;
                 card.innerHTML = `
@@ -723,7 +723,7 @@
                 if(!activeCloudState.inquiriesData) activeCloudState.inquiriesData = [];
                 activeCloudState.inquiriesData.unshift(newInquiry);
 
-                // Push locally parsed inquiry matrix logs to Google Drive through background process
+                // Push locally parsed inquiry matrix logs to local database through background process
                 try {
                     await fetch(`${BACKEND_API}/api/update`, {
                         method: 'POST',

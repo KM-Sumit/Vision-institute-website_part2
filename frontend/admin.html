@@ -108,7 +108,7 @@
                         <div><label class="block text-xs font-bold text-gray-500 mb-1">Contact Email</label><input type="email" id="set-email" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm"></div>
                     </div>
                     <div><label class="block text-xs font-bold text-gray-500 mb-1">Campus Physical Address</label><input type="text" id="set-address" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm"></div>
-                    <div><label class="block text-xs font-bold text-gray-500 mb-1">Brand Logo (Google Drive Share Link)</label><input type="url" id="set-logo" placeholder="https://drive.google.com/..." class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-mono"></div>
+                    <div><label class="block text-xs font-bold text-gray-500 mb-1">Brand Logo Image Link</label><input type="url" id="set-logo" placeholder="https://images.unsplash.com/..." class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-mono"></div>
                     <button type="submit" class="bg-navy text-white text-xs font-bold px-6 py-3 rounded-xl">Commit Configurations</button>
                 </form>
             </div>
@@ -122,7 +122,7 @@
                     <input type="hidden" id="slider-edit-id">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <input type="text" id="slide-title" placeholder="Banner Heading Text" required class="border p-2.5 rounded-xl text-sm w-full bg-gray-50">
-                        <input type="url" id="slide-image" placeholder="GDrive Image Asset Link" required class="border p-2.5 rounded-xl text-sm font-mono w-full bg-gray-50">
+                        <input type="url" id="slide-image" placeholder="Image Link URL" required class="border p-2.5 rounded-xl text-sm font-mono w-full bg-gray-50">
                     </div>
                     <textarea id="slide-desc" placeholder="Banner Subtext Content" required class="w-full border p-2.5 rounded-xl text-sm bg-gray-50"></textarea>
                     <div class="flex gap-2 justify-end">
@@ -153,12 +153,12 @@
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                         <input type="text" id="course-fee" placeholder="Fee Standard" required class="border p-2.5 rounded-xl text-sm bg-gray-50">
                         <input type="text" id="course-duration" placeholder="Timeline Duration" required class="border p-2.5 rounded-xl text-sm bg-gray-50">
-                        <input type="url" id="course-image" placeholder="Cover Art Thumbnail GDrive Link" required class="border p-2.5 rounded-xl text-sm font-mono bg-gray-50">
+                        <input type="url" id="course-image" placeholder="Cover Art Thumbnail Image Link" required class="border p-2.5 rounded-xl text-sm font-mono bg-gray-50">
                     </div>
                     <textarea id="course-desc" placeholder="Detailed Syllabus Description Paragraph..." required class="w-full border p-2.5 rounded-xl text-sm bg-gray-50"></textarea>
                     <div class="flex gap-2 justify-end">
                         <button type="button" onclick="document.getElementById('course-form').classList.add('hidden')" class="border px-4 py-2 rounded-xl text-xs">Cancel</button>
-                        <button type="submit" class="bg-navy text-white font-bold px-4 py-2 rounded-xl text-xs">Push to Drive Storage</button>
+                        <button type="submit" class="bg-navy text-white font-bold px-4 py-2 rounded-xl text-xs">Commit Course Data</button>
                     </div>
                 </form>
                 <div class="bg-white rounded-2xl border overflow-x-auto shadow-sm"><table class="w-full text-left text-sm min-w-[600px]"><tbody id="courses-table-body" class="divide-y"></tbody></table></div>
@@ -180,7 +180,7 @@
                     <textarea id="vid-desc" placeholder="Brief Lecture Sub-description..." class="w-full border p-2.5 rounded-xl text-sm bg-gray-50"></textarea>
                     <div class="flex gap-2 justify-end">
                         <button type="button" onclick="document.getElementById('video-form').classList.add('hidden')" class="border px-4 py-2 rounded-xl text-xs">Cancel</button>
-                        <button type="submit" class="bg-navy text-white font-bold px-4 py-2 rounded-xl text-xs">Push to Drive Storage</button>
+                        <button type="submit" class="bg-navy text-white font-bold px-4 py-2 rounded-xl text-xs">Commit Video Data</button>
                     </div>
                 </form>
                 <div class="bg-white rounded-2xl border overflow-x-auto shadow-sm"><table class="w-full text-left text-sm min-w-[600px]"><tbody id="videos-table-body" class="divide-y"></tbody></table></div>
@@ -198,7 +198,7 @@
                         <input type="text" id="note-subject" placeholder="Subject Category" required class="border p-2.5 rounded-xl text-sm bg-gray-50">
                         <input type="number" id="note-price" placeholder="Valuation Price (INR)" required class="border p-2.5 rounded-xl text-sm bg-gray-50">
                     </div>
-                    <input type="url" id="note-image" placeholder="Sample Cover Art GDrive Share Link" required class="w-full border p-2.5 rounded-xl text-sm font-mono bg-gray-50">
+                    <input type="url" id="note-image" placeholder="Sample Cover Art Image Link" required class="w-full border p-2.5 rounded-xl text-sm font-mono bg-gray-50">
                     <textarea id="note-desc" placeholder="Notes Manifest Summary details..." required class="w-full border p-2.5 rounded-xl text-sm bg-gray-50"></textarea>
                     <div class="flex gap-2 justify-end">
                         <button type="button" onclick="document.getElementById('notes-form').classList.add('hidden')" class="border px-4 py-2 rounded-xl text-xs">Cancel</button>
@@ -215,7 +215,7 @@
                 </div>
                 <form id="gallery-form" class="bg-white p-5 rounded-2xl border space-y-4 hidden animate-fade-in">
                     <input type="text" id="gal-title" placeholder="Asset Identity Label" required class="border p-2.5 rounded-xl text-sm w-full bg-gray-50">
-                    <input type="url" id="gal-image" placeholder="GDrive Raw Image Link Point" required class="border p-2.5 rounded-xl text-sm w-full font-mono bg-gray-50">
+                    <input type="url" id="gal-image" placeholder="Raw Image Link URL" required class="border p-2.5 rounded-xl text-sm w-full font-mono bg-gray-50">
                     <input type="text" id="gal-caption" placeholder="Student Success Framework Metric Caption" class="border p-2.5 rounded-xl text-sm w-full bg-gray-50">
                     <div class="flex gap-2 justify-end">
                         <button type="button" onclick="document.getElementById('gallery-form').classList.add('hidden')" class="border px-4 py-2 rounded-xl text-xs">Cancel</button>
@@ -377,7 +377,7 @@
                 });
                 const resData = await response.json();
                 if (resData.status === "SUCCESS") {
-                    triggerSystemNotification("✅ Success! Single JSON State encrypted & synchronized onto Google Drive.");
+                    triggerSystemNotification("✅ Success! Single JSON State encrypted & synchronized to Local Storage.");
                     setTimeout(() => { location.reload(); }, 1200);
                 } else {
                     throw new Error(resData.message || "Proxy refusal mapping parameters.");

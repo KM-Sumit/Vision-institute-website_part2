@@ -1,78 +1,101 @@
 const express = require('express');
 const cors = require('cors');
-const axios = require('axios');
+const fs = require('fs');
+const path = require('path');
+const CryptoJS = require('crypto-js');
+
 const app = express();
 
 // Middleware Settings
 app.use(cors());
 app.use(express.json());
 
-// 🔒 HIGH SECURITY LAYER: Apps Script Core Tunnel URL (Frontend se invisible)
-const APPS_SCRIPT_API = "https://script.google.com/macros/s/AKfycbxVIRdFZRus7rKVHFQ5ef3DLlMBdjiyu9UXR7ArN2Z0gxuIi1iVu4XF74DH9VR3XlQP/exec";
+const DATA_FILE_PATH = process.env.DATA_PATH || path.join(__dirname, 'data.json');
+const DEFAULT_KEY = "ImranSir@VisionEncryption2026NodeKey";
 
-// Axios Custom Instance (Google Apps Script ke 302 Redirects ko handle karne ke liye)
-const googleClient = axios.create({
-    maxRedirects: 5,
-    validateStatus: (status) => status >= 200 && status < 400
-});
+// Helper to seed data if not present
+function initializeDataFile() {
+    if (!fs.existsSync(DATA_FILE_PATH)) {
+        const defaultState = {
+            siteSettings: {
+                instituteName: "The Vision Institute",
+                teacherName: "Sudhir Shivam Sir",
+                phone: "7225902570",
+                whatsapp: "7225902570",
+                email: "sudhirsilavat12@gmail.com",
+                address: "Kulkula Mata Mandir, Englishpura, Sehore, 466001",
+                logo: "",
+                socialLinks: {
+                    youtube: "https://m.youtube.com/c/MathsandEnglishClasses",
+                    instagram: "#",
+                    facebook: "#",
+                    telegram: "#",
+                    whatsapp: "7225902570"
+                }
+            },
+            sliderData: [
+                { title: "Empowering Minds, Shaping Futures", description: "Targeted systemic instructional pathways for board excellence under Sudhir Sir.", image: "" }
+            ],
+            courses: [],
+            lectures: [],
+            notes: [],
+            galleryData: [],
+            testimonialsData: [],
+            inquiriesData: []
+        };
+        const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(defaultState), DEFAULT_KEY).toString();
+        fs.writeFileSync(DATA_FILE_PATH, JSON.stringify({ payload: encryptedData }, null, 2), 'utf8');
+    }
+}
+
+initializeDataFile();
 
 // ==========================================================
-// 🔑 1. AUTHENTICATION ROUTE (Drive file validation proxy)
+// 🔄 1. DATA LIVE FETCH ENGINE (Website synchronization)
 // ==========================================================
-app.get('/api/auth', async (req, res) => {
+app.get('/api/getData', (req, res) => {
     try {
-        const { password } = req.query;
-        if (!password) {
-            return res.status(400).json({ status: "ERROR", message: "Password query missing." });
-        }
+        initializeDataFile();
+        const fileContent = fs.readFileSync(DATA_FILE_PATH, 'utf8');
         
-        // Google redirect bypass ke sath structural handshake
-        const targetUrl = `${APPS_SCRIPT_API}?action=auth&password=${encodeURIComponent(password)}`;
-        const response = await googleClient.get(targetUrl);
-        
-        res.json(response.data);
+        // Strict non-cache directive declarations
+        res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');
+        res.setHeader('Pragma', 'no-cache');
+        res.setHeader('Expires', '0');
+
+        return res.status(200).json(JSON.parse(fileContent));
     } catch (err) {
-        console.error("Auth Tunnel Error:", err.message);
-        res.status(500).json({ status: "ERROR", message: "Secure Tunnel Connection Timeout." });
+        console.error("Local Read Error:", err.message);
+        return res.status(500).json({ status: "ERROR", message: "Database read failure." });
     }
 });
 
 // ==========================================================
-// 📝 2. WRITE LAYER ROUTE (Appends data safely into Google Sheet)
+// 📝 2. WRITE LAYER ROUTE (Appends data safely into local database)
 // ==========================================================
-app.post('/api/write', async (req, res) => {
+app.post('/api/update', (req, res) => {
     try {
-        const { sheet, data } = req.body;
-        if (!sheet || !data) {
-            return res.status(400).json({ status: "ERROR", message: "Payload segments incomplete." });
+        const { password, data } = req.body;
+
+        const adminSecretKey = process.env.ADMIN_SECRET_KEY || DEFAULT_KEY;
+        if (!password || password !== adminSecretKey) {
+            return res.status(401).json({ status: "MISMATCH", message: "Unauthorized validation failure." });
         }
 
-        // URL parsing logic updated for deep proxy verification
-        const targetUrl = `${APPS_SCRIPT_API}?sheet=${encodeURIComponent(sheet)}&data=${encodeURIComponent(JSON.stringify(data))}`;
-        const response = await googleClient.get(targetUrl);
-        
-        // Frontend framework authentication matrix alignment
-        if (response.data.status === "SUCCESS" || response.data.result === "SUCCESS") {
-            res.json({ status: "SUCCESS", message: "Data synchronized successfully." });
-        } else {
-            res.json(response.data);
+        if (!data) {
+            return res.status(400).json({ status: "ERROR", message: "Payload incomplete." });
         }
-    } catch (err) {
-        console.error("Write Tunnel Error:", err.message);
-        res.status(500).json({ status: "ERROR", message: "Cloud Commit Handshake Failed." });
-    }
-});
 
-// ==========================================================
-// 🔄 3. DATA LIVE FETCH ENGINE (Website synchronization)
-// ==========================================================
-app.get('/api/data', async (req, res) => {
-    try {
-        const response = await googleClient.get(APPS_SCRIPT_API);
-        res.json(response.data);
+        // Encrypt data before saving to make sure database.json is encrypted
+        const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(data), DEFAULT_KEY).toString();
+        const payloadObject = { payload: encryptedData };
+
+        fs.writeFileSync(DATA_FILE_PATH, JSON.stringify(payloadObject, null, 2), 'utf8');
+
+        return res.status(200).json({ status: "SUCCESS", message: "Local encrypted database updated cleanly." });
     } catch (err) {
-        console.error("Fetch Tunnel Error:", err.message);
-        res.status(500).json({ status: "ERROR", message: "Data Synchronization Sync Timeout." });
+        console.error("Local Write Error:", err.message);
+        return res.status(500).json({ status: "ERROR", message: err.message });
     }
 });
 

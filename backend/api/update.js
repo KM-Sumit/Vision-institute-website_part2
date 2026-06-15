@@ -1,4 +1,10 @@
-import { google } from 'googleapis';
+import fs from 'fs';
+import path from 'path';
+import CryptoJS from 'crypto-js';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Credentials', true);
@@ -16,9 +22,10 @@ export default async function handler(req, res) {
 
     try {
         const { password, data } = req.body;
+        const defaultKey = "ImranSir@VisionEncryption2026NodeKey";
 
-        // 🔐 Hardcoded check mapping via environment configuration keys
-        if (!password || password !== process.env.ADMIN_SECRET_KEY) {
+        const adminSecretKey = process.env.ADMIN_SECRET_KEY || defaultKey;
+        if (!password || password !== adminSecretKey) {
             return res.status(401).json({ status: "MISMATCH", message: "Unauthorized proxy gateway validation failure." });
         }
 
@@ -26,25 +33,14 @@ export default async function handler(req, res) {
             return res.status(400).json({ status: "ERROR", message: "Payload segments structurally incomplete." });
         }
 
-        const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
+        // Encrypt data before saving
+        const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(data), defaultKey).toString();
+        const payloadObject = { payload: encryptedData };
 
-        const auth = new google.auth.GoogleAuth({
-            credentials,
-            scopes: ['https://www.googleapis.com/auth/drive.file', 'https://www.googleapis.com/auth/drive'],
-        });
+        const filePath = process.env.DATA_PATH || path.join(__dirname, '..', 'data.json');
+        fs.writeFileSync(filePath, JSON.stringify(payloadObject, null, 2), 'utf8');
 
-        const drive = google.drive({ version: 'v3', auth });
-        const fileId = process.env.GOOGLE_DRIVE_FILE_ID;
-
-        await drive.files.update({
-            fileId: fileId,
-            media: {
-                mimeType: 'application/json',
-                body: JSON.stringify(data, null, 2),
-            },
-        });
-
-        return res.status(200).json({ status: "SUCCESS", message: "Google Drive internal dataset database updated cleanly." });
+        return res.status(200).json({ status: "SUCCESS", message: "Local encrypted database updated cleanly." });
     } catch (err) {
         console.error("Serverless Update Write Error:", err.message);
         return res.status(500).json({ status: "ERROR", message: err.message });

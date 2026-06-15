@@ -1,0 +1,3 @@
+# Netlify rewrite rule to proxy backend API requests to Render
+# Replace the URL below with your actual deployed Render Web Service URL
+/api/*  https://your-render-backend-url.onrender.com/api/:splat  200

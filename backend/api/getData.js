@@ -1,5 +1,10 @@
-import { google } from 'googleapis';
+import fs from 'fs';
+import path from 'path';
 import CryptoJS from 'crypto-js';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Credentials', true);
@@ -12,32 +17,52 @@ export default async function handler(req, res) {
     }
 
     try {
-        const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
-        const auth = new google.auth.GoogleAuth({
-            credentials,
-            scopes: ['https://www.googleapis.com/auth/drive.readonly', 'https://www.googleapis.com/auth/drive'],
-        });
-
-        const drive = google.drive({ version: 'v3', auth });
-        const fileId = process.env.GOOGLE_DRIVE_FILE_ID;
-
-        const response = await drive.files.get({
-            fileId: fileId,
-            alt: 'media',
-        });
-
-        const rawDataString = JSON.stringify(response.data);
-
-        // 🔐 AES LAYER: Encrypted handshake using server side environments variables
-        const sharedKey = process.env.SHARED_AES_KEY;
-        const encryptedData = CryptoJS.AES.encrypt(rawDataString, sharedKey).toString();
+        const filePath = process.env.DATA_PATH || path.join(__dirname, '..', 'data.json');
+        const defaultKey = "ImranSir@VisionEncryption2026NodeKey";
+        
+        let fileContent;
+        if (fs.existsSync(filePath)) {
+            fileContent = fs.readFileSync(filePath, 'utf8');
+        } else {
+            // Seed default state if file doesn't exist
+            const defaultState = {
+                siteSettings: {
+                    instituteName: "The Vision Institute",
+                    teacherName: "Sudhir Shivam Sir",
+                    phone: "7225902570",
+                    whatsapp: "7225902570",
+                    email: "sudhirsilavat12@gmail.com",
+                    address: "Kulkula Mata Mandir, Englishpura, Sehore, 466001",
+                    logo: "",
+                    socialLinks: {
+                        youtube: "https://m.youtube.com/c/MathsandEnglishClasses",
+                        instagram: "#",
+                        facebook: "#",
+                        telegram: "#",
+                        whatsapp: "7225902570"
+                    }
+                },
+                sliderData: [
+                    { title: "Empowering Minds, Shaping Futures", description: "Targeted systemic instructional pathways for board excellence under Sudhir Sir.", image: "" }
+                ],
+                courses: [],
+                lectures: [],
+                notes: [],
+                galleryData: [],
+                testimonialsData: [],
+                inquiriesData: []
+            };
+            const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(defaultState), defaultKey).toString();
+            fileContent = JSON.stringify({ payload: encryptedData }, null, 2);
+            fs.writeFileSync(filePath, fileContent, 'utf8');
+        }
 
         // Strict non-cache directive declarations
         res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');
         res.setHeader('Pragma', 'no-cache');
         res.setHeader('Expires', '0');
 
-        return res.status(200).json({ payload: encryptedData });
+        return res.status(200).json(JSON.parse(fileContent));
     } catch (err) {
         console.error("Serverless Read Sync Engine Error:", err.message);
         return res.status(500).json({ status: "ERROR", message: "Database sync parsing failure timeline timeout." });
