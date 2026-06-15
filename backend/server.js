@@ -3,6 +3,7 @@ const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
 const CryptoJS = require('crypto-js');
+const githubDb = require('./githubDb');
 
 const app = express();
 
@@ -53,27 +54,32 @@ initializeDataFile();
 // ==========================================================
 // 🔄 1. DATA LIVE FETCH ENGINE (Website synchronization)
 // ==========================================================
-app.get('/api/getData', (req, res) => {
+app.get('/api/getData', async (req, res) => {
     try {
-        initializeDataFile();
-        const fileContent = fs.readFileSync(DATA_FILE_PATH, 'utf8');
-        
         // Strict non-cache directive declarations
         res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');
         res.setHeader('Pragma', 'no-cache');
         res.setHeader('Expires', '0');
 
+        if (githubDb.isConfigured) {
+            console.log("Fetching database dynamically from GitHub...");
+            const gitData = await githubDb.fetchFromGithub();
+            return res.status(200).json({ payload: gitData.payload });
+        }
+
+        initializeDataFile();
+        const fileContent = fs.readFileSync(DATA_FILE_PATH, 'utf8');
         return res.status(200).json(JSON.parse(fileContent));
     } catch (err) {
-        console.error("Local Read Error:", err.message);
-        return res.status(500).json({ status: "ERROR", message: "Database read failure." });
+        console.error("Read Error:", err.message);
+        return res.status(500).json({ status: "ERROR", message: err.message || "Database read failure." });
     }
 });
 
 // ==========================================================
 // 📝 2. WRITE LAYER ROUTE (Appends data safely into local database)
 // ==========================================================
-app.post('/api/update', (req, res) => {
+app.post('/api/update', async (req, res) => {
     try {
         const { password, data } = req.body;
 
@@ -88,13 +94,19 @@ app.post('/api/update', (req, res) => {
 
         // Encrypt data before saving to make sure database.json is encrypted
         const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(data), DEFAULT_KEY).toString();
-        const payloadObject = { payload: encryptedData };
 
+        if (githubDb.isConfigured) {
+            console.log("Committing database update to GitHub...");
+            await githubDb.writeToGithub(encryptedData);
+            return res.status(200).json({ status: "SUCCESS", message: "Encrypted database updated & committed to GitHub." });
+        }
+
+        const payloadObject = { payload: encryptedData };
         fs.writeFileSync(DATA_FILE_PATH, JSON.stringify(payloadObject, null, 2), 'utf8');
 
         return res.status(200).json({ status: "SUCCESS", message: "Local encrypted database updated cleanly." });
     } catch (err) {
-        console.error("Local Write Error:", err.message);
+        console.error("Write Error:", err.message);
         return res.status(500).json({ status: "ERROR", message: err.message });
     }
 });
