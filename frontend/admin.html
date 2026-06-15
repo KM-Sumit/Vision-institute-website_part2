@@ -291,7 +291,9 @@
         }
 
         // 🔴 CONNECTED PROXY HUB ENDPOINT: Othewise fallback manually to vercel endpoints strings
-        const BACKEND_API = window.location.origin;
+        const BACKEND_API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+            ? 'http://localhost:3000' 
+            : window.location.origin;
 
         // Central state schema to wrap structural variables smoothly into single JSON body
         let globalMasterState = {

@@ -8,7 +8,7 @@ function reassembleSecretKey() {
 }
 
 // 🔴 CHANGE THIS TO YOUR LIVE DEPLOYED API ADDRESS:
-const VERCEL_PRODUCTION_API = "http://localhost:3000"; 
+const VERCEL_PRODUCTION_API = "https://vision-institute-website-part2.onrender.com"; 
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchDecryptedCloudData();
