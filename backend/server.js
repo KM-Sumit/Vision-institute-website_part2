@@ -119,6 +119,16 @@ const payment = require('./api/payment');
 app.post('/api/create-order', payment.createOrder);
 app.post('/api/verify-payment', payment.verifyPayment);
 
+// ==========================================================
+// 🖥️ 4. SERVE FRONTEND STATIC FILES
+// ==========================================================
+app.use(express.static(path.join(__dirname, '..', 'frontend')));
+
+// Serve index.html for any unknown route to support SPA navigation
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'frontend', 'index.html'));
+});
+
 // Server boot listener port mapping
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
