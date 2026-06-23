@@ -1,7 +1,11 @@
 const CryptoJS = require('crypto-js');
 
-const GITHUB_PAT = process.env.GITHUB_PAT;
-const GITHUB_REPO = process.env.GITHUB_REPO || "KM-Sumit/Vision-institute-website_part2";
+let GITHUB_PAT = process.env.GITHUB_PAT || "";
+GITHUB_PAT = GITHUB_PAT.replace(/^"|"$/g, '').trim();
+
+let GITHUB_REPO = process.env.GITHUB_REPO || "KM-Sumit/Vision-institute-website_part2";
+GITHUB_REPO = GITHUB_REPO.replace(/^"|"$/g, '').trim();
+
 const GITHUB_PATH = process.env.GITHUB_PATH || "backend/data.json";
 
 /**
