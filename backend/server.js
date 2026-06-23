@@ -45,7 +45,9 @@ function initializeDataFile() {
             testimonialsData: [],
             inquiriesData: []
         };
-        const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(defaultState), DEFAULT_KEY).toString();
+        let adminSecretKey = process.env.ADMIN_SECRET_KEY || DEFAULT_KEY;
+        adminSecretKey = adminSecretKey.replace(/^"|"$/g, '').trim();
+        const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(defaultState), adminSecretKey).toString();
         fs.writeFileSync(DATA_FILE_PATH, JSON.stringify({ payload: encryptedData }, null, 2), 'utf8');
     }
 }
@@ -62,15 +64,40 @@ app.get('/api/getData', async (req, res) => {
         res.setHeader('Pragma', 'no-cache');
         res.setHeader('Expires', '0');
 
+        let adminSecretKey = process.env.ADMIN_SECRET_KEY || DEFAULT_KEY;
+        adminSecretKey = adminSecretKey.replace(/^"|"$/g, '').trim();
+
+        let payloadToReturn;
         if (githubDb.isConfigured) {
             console.log("Fetching database dynamically from GitHub...");
             const gitData = await githubDb.fetchFromGithub();
-            return res.status(200).json({ payload: gitData.payload });
+            payloadToReturn = gitData.payload;
+        } else {
+            initializeDataFile();
+            const fileContent = fs.readFileSync(DATA_FILE_PATH, 'utf8');
+            payloadToReturn = JSON.parse(fileContent).payload;
         }
 
-        initializeDataFile();
-        const fileContent = fs.readFileSync(DATA_FILE_PATH, 'utf8');
-        return res.status(200).json(JSON.parse(fileContent));
+        const requestPassword = req.query.pwd;
+        if (requestPassword !== adminSecretKey && payloadToReturn) {
+            try {
+                const decryptedBytes = CryptoJS.AES.decrypt(payloadToReturn, adminSecretKey);
+                const rawJsonString = decryptedBytes.toString(CryptoJS.enc.Utf8);
+                if (rawJsonString) {
+                    const parsedData = JSON.parse(rawJsonString);
+                    if (parsedData.notes && parsedData.notes.length > 0) {
+                        parsedData.notes = parsedData.notes.map(note => {
+                            const { link, pdfLink, ...safeNote } = note;
+                            return safeNote;
+                        });
+                        payloadToReturn = CryptoJS.AES.encrypt(JSON.stringify(parsedData), adminSecretKey).toString();
+                    }
+                }
+            } catch (e) {
+                console.error("Payload security filter error:", e.message);
+            }
+        }
+        return res.status(200).json({ payload: payloadToReturn });
     } catch (err) {
         console.error("Read Error:", err.message);
         return res.status(500).json({ status: "ERROR", message: err.message || "Database read failure." });
@@ -84,7 +111,9 @@ app.post('/api/update', async (req, res) => {
     try {
         const { password, data } = req.body;
 
-        const adminSecretKey = process.env.ADMIN_SECRET_KEY || DEFAULT_KEY;
+        let adminSecretKey = process.env.ADMIN_SECRET_KEY || DEFAULT_KEY;
+        adminSecretKey = adminSecretKey.replace(/^"|"$/g, '').trim();
+
         if (!password || password !== adminSecretKey) {
             return res.status(401).json({ status: "MISMATCH", message: "Unauthorized validation failure." });
         }
@@ -94,7 +123,7 @@ app.post('/api/update', async (req, res) => {
         }
 
         // Encrypt data before saving to make sure database.json is encrypted
-        const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(data), DEFAULT_KEY).toString();
+        const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(data), adminSecretKey).toString();
 
         if (githubDb.isConfigured) {
             console.log("Committing database update to GitHub...");
