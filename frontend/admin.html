@@ -199,6 +199,7 @@
                         <input type="number" id="note-price" placeholder="Valuation Price (INR)" required class="border p-2.5 rounded-xl text-sm bg-gray-50">
                     </div>
                     <input type="url" id="note-image" placeholder="Sample Cover Art Image Link" required class="w-full border p-2.5 rounded-xl text-sm font-mono bg-gray-50">
+                    <input type="url" id="note-pdf" placeholder="Google Drive PDF Link (Sent to student via Email)" required class="w-full border p-2.5 rounded-xl text-sm font-mono bg-emerald-50 border-emerald-200">
                     <textarea id="note-desc" placeholder="Notes Manifest Summary details..." required class="w-full border p-2.5 rounded-xl text-sm bg-gray-50"></textarea>
                     <div class="flex gap-2 justify-end">
                         <button type="button" onclick="document.getElementById('notes-form').classList.add('hidden')" class="border px-4 py-2 rounded-xl text-xs">Cancel</button>
@@ -307,7 +308,8 @@
         (function verifySystemLockGate() {
             const cachedToken = localStorage.getItem('admin_session_token');
             const urlParams = new URLSearchParams(window.location.search);
-            const isAdminRequested = urlParams.has('admin');
+            const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:';
+            const isAdminRequested = urlParams.has('admin') || isLocal;
 
             const shield = document.getElementById('auth-gate-shield');
             const layout = document.getElementById('dashboard-layout');
@@ -329,13 +331,28 @@
         })();
 
         function setupAuthFormHandshake() {
-            document.getElementById('drive-auth-form').addEventListener('submit', (e) => {
+            document.getElementById('drive-auth-form').addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const pwd = document.getElementById('drive-auth-input').value.trim();
-                activeAdminPassword = pwd;
-                localStorage.setItem('admin_session_token', btoa(pwd + '_verified_2026'));
-                alert("Handshake Complete. Session tracking matrix structuralized.");
-                window.location.reload();
+                
+                try {
+                    const response = await fetch(`${BACKEND_API}/api/getData?cb=${Date.now()}&pwd=${encodeURIComponent(pwd)}`);
+                    const resData = await response.json();
+                    
+                    if(resData.payload) {
+                        const decryptedBytes = CryptoJS.AES.decrypt(resData.payload, pwd);
+                        const cleanJsonString = decryptedBytes.toString(CryptoJS.enc.Utf8);
+                        if(!cleanJsonString) throw new Error("Invalid password");
+                        JSON.parse(cleanJsonString);
+                    }
+                    
+                    activeAdminPassword = pwd;
+                    localStorage.setItem('admin_session_token', btoa(pwd + '_verified_2026'));
+                    alert("Handshake Complete. Session tracking matrix structuralized.");
+                    window.location.reload();
+                } catch (err) {
+                    alert("❌ Access Denied: Incorrect Password!");
+                }
             });
         }
 
@@ -392,11 +409,12 @@
 
         async function fetchDecryptedDriveDataset() {
             try {
-                const response = await fetch(`${BACKEND_API}/api/getData?cb=${Date.now()}`);
+                const pwd = activeAdminPassword || '';
+                const response = await fetch(`${BACKEND_API}/api/getData?cb=${Date.now()}&pwd=${encodeURIComponent(pwd)}`);
                 if(response.ok) {
                     const rawEncryptedPayload = await response.json();
                     if(rawEncryptedPayload.payload) {
-                        const aesSharedKeyString = "ImranSir@VisionEncryption2026NodeKey";
+                        const aesSharedKeyString = activeAdminPassword;
                         const decryptedBytes = CryptoJS.AES.decrypt(rawEncryptedPayload.payload, aesSharedKeyString);
                         const cleanJsonString = decryptedBytes.toString(CryptoJS.enc.Utf8);
                         if(cleanJsonString) {
@@ -536,6 +554,7 @@
                     subject: document.getElementById('note-subject').value,
                     price: document.getElementById('note-price').value,
                     image: document.getElementById('note-image').value,
+                    link: document.getElementById('note-pdf').value,
                     description: document.getElementById('note-desc').value
                 };
                 if(!globalMasterState.notes) globalMasterState.notes = [];

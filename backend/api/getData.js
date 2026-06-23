@@ -18,7 +18,7 @@ export default async function handler(req, res) {
 
     try {
         const filePath = process.env.DATA_PATH || path.join(__dirname, '..', 'data.json');
-        const defaultKey = "ImranSir@VisionEncryption2026NodeKey";
+        const defaultKey = process.env.ADMIN_SECRET_KEY;
         
         let fileContent;
         if (fs.existsSync(filePath)) {
@@ -55,6 +55,32 @@ export default async function handler(req, res) {
             const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(defaultState), defaultKey).toString();
             fileContent = JSON.stringify({ payload: encryptedData }, null, 2);
             fs.writeFileSync(filePath, fileContent, 'utf8');
+        const adminSecretKey = process.env.ADMIN_SECRET_KEY;
+        const requestPassword = req.query.pwd;
+
+        // Security: Filter out sensitive PDF links if request is not from authorized admin
+        if (requestPassword !== adminSecretKey && fileContent) {
+            try {
+                const raw = JSON.parse(fileContent);
+                if (raw && raw.payload) {
+                    const decryptedBytes = CryptoJS.AES.decrypt(raw.payload, defaultKey);
+                    const rawJsonString = decryptedBytes.toString(CryptoJS.enc.Utf8);
+                    if (rawJsonString) {
+                        const parsedData = JSON.parse(rawJsonString);
+                        if (parsedData.notes && parsedData.notes.length > 0) {
+                            parsedData.notes = parsedData.notes.map(note => {
+                                const { link, ...safeNote } = note;
+                                return safeNote;
+                            });
+                            // Re-encrypt safe data and overwrite response payload
+                            const filteredEncrypted = CryptoJS.AES.encrypt(JSON.stringify(parsedData), defaultKey).toString();
+                            fileContent = JSON.stringify({ payload: filteredEncrypted }, null, 2);
+                        }
+                    }
+                }
+            } catch (e) {
+                console.error("Payload security filter error:", e.message);
+            }
         }
 
         // Strict non-cache directive declarations

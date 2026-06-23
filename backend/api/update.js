@@ -22,9 +22,8 @@ export default async function handler(req, res) {
 
     try {
         const { password, data } = req.body;
-        const defaultKey = "ImranSir@VisionEncryption2026NodeKey";
-
-        const adminSecretKey = process.env.ADMIN_SECRET_KEY || defaultKey;
+        const adminSecretKey = process.env.ADMIN_SECRET_KEY;
+        const defaultKey = adminSecretKey;
         if (!password || password !== adminSecretKey) {
             return res.status(401).json({ status: "MISMATCH", message: "Unauthorized proxy gateway validation failure." });
         }

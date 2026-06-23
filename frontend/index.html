@@ -28,6 +28,7 @@
         }
     </script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
     <style>
         body { font-family: 'Source Sans 3', sans-serif; color: #1a202c; }
         h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
@@ -311,6 +312,29 @@
         </div>
     </footer>
 
+    <!-- 📧 EMAIL INPUT MODAL (Payment se pehle email maango) -->
+    <div id="email-payment-modal" class="fixed inset-0 z-[200] bg-navy/90 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-6 md:p-8 max-w-sm w-full shadow-2xl border border-gray-100 text-center relative">
+            <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </div>
+            <h3 class="text-xl font-bold text-navy mb-1">Enter Your Email</h3>
+            <p class="text-xs text-gray-500 mb-1" id="modal-note-title">Notes Name</p>
+            <p class="text-lg font-bold text-emerald-600 mb-4" id="modal-note-price">₹0</p>
+            <form id="email-payment-form" class="space-y-3">
+                <input type="text" id="pay-student-name" placeholder="Your Name" required class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50 focus:outline-none focus:border-gold">
+                <input type="email" id="pay-student-email" placeholder="Your Email (Notes yahan bhejenge)" required class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50 focus:outline-none focus:border-gold">
+                <input type="tel" id="pay-student-phone" placeholder="Phone Number" required pattern="[0-9]{10}" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50 focus:outline-none focus:border-gold">
+                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl transition-all shadow flex items-center justify-center gap-2 text-sm uppercase tracking-wide">
+                    💳 Proceed to Payment
+                </button>
+                <button type="button" onclick="document.getElementById('email-payment-modal').classList.replace('flex','hidden')" class="w-full border border-gray-200 text-gray-500 font-semibold py-2.5 rounded-xl text-xs hover:bg-gray-50">
+                    Cancel
+                </button>
+            </form>
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
     <script>
         // GOOGLE THUMBNAIL PARSER ENGINE
@@ -328,6 +352,87 @@
 
             return `https://drive.google.com/thumbnail?authuser=0&sz=w1200&id=${fileId}`;
         }
+
+        // ==========================================================
+        // 💳 CASHFREE PAYMENT GATEWAY FUNCTION
+        // ==========================================================
+        let pendingPaymentData = {};
+
+        function initiateCashfreePayment(noteTitle, notePrice, noteClass, noteSubject, notePdf) {
+            // Store payment data and show email popup
+            pendingPaymentData = { noteTitle, notePrice, noteClass, noteSubject, notePdf };
+            document.getElementById('modal-note-title').textContent = `${noteTitle} - Class ${noteClass} ${noteSubject}`;
+            document.getElementById('modal-note-price').textContent = `₹${notePrice}`;
+            document.getElementById('email-payment-form').reset();
+            document.getElementById('email-payment-modal').classList.replace('hidden', 'flex');
+        }
+
+        // Handle email form submission → then start Cashfree payment
+        document.getElementById('email-payment-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const studentName = document.getElementById('pay-student-name').value.trim();
+            const studentEmail = document.getElementById('pay-student-email').value.trim();
+            const studentPhone = document.getElementById('pay-student-phone').value.trim();
+            const { noteTitle, notePrice, noteClass, noteSubject } = pendingPaymentData;
+
+            // Hide modal
+            document.getElementById('email-payment-modal').classList.replace('flex', 'hidden');
+
+            try {
+                // Step 1: Create order from backend (with email)
+                const response = await fetch(`${BACKEND_API}/api/create-order`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        amount: notePrice,
+                        noteTitle: noteTitle,
+                        noteClass: noteClass,
+                        noteSubject: noteSubject,
+                        customerName: studentName,
+                        customerEmail: studentEmail,
+                        customerPhone: studentPhone,
+                        pdfLink: pendingPaymentData.notePdf
+                    })
+                });
+                const resData = await response.json();
+                if (resData.status !== 'SUCCESS') throw new Error(resData.message || 'Order creation failed');
+
+                // Step 2: Open Cashfree checkout
+                const cashfree = Cashfree({ mode: 'sandbox' }); // Change to 'production' for live
+                
+                const checkoutOptions = {
+                    paymentSessionId: resData.payment_session_id,
+                    redirectTarget: '_modal'
+                };
+
+                cashfree.checkout(checkoutOptions).then(function(result) {
+                    if (result.error) {
+                        console.error('Cashfree Error:', result.error);
+                        alert('❌ Payment failed: ' + (result.error.message || 'Something went wrong'));
+                    }
+                    if (result.paymentDetails) {
+                        // Step 3: Verify payment + send email
+                        fetch(`${BACKEND_API}/api/verify-payment`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ order_id: resData.order_id })
+                        })
+                        .then(r => r.json())
+                        .then(verifyData => {
+                            if (verifyData.status === 'SUCCESS') {
+                                const emailMsg = verifyData.emailSent ? '\n📧 Notes aapke email par bhej diye gaye hain!' : '';
+                                alert(`✅ Payment Successful!\nOrder ID: ${resData.order_id}\nAmount: ₹${notePrice}${emailMsg}`);
+                            } else {
+                                alert('⏳ Payment is being processed. Please wait.');
+                            }
+                        });
+                    }
+                });
+            } catch (err) {
+                console.error('Payment Error:', err);
+                alert(`🔴 Payment Error: ${err.message}`);
+            }
+        });
 
         function getYoutubeId(url) {
             const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
@@ -564,7 +669,8 @@
                     </div>
                     <span class="inline-block bg-gold/10 text-gold text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded mb-1.5 mx-auto">Class ${note.class} • ${note.subject}</span>
                     <h4 class="text-xs sm:text-sm font-bold text-navy mb-3 line-clamp-1">${note.title}</h4>
-                    <a href="${hrefWa}" target="_blank" class="w-full mt-auto bg-navy text-white font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1 hover:bg-gold hover:text-navy transition-colors">Request Asset (₹${note.price})</a>
+                    <button onclick="initiateCashfreePayment('${note.title}', ${note.price}, '${note.class}', '${note.subject}', '${note.link || ''}')" class="w-full mt-auto bg-emerald-600 text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1.5 hover:bg-emerald-700 transition-colors cursor-pointer shadow-sm">💳 Buy Now (₹${note.price})</button>
+                    <a href="${hrefWa}" target="_blank" class="w-full mt-2 bg-navy text-white font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1 hover:bg-gold hover:text-navy transition-colors">📱 WhatsApp Inquiry</a>
                 `;
                 grid.appendChild(card);
             });

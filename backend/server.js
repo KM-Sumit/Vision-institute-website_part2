@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
@@ -110,6 +111,13 @@ app.post('/api/update', async (req, res) => {
         return res.status(500).json({ status: "ERROR", message: err.message });
     }
 });
+
+// ==========================================================
+// 💳 3. RAZORPAY PAYMENT GATEWAY ROUTES
+// ==========================================================
+const payment = require('./api/payment');
+app.post('/api/create-order', payment.createOrder);
+app.post('/api/verify-payment', payment.verifyPayment);
 
 // Server boot listener port mapping
 const PORT = process.env.PORT || 3000;
