@@ -2,8 +2,8 @@ const crypto = require('crypto');
 const { sendNotesEmail } = require('./emailService');
 
 // Cashfree API Configuration
-const CASHFREE_APP_ID = process.env.CASHFREE_APP_ID;
-const CASHFREE_SECRET_KEY = process.env.CASHFREE_SECRET_KEY;
+const CASHFREE_APP_ID = (process.env.CASHFREE_APP_ID || '').replace(/^"|"$/g, '').trim();
+const CASHFREE_SECRET_KEY = (process.env.CASHFREE_SECRET_KEY || '').replace(/^"|"$/g, '').trim();
 
 // Use sandbox for testing, change to 'https://api.cashfree.com/pg' for production
 const CASHFREE_API_URL = 'https://sandbox.cashfree.com/pg';
@@ -63,7 +63,8 @@ async function createOrder(req, res) {
             let actualPdfLink = "";
             try {
                 const filePath = process.env.DATA_PATH || require('path').join(__dirname, '..', 'data.json');
-                const defaultKey = process.env.ADMIN_SECRET_KEY;
+                let defaultKey = process.env.ADMIN_SECRET_KEY || '';
+                defaultKey = defaultKey.replace(/^"|"$/g, '').trim();
                 if (require('fs').existsSync(filePath)) {
                     const fileContent = JSON.parse(require('fs').readFileSync(filePath, 'utf8'));
                     const decryptedBytes = require('crypto-js').AES.decrypt(fileContent.payload, defaultKey);

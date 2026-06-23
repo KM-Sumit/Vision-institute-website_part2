@@ -3,8 +3,8 @@ const nodemailer = require('nodemailer');
 // Gmail SMTP Configuration
 // ⚠️ Aapko Gmail me "App Password" generate karni hogi (2-Step Verification ON karke)
 // Google Account → Security → 2-Step Verification → App Passwords → "Mail" select karo
-const SMTP_EMAIL = process.env.SMTP_EMAIL;
-const SMTP_PASSWORD = process.env.SMTP_PASSWORD;
+const SMTP_EMAIL = (process.env.SMTP_EMAIL || '').replace(/^"|"$/g, '').trim();
+const SMTP_PASSWORD = (process.env.SMTP_PASSWORD || '').replace(/^"|"$/g, '').trim();
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
