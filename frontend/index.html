@@ -91,12 +91,7 @@
 
     <section class="relative bg-navy overflow-hidden h-[450px] sm:h-[550px] md:h-[650px] w-full">
         <div id="hero-track" class="w-full h-full relative"></div>
-        <button id="hero-prev" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white p-2.5 rounded-full backdrop-blur-sm transition-all hidden md:block z-20">
-            <i data-lucide="chevron-left" class="w-6 h-6"></i>
-        </button>
-        <button id="hero-next" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white p-2.5 rounded-full backdrop-blur-sm transition-all hidden md:block z-20">
-            <i data-lucide="chevron-right" class="w-6 h-6"></i>
-        </button>
+
         <div id="hero-dots" class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20"></div>
     </section>
 
@@ -565,7 +560,7 @@
             slideInterval = setInterval(() => {
                 const slides = document.querySelectorAll('#hero-track > div');
                 if(slides.length) switchSlide((currentSlide + 1) % slides.length);
-            }, 6000);
+            }, 1000);
         }
 
         function switchSlide(nextIdx) {
