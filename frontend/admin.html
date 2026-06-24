@@ -125,11 +125,9 @@
                 </div>
                 <form id="slider-form" class="bg-white p-5 rounded-2xl border space-y-4 hidden animate-fade-in">
                     <input type="hidden" id="slider-edit-id">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="text" id="slide-title" placeholder="Banner Heading Text" required class="border p-2.5 rounded-xl text-sm w-full bg-gray-50">
-                        <input type="url" id="slide-image" placeholder="Image Link URL" required class="border p-2.5 rounded-xl text-sm font-mono w-full bg-gray-50">
-                    </div>
-                    <textarea id="slide-desc" placeholder="Banner Subtext Content" required class="w-full border p-2.5 rounded-xl text-sm bg-gray-50"></textarea>
+                    <input type="hidden" id="slide-title" value="Slide">
+                    <input type="url" id="slide-image" placeholder="Image Link URL" required class="border p-2.5 rounded-xl text-sm font-mono w-full bg-gray-50">
+                    <textarea id="slide-desc" placeholder="Banner Subtext Content" class="w-full border p-2.5 rounded-xl text-sm bg-gray-50"></textarea>
                     <div class="flex gap-2 justify-end">
                         <button type="button" onclick="document.getElementById('slider-form').classList.add('hidden')" class="border px-4 py-2 rounded-xl text-xs">Discard</button>
                         <button type="submit" class="bg-gold text-navy font-bold px-4 py-2 rounded-xl text-xs">Commit Slide Data</button>
@@ -150,18 +148,16 @@
                 </div>
                 <form id="course-form" class="bg-white p-5 rounded-2xl border space-y-4 hidden animate-fade-in">
                     <input type="hidden" id="course-edit-id">
-                    <input type="text" id="course-title" placeholder="Course Title Signature" required class="w-full border p-2.5 rounded-xl text-sm bg-gray-50">
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <input type="hidden" id="course-subject" value="">
+                    <input type="hidden" id="course-fee" value="">
+                    <input type="hidden" id="course-duration" value="">
+                    <input type="hidden" id="course-desc" value="">
+                    <input type="text" id="course-title" placeholder="Course Title" required class="w-full border p-2.5 rounded-xl text-sm bg-gray-50">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <select id="course-class" class="border p-2.5 rounded-xl text-sm bg-gray-50"><option value="10">Class 10</option><option value="11">Class 11</option><option value="12">Class 12</option></select>
-                        <input type="text" id="course-subject" placeholder="Subject Scope" required class="border p-2.5 rounded-xl text-sm bg-gray-50">
                         <input type="text" id="course-teacher" placeholder="Educator Name" required class="border p-2.5 rounded-xl text-sm bg-gray-50">
                     </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        <input type="text" id="course-fee" placeholder="Fee Standard" required class="border p-2.5 rounded-xl text-sm bg-gray-50">
-                        <input type="text" id="course-duration" placeholder="Timeline Duration" required class="border p-2.5 rounded-xl text-sm bg-gray-50">
-                        <input type="url" id="course-image" placeholder="Cover Art Thumbnail Image Link" required class="border p-2.5 rounded-xl text-sm font-mono bg-gray-50">
-                    </div>
-                    <textarea id="course-desc" placeholder="Detailed Syllabus Description Paragraph..." required class="w-full border p-2.5 rounded-xl text-sm bg-gray-50"></textarea>
+                    <input type="url" id="course-image" placeholder="Cover Art Thumbnail Image Link" required class="w-full border p-2.5 rounded-xl text-sm font-mono bg-gray-50">
                     <div class="flex gap-2 justify-end">
                         <button type="button" onclick="document.getElementById('course-form').classList.add('hidden')" class="border px-4 py-2 rounded-xl text-xs">Cancel</button>
                         <button type="submit" class="bg-navy text-white font-bold px-4 py-2 rounded-xl text-xs">Commit Course Data</button>
@@ -200,15 +196,15 @@
                 </div>
                 <form id="notes-form" class="bg-white p-5 rounded-2xl border space-y-4 hidden animate-fade-in">
                     <input type="hidden" id="note-edit-id">
+                    <input type="hidden" id="note-desc" value="">
                     <input type="text" id="note-title" placeholder="Study Pack Title" required class="w-full border p-2.5 rounded-xl text-sm bg-gray-50">
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                         <select id="note-class" class="border p-2.5 rounded-xl text-sm bg-gray-50"><option value="10">Class 10</option><option value="11">Class 11</option><option value="12">Class 12</option></select>
                         <input type="text" id="note-subject" placeholder="Subject Category" required class="border p-2.5 rounded-xl text-sm bg-gray-50">
-                        <input type="number" id="note-price" placeholder="Valuation Price (INR)" required class="border p-2.5 rounded-xl text-sm bg-gray-50">
+                        <input type="number" id="note-price" placeholder="Price (INR)" required class="border p-2.5 rounded-xl text-sm bg-gray-50">
                     </div>
-                    <input type="url" id="note-image" placeholder="Sample Cover Art Image Link" required class="w-full border p-2.5 rounded-xl text-sm font-mono bg-gray-50">
+                    <input type="url" id="note-image" placeholder="Cover Image Link" required class="w-full border p-2.5 rounded-xl text-sm font-mono bg-gray-50">
                     <input type="url" id="note-pdf" placeholder="Google Drive PDF Link (Sent to student via Email)" required class="w-full border p-2.5 rounded-xl text-sm font-mono bg-emerald-50 border-emerald-200">
-                    <textarea id="note-desc" placeholder="Notes Manifest Summary details..." required class="w-full border p-2.5 rounded-xl text-sm bg-gray-50"></textarea>
                     <div class="flex gap-2 justify-end">
                         <button type="button" onclick="document.getElementById('notes-form').classList.add('hidden')" class="border px-4 py-2 rounded-xl text-xs">Cancel</button>
                         <button type="submit" class="bg-navy text-white font-bold px-4 py-2 rounded-xl text-xs">Commit Notes Pack</button>
