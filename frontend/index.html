@@ -543,15 +543,7 @@
                 const slideEl = document.createElement('div');
                 slideEl.className = `absolute inset-0 w-full h-full transition-opacity duration-1000 flex items-center ${idx === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`;
                 slideEl.innerHTML = `
-                    <div class="absolute inset-0 bg-gradient-to-r from-navy via-navy/80 to-transparent z-10"></div>
-                    <img src="${bgImg}" alt="Slider" class="absolute inset-0 w-full h-full bg-slate-950 object-contain object-right md:object-center">
-                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-20 text-white">
-                        <div class="max-w-2xl">
-                            <h1 class="text-3xl sm:text-4xl md:text-6xl font-extrabold mb-4 leading-tight font-heading">${slide.title}</h1>
-                            <p class="text-sm sm:text-base md:text-xl text-gray-200 mb-8 leading-relaxed">${slide.description}</p>
-                            <a href="#contact" class="inline-flex items-center bg-gold hover:bg-gold-light text-navy font-bold px-5 sm:px-6 py-3 rounded-xl shadow-lg text-xs sm:text-sm uppercase tracking-wider transition-all">Join Session</a>
-                        </div>
-                    </div>
+                    <img src="${bgImg}" alt="Slider" class="absolute inset-0 w-full h-full bg-slate-950 object-contain object-center">
                 `;
                 track.appendChild(slideEl);
                 const dot = document.createElement('button');
