@@ -149,6 +149,7 @@
                     <button id="add-course-btn" type="button" class="bg-navy text-white text-xs font-bold px-4 py-2 rounded-xl">Create Academic Stream</button>
                 </div>
                 <form id="course-form" class="bg-white p-5 rounded-2xl border space-y-4 hidden animate-fade-in">
+                    <input type="hidden" id="course-edit-id">
                     <input type="text" id="course-title" placeholder="Course Title Signature" required class="w-full border p-2.5 rounded-xl text-sm bg-gray-50">
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                         <select id="course-class" class="border p-2.5 rounded-xl text-sm bg-gray-50"><option value="10">Class 10</option><option value="11">Class 11</option><option value="12">Class 12</option></select>
@@ -175,6 +176,7 @@
                     <button id="add-video-btn" type="button" class="bg-navy text-white text-xs font-bold px-4 py-2 rounded-xl">Add Reference Video</button>
                 </div>
                 <form id="video-form" class="bg-white p-5 rounded-2xl border space-y-4 hidden animate-fade-in">
+                    <input type="hidden" id="vid-edit-id">
                     <input type="url" id="vid-url" placeholder="YouTube URL link String" required class="w-full border p-2.5 rounded-xl text-sm font-mono bg-gray-50">
                     <input type="text" id="vid-title" placeholder="Lecture Title Context String" required class="w-full border p-2.5 rounded-xl text-sm bg-gray-50">
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -197,6 +199,7 @@
                     <button id="add-notes-btn" type="button" class="bg-navy text-white text-xs font-bold px-4 py-2 rounded-xl">Add Study Material</button>
                 </div>
                 <form id="notes-form" class="bg-white p-5 rounded-2xl border space-y-4 hidden animate-fade-in">
+                    <input type="hidden" id="note-edit-id">
                     <input type="text" id="note-title" placeholder="Study Pack Title" required class="w-full border p-2.5 rounded-xl text-sm bg-gray-50">
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                         <select id="note-class" class="border p-2.5 rounded-xl text-sm bg-gray-50"><option value="10">Class 10</option><option value="11">Class 11</option><option value="12">Class 12</option></select>
@@ -220,6 +223,7 @@
                     <button id="add-gal-btn" type="button" class="bg-navy text-white text-xs font-bold px-4 py-2 rounded-xl">Add Picture Entry</button>
                 </div>
                 <form id="gallery-form" class="bg-white p-5 rounded-2xl border space-y-4 hidden animate-fade-in">
+                    <input type="hidden" id="gal-edit-id">
                     <input type="text" id="gal-title" placeholder="Asset Identity Label" required class="border p-2.5 rounded-xl text-sm w-full bg-gray-50">
                     <input type="url" id="gal-image" placeholder="Raw Image Link URL" required class="border p-2.5 rounded-xl text-sm w-full font-mono bg-gray-50">
                     <input type="text" id="gal-caption" placeholder="Student Success Framework Metric Caption" class="border p-2.5 rounded-xl text-sm w-full bg-gray-50">
@@ -237,6 +241,7 @@
                     <button id="add-test-btn" type="button" class="bg-navy text-white text-xs font-bold px-4 py-2 rounded-xl">Create Validation Log</button>
                 </div>
                 <form id="testimonial-form" class="bg-white p-5 rounded-2xl border space-y-4 hidden animate-fade-in">
+                    <input type="hidden" id="test-edit-id">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <input type="text" id="test-name" placeholder="Student/Parent Name" required class="border p-2.5 rounded-xl text-sm w-full bg-gray-50">
                         <input type="text" id="test-class" placeholder="Class/Batch context tag" required class="border p-2.5 rounded-xl text-sm w-full bg-gray-50">
@@ -522,11 +527,13 @@
                     description: document.getElementById('slide-desc').value
                 };
                 if(!globalMasterState.sliderData) globalMasterState.sliderData = [];
-                globalMasterState.sliderData.push(item);
+                const editId = document.getElementById('slider-edit-id').value;
+                if(editId !== '') { globalMasterState.sliderData[parseInt(editId)] = item; }
+                else { globalMasterState.sliderData.push(item); }
                 commitStateToVercelCloud();
             });
 
-            document.getElementById('add-course-btn').addEventListener('click', () => { document.getElementById('course-form').classList.remove('hidden'); document.getElementById('course-form').reset(); });
+            document.getElementById('add-course-btn').addEventListener('click', () => { document.getElementById('course-form').classList.remove('hidden'); document.getElementById('course-form').reset(); document.getElementById('course-edit-id').value=''; });
             document.getElementById('course-form').addEventListener('submit', function(e) {
                 e.preventDefault();
                 const item = {
@@ -540,11 +547,13 @@
                     image: document.getElementById('course-image').value
                 };
                 if(!globalMasterState.courses) globalMasterState.courses = [];
-                globalMasterState.courses.push(item);
+                const editId = document.getElementById('course-edit-id').value;
+                if(editId !== '') { globalMasterState.courses[parseInt(editId)] = item; }
+                else { globalMasterState.courses.push(item); }
                 commitStateToVercelCloud();
             });
 
-            document.getElementById('add-video-btn').addEventListener('click', () => { document.getElementById('video-form').classList.remove('hidden'); document.getElementById('video-form').reset(); });
+            document.getElementById('add-video-btn').addEventListener('click', () => { document.getElementById('video-form').classList.remove('hidden'); document.getElementById('video-form').reset(); document.getElementById('vid-edit-id').value=''; });
             document.getElementById('video-form').addEventListener('submit', function(e) {
                 e.preventDefault();
                 const item = {
@@ -556,11 +565,13 @@
                     description: document.getElementById('vid-desc').value
                 };
                 if(!globalMasterState.lectures) globalMasterState.lectures = [];
-                globalMasterState.lectures.push(item);
+                const editId = document.getElementById('vid-edit-id').value;
+                if(editId !== '') { globalMasterState.lectures[parseInt(editId)] = item; }
+                else { globalMasterState.lectures.push(item); }
                 commitStateToVercelCloud();
             });
 
-            document.getElementById('add-notes-btn').addEventListener('click', () => { document.getElementById('notes-form').classList.remove('hidden'); document.getElementById('notes-form').reset(); });
+            document.getElementById('add-notes-btn').addEventListener('click', () => { document.getElementById('notes-form').classList.remove('hidden'); document.getElementById('notes-form').reset(); document.getElementById('note-edit-id').value=''; });
             document.getElementById('notes-form').addEventListener('submit', function(e) {
                 e.preventDefault();
                 const item = {
@@ -573,25 +584,31 @@
                     description: document.getElementById('note-desc').value
                 };
                 if(!globalMasterState.notes) globalMasterState.notes = [];
-                globalMasterState.notes.push(item);
+                const editId = document.getElementById('note-edit-id').value;
+                if(editId !== '') { globalMasterState.notes[parseInt(editId)] = item; }
+                else { globalMasterState.notes.push(item); }
                 commitStateToVercelCloud();
             });
 
-            document.getElementById('add-gal-btn').addEventListener('click', () => { document.getElementById('gallery-form').classList.remove('hidden'); document.getElementById('gallery-form').reset(); });
+            document.getElementById('add-gal-btn').addEventListener('click', () => { document.getElementById('gallery-form').classList.remove('hidden'); document.getElementById('gallery-form').reset(); document.getElementById('gal-edit-id').value=''; });
             document.getElementById('gallery-form').addEventListener('submit', (e) => {
                 e.preventDefault();
                 const item = { title: document.getElementById('gal-title').value, image: document.getElementById('gal-image').value, caption: document.getElementById('gal-caption').value };
                 if(!globalMasterState.galleryData) globalMasterState.galleryData = [];
-                globalMasterState.galleryData.push(item);
+                const editId = document.getElementById('gal-edit-id').value;
+                if(editId !== '') { globalMasterState.galleryData[parseInt(editId)] = item; }
+                else { globalMasterState.galleryData.push(item); }
                 commitStateToVercelCloud();
             });
 
-            document.getElementById('add-test-btn').addEventListener('click', () => { document.getElementById('testimonial-form').classList.remove('hidden'); document.getElementById('testimonial-form').reset(); });
+            document.getElementById('add-test-btn').addEventListener('click', () => { document.getElementById('testimonial-form').classList.remove('hidden'); document.getElementById('testimonial-form').reset(); document.getElementById('test-edit-id').value=''; });
             document.getElementById('testimonial-form').addEventListener('submit', (e) => {
                 e.preventDefault();
                 const item = { name: document.getElementById('test-name').value, class: document.getElementById('test-class').value, reviewText: document.getElementById('test-text').value };
                 if(!globalMasterState.testimonialsData) globalMasterState.testimonialsData = [];
-                globalMasterState.testimonialsData.push(item);
+                const editId = document.getElementById('test-edit-id').value;
+                if(editId !== '') { globalMasterState.testimonialsData[parseInt(editId)] = item; }
+                else { globalMasterState.testimonialsData.push(item); }
                 commitStateToVercelCloud();
             });
         }
@@ -600,61 +617,127 @@
             const b = document.getElementById('slider-table-body'); b.innerHTML = '';
             (globalMasterState.sliderData || []).forEach((s, i) => {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `<td class="p-4 font-bold text-navy text-xs sm:text-sm">${s.title}</td><td class="p-4 text-right"><button onclick="deleteSliderItem(${i})" class="text-red-500 text-xs font-bold bg-red-50 px-2 py-1 rounded">Delete</button></td>`;
+                tr.innerHTML = `<td class="p-4 font-bold text-navy text-xs sm:text-sm">${s.title}</td><td class="p-4 text-right flex gap-2 justify-end"><button onclick="editSliderItem(${i})" class="text-blue-600 text-xs font-bold bg-blue-50 px-2 py-1 rounded">✏️ Edit</button><button onclick="deleteSliderItem(${i})" class="text-red-500 text-xs font-bold bg-red-50 px-2 py-1 rounded">🗑 Delete</button></td>`;
                 b.appendChild(tr);
             });
         }
-        window.deleteSliderItem = function(i) { globalMasterState.sliderData.splice(i,1); commitStateToVercelCloud(); };
+        window.deleteSliderItem = function(i) { if(!confirm('Delete karna hai?')) return; globalMasterState.sliderData.splice(i,1); commitStateToVercelCloud(); };
+        window.editSliderItem = function(i) {
+            const s = globalMasterState.sliderData[i];
+            document.getElementById('slide-title').value = s.title || '';
+            document.getElementById('slide-image').value = s.image || '';
+            document.getElementById('slide-desc').value = s.description || '';
+            document.getElementById('slider-edit-id').value = i;
+            document.getElementById('slider-form').classList.remove('hidden');
+            document.getElementById('slider-form').scrollIntoView({behavior:'smooth'});
+        };
 
         function renderCoursesAdminTable() {
             const b = document.getElementById('courses-table-body'); b.innerHTML = '';
             (globalMasterState.courses || []).forEach((c, i) => {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `<td class="p-4 font-bold text-navy text-xs sm:text-sm">${c.title}</td><td class="p-4 text-xs">Class ${c.class}</td><td class="p-4 text-right"><button onclick="deleteCourseItem(${i})" class="text-red-500 text-xs font-bold bg-red-50 px-2 py-1 rounded">Delete</button></td>`;
+                tr.innerHTML = `<td class="p-4 font-bold text-navy text-xs sm:text-sm">${c.title}</td><td class="p-4 text-xs">Class ${c.class}</td><td class="p-4 text-right"><button onclick="editCourseItem(${i})" class="text-blue-600 text-xs font-bold bg-blue-50 px-2 py-1 rounded mr-1">✏️ Edit</button><button onclick="deleteCourseItem(${i})" class="text-red-500 text-xs font-bold bg-red-50 px-2 py-1 rounded">🗑 Delete</button></td>`;
                 b.appendChild(tr);
             });
         }
-        window.deleteCourseItem = function(i) { globalMasterState.courses.splice(i,1); commitStateToVercelCloud(); };
+        window.deleteCourseItem = function(i) { if(!confirm('Delete karna hai?')) return; globalMasterState.courses.splice(i,1); commitStateToVercelCloud(); };
+        window.editCourseItem = function(i) {
+            const c = globalMasterState.courses[i];
+            document.getElementById('course-title').value = c.title || '';
+            document.getElementById('course-class').value = c.class || '10';
+            document.getElementById('course-subject').value = c.subject || '';
+            document.getElementById('course-teacher').value = c.teacher || '';
+            document.getElementById('course-fee').value = c.fee || '';
+            document.getElementById('course-duration').value = c.duration || '';
+            document.getElementById('course-desc').value = c.description || '';
+            document.getElementById('course-image').value = c.image || '';
+            document.getElementById('course-edit-id').value = i;
+            document.getElementById('course-form').classList.remove('hidden');
+            document.getElementById('course-form').scrollIntoView({behavior:'smooth'});
+        };
 
         function renderVideosAdminTable() {
             const b = document.getElementById('videos-table-body'); b.innerHTML = '';
             (globalMasterState.lectures || []).forEach((v, i) => {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `<td class="p-4 text-xs font-bold text-navy">${v.title}</td><td class="p-4 text-right"><button onclick="deleteVideoItem(${i})" class="text-red-500 text-xs font-bold bg-red-50 px-2 py-1 rounded">Delete</button></td>`;
+                tr.innerHTML = `<td class="p-4 text-xs font-bold text-navy">${v.title}</td><td class="p-4 text-right"><button onclick="editVideoItem(${i})" class="text-blue-600 text-xs font-bold bg-blue-50 px-2 py-1 rounded mr-1">✏️ Edit</button><button onclick="deleteVideoItem(${i})" class="text-red-500 text-xs font-bold bg-red-50 px-2 py-1 rounded">🗑 Delete</button></td>`;
                 b.appendChild(tr);
             });
         }
-        window.deleteVideoItem = function(i) { globalMasterState.lectures.splice(i,1); commitStateToVercelCloud(); };
+        window.deleteVideoItem = function(i) { if(!confirm('Delete karna hai?')) return; globalMasterState.lectures.splice(i,1); commitStateToVercelCloud(); };
+        window.editVideoItem = function(i) {
+            const v = globalMasterState.lectures[i];
+            document.getElementById('vid-url').value = v.url || '';
+            document.getElementById('vid-title').value = v.title || '';
+            document.getElementById('vid-class').value = v.class || '10';
+            document.getElementById('vid-subject').value = v.subject || '';
+            document.getElementById('vid-topic').value = v.topic || '';
+            document.getElementById('vid-desc').value = v.description || '';
+            document.getElementById('vid-edit-id').value = i;
+            document.getElementById('video-form').classList.remove('hidden');
+            document.getElementById('video-form').scrollIntoView({behavior:'smooth'});
+        };
 
         function renderNotesAdminTable() {
             const b = document.getElementById('notes-table-body'); b.innerHTML = '';
             (globalMasterState.notes || []).forEach((n, i) => {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `<td class="p-4 text-xs font-bold text-navy">${n.title}</td><td class="p-4 text-right"><button onclick="deleteNotesItem(${i})" class="text-red-500 text-xs font-bold bg-red-50 px-2 py-1 rounded">Delete</button></td>`;
+                tr.innerHTML = `<td class="p-4 text-xs font-bold text-navy">${n.title}</td><td class="p-4 text-right"><button onclick="editNotesItem(${i})" class="text-blue-600 text-xs font-bold bg-blue-50 px-2 py-1 rounded mr-1">✏️ Edit</button><button onclick="deleteNotesItem(${i})" class="text-red-500 text-xs font-bold bg-red-50 px-2 py-1 rounded">🗑 Delete</button></td>`;
                 b.appendChild(tr);
             });
         }
-        window.deleteNotesItem = function(i) { globalMasterState.notes.splice(i,1); commitStateToVercelCloud(); };
+        window.deleteNotesItem = function(i) { if(!confirm('Delete karna hai?')) return; globalMasterState.notes.splice(i,1); commitStateToVercelCloud(); };
+        window.editNotesItem = function(i) {
+            const n = globalMasterState.notes[i];
+            document.getElementById('note-title').value = n.title || '';
+            document.getElementById('note-class').value = n.class || '10';
+            document.getElementById('note-subject').value = n.subject || '';
+            document.getElementById('note-price').value = n.price || '';
+            document.getElementById('note-image').value = n.image || '';
+            document.getElementById('note-pdf').value = n.link || '';
+            document.getElementById('note-desc').value = n.description || '';
+            document.getElementById('note-edit-id').value = i;
+            document.getElementById('notes-form').classList.remove('hidden');
+            document.getElementById('notes-form').scrollIntoView({behavior:'smooth'});
+        };
 
         function renderGalleryAdminGrid() {
             const g = document.getElementById('gallery-admin-grid'); g.innerHTML = '';
             (globalMasterState.galleryData || []).forEach((x, i) => {
                 const d = document.createElement('div'); d.className = "bg-white border rounded-xl p-2 text-center shadow-sm flex flex-col justify-between";
-                d.innerHTML = `<img src="${parseGDriveLink(x.image)}" class="w-full aspect-square object-cover rounded mb-2"><button onclick="deleteGalleryItem(${i})" class="text-red-500 bg-red-50 text-xs font-bold py-1 rounded w-full">Delete</button>`;
+                d.innerHTML = `<img src="${parseGDriveLink(x.image)}" class="w-full aspect-square object-cover rounded mb-2"><p class="text-[10px] text-gray-500 mb-1 truncate">${x.title||''}</p><div class="flex gap-1"><button onclick="editGalleryItem(${i})" class="text-blue-600 bg-blue-50 text-xs font-bold py-1 rounded w-full">✏️ Edit</button><button onclick="deleteGalleryItem(${i})" class="text-red-500 bg-red-50 text-xs font-bold py-1 rounded w-full">🗑</button></div>`;
                 g.appendChild(d);
             });
         }
-        window.deleteGalleryItem = function(i) { globalMasterState.galleryData.splice(i,1); commitStateToVercelCloud(); };
+        window.deleteGalleryItem = function(i) { if(!confirm('Delete karna hai?')) return; globalMasterState.galleryData.splice(i,1); commitStateToVercelCloud(); };
+        window.editGalleryItem = function(i) {
+            const x = globalMasterState.galleryData[i];
+            document.getElementById('gal-title').value = x.title || '';
+            document.getElementById('gal-image').value = x.image || '';
+            document.getElementById('gal-caption').value = x.caption || '';
+            document.getElementById('gal-edit-id').value = i;
+            document.getElementById('gallery-form').classList.remove('hidden');
+            document.getElementById('gallery-form').scrollIntoView({behavior:'smooth'});
+        };
 
         function renderTestimonialsAdminContainer() {
             const c = document.getElementById('testimonials-admin-container'); c.innerHTML = '';
             (globalMasterState.testimonialsData || []).forEach((t, i) => {
                 const d = document.createElement('div'); d.className = "bg-white p-4 rounded-xl border shadow-sm flex flex-col justify-between";
-                d.innerHTML = `<div><h4 class="font-bold text-navy text-xs sm:text-sm">${t.name} <span class="font-normal text-[10px] text-gray-400">(${t.class})</span></h4><p class="text-xs text-gray-500 mt-1 italic">"${t.reviewText}"</p></div><button onclick="deleteTestimonialItem(${i})" class="text-red-500 bg-red-50 text-xs font-bold mt-3 py-1 rounded w-full">Remove</button>`;
+                d.innerHTML = `<div><h4 class="font-bold text-navy text-xs sm:text-sm">${t.name} <span class="font-normal text-[10px] text-gray-400">(${t.class})</span></h4><p class="text-xs text-gray-500 mt-1 italic">"${t.reviewText}"</p></div><div class="flex gap-2 mt-3"><button onclick="editTestimonialItem(${i})" class="text-blue-600 bg-blue-50 text-xs font-bold py-1 rounded w-full">✏️ Edit</button><button onclick="deleteTestimonialItem(${i})" class="text-red-500 bg-red-50 text-xs font-bold py-1 rounded w-full">🗑 Remove</button></div>`;
                 c.appendChild(d);
             });
         }
-        window.deleteTestimonialItem = function(i) { globalMasterState.testimonialsData.splice(i,1); commitStateToVercelCloud(); };
+        window.deleteTestimonialItem = function(i) { if(!confirm('Delete karna hai?')) return; globalMasterState.testimonialsData.splice(i,1); commitStateToVercelCloud(); };
+        window.editTestimonialItem = function(i) {
+            const t = globalMasterState.testimonialsData[i];
+            document.getElementById('test-name').value = t.name || '';
+            document.getElementById('test-class').value = t.class || '';
+            document.getElementById('test-text').value = t.reviewText || '';
+            document.getElementById('test-edit-id').value = i;
+            document.getElementById('testimonial-form').classList.remove('hidden');
+            document.getElementById('testimonial-form').scrollIntoView({behavior:'smooth'});
+        };
 
         function renderInquiriesAdminTable() {
             const b = document.getElementById('inquiries-table-body'); b.innerHTML = '';
