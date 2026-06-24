@@ -5,8 +5,8 @@ const { sendNotesEmail } = require('./emailService');
 const CASHFREE_APP_ID = (process.env.CASHFREE_APP_ID || '').replace(/^"|"$/g, '').trim();
 const CASHFREE_SECRET_KEY = (process.env.CASHFREE_SECRET_KEY || '').replace(/^"|"$/g, '').trim();
 
-// Use sandbox for testing, change to 'https://api.cashfree.com/pg' for production
-const CASHFREE_API_URL = 'https://sandbox.cashfree.com/pg';
+// PRODUCTION MODE - Live payments
+const CASHFREE_API_URL = 'https://api.cashfree.com/pg';
 const API_VERSION = '2023-08-01';
 
 // In-memory store for order details (to use during verification for sending email)

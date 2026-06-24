@@ -398,7 +398,7 @@
                 if (resData.status !== 'SUCCESS') throw new Error(resData.message || 'Order creation failed');
 
                 // Step 2: Open Cashfree checkout
-                const cashfree = Cashfree({ mode: 'sandbox' }); // Change to 'production' for live
+                const cashfree = Cashfree({ mode: 'production' }); // LIVE payments
                 
                 const checkoutOptions = {
                     paymentSessionId: resData.payment_session_id,
