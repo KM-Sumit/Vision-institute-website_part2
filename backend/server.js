@@ -160,6 +160,11 @@ app.get('*', (req, res) => {
 
 // Server boot listener port mapping
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`🚀 Secure Node System streaming dynamically on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
+    app.listen(PORT, () => {
+        console.log(`🚀 Secure Node System streaming dynamically on port ${PORT}`);
+    });
+}
+
+// EXPORT APP FOR VERCEL SERVERLESS SUPPORT
+module.exports = app;

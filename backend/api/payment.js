@@ -39,8 +39,7 @@ async function createOrder(req, res) {
                 customer_email: customerEmail
             },
             order_meta: {
-                return_url: `${req.headers.origin || req.headers.referer || 'http://localhost:8080'}/index.html?order_id=${orderId}&order_status={order_status}`,
-                notify_url: null
+                return_url: `${req.headers.origin || req.headers.referer || 'http://localhost:8080'}/index.html?order_id=${orderId}&order_status={order_status}`
             },
             order_note: `${noteTitle || 'Notes'} - Class ${noteClass || ''} ${noteSubject || ''}`
         };
