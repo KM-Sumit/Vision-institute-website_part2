@@ -1,0 +1,12 @@
+# Robots.txt for The Vision Institute Sehore
+# Allow all search engines to crawl the entire site
+
+User-agent: *
+Allow: /
+Disallow: /admin.html
+
+# Sitemap location
+Sitemap: https://the-vision-institute.netlify.app/sitemap.xml
+
+# Crawl-delay (optional, be polite to bots)
+Crawl-delay: 1
