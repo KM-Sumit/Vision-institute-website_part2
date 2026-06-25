@@ -6,7 +6,7 @@ Allow: /
 Disallow: /admin.html
 
 # Sitemap location
-Sitemap: https://the-vision-institute.netlify.app/sitemap.xml
+Sitemap: https://visioninstitutemp.in/sitemap.xml
 
 # Crawl-delay (optional, be polite to bots)
 Crawl-delay: 1
