@@ -17,14 +17,17 @@ async function fetchFromGithub() {
         throw new Error("GITHUB_PAT is not defined in environment variables.");
     }
 
-    const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_PATH}`;
+    const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_PATH}?t=${Date.now()}`;
     const response = await fetch(url, {
         method: "GET",
         headers: {
             "Authorization": `Bearer ${GITHUB_PAT}`,
             "Accept": "application/vnd.github.v3+json",
-            "User-Agent": "Vision-Backend"
-        }
+            "User-Agent": "Vision-Backend",
+            "Cache-Control": "no-cache, no-store, must-revalidate",
+            "Pragma": "no-cache"
+        },
+        cache: "no-store"
     });
 
     if (!response.ok) {

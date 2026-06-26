@@ -403,8 +403,30 @@
                 });
                 const resData = await response.json();
                 if (resData.status === "SUCCESS") {
-                    triggerSystemNotification("✅ Success! Single JSON State encrypted & synchronized to Local Storage.");
-                    setTimeout(() => { location.reload(); }, 1200);
+                    triggerSystemNotification("✅ Success! Data synchronized to Cloud.");
+                    
+                    // Hide all dynamically opened forms
+                    document.getElementById('slider-form').classList.add('hidden');
+                    document.getElementById('course-form').classList.add('hidden');
+                    document.getElementById('video-form').classList.add('hidden');
+                    document.getElementById('notes-form').classList.add('hidden');
+                    document.getElementById('gallery-form').classList.add('hidden');
+                    document.getElementById('testimonial-form').classList.add('hidden');
+
+                    // Refresh all UI elements dynamically
+                    calculateOverviewStats();
+                    renderSliderAdminTable();
+                    renderCoursesAdminTable();
+                    renderVideosAdminTable();
+                    renderNotesAdminTable();
+                    renderGalleryAdminGrid();
+                    renderTestimonialsAdminContainer();
+                    renderInquiriesAdminTable();
+                    
+                    // Refresh Lucide icons for new elements
+                    if (window.lucide) {
+                        lucide.createIcons();
+                    }
                 } else {
                     throw new Error(resData.message || "Proxy refusal mapping parameters.");
                 }
@@ -464,7 +486,11 @@
             renderTestimonialsAdminContainer();
             renderInquiriesAdminTable();
             registerFormsSubmitHandlers();
-            lucide.createIcons();
+            
+            // Render lucide icons for all the loaded tables initially
+            if (window.lucide) {
+                lucide.createIcons();
+            }
         }
 
         function calculateOverviewStats() {
@@ -614,7 +640,7 @@
             const b = document.getElementById('slider-table-body'); b.innerHTML = '';
             (globalMasterState.sliderData || []).forEach((s, i) => {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `<td class="p-4 font-bold text-navy text-xs sm:text-sm">${s.title}</td><td class="p-4 text-right flex gap-2 justify-end"><button onclick="editSliderItem(${i})" class="text-blue-600 text-xs font-bold bg-blue-50 px-2 py-1 rounded">✏️ Edit</button><button onclick="deleteSliderItem(${i})" class="text-red-500 text-xs font-bold bg-red-50 px-2 py-1 rounded">🗑 Delete</button></td>`;
+                tr.innerHTML = `<td class="p-4 font-bold text-navy text-xs sm:text-sm">${s.title}</td><td class="p-4 text-right flex gap-2 justify-end"><button onclick="editSliderItem(${i})" class="text-blue-600 text-xs font-bold bg-blue-50 hover:bg-blue-100 transition-colors px-2 py-1.5 rounded flex items-center justify-center gap-1"><i data-lucide="edit-3" class="w-3.5 h-3.5"></i> Edit</button><button onclick="deleteSliderItem(${i})" class="text-red-500 text-xs font-bold bg-red-50 hover:bg-red-100 transition-colors px-2 py-1.5 rounded flex items-center justify-center gap-1"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Delete</button></td>`;
                 b.appendChild(tr);
             });
         }
@@ -633,7 +659,7 @@
             const b = document.getElementById('courses-table-body'); b.innerHTML = '';
             (globalMasterState.courses || []).forEach((c, i) => {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `<td class="p-4 font-bold text-navy text-xs sm:text-sm">${c.title}</td><td class="p-4 text-xs">Class ${c.class}</td><td class="p-4 text-right"><button onclick="editCourseItem(${i})" class="text-blue-600 text-xs font-bold bg-blue-50 px-2 py-1 rounded mr-1">✏️ Edit</button><button onclick="deleteCourseItem(${i})" class="text-red-500 text-xs font-bold bg-red-50 px-2 py-1 rounded">🗑 Delete</button></td>`;
+                tr.innerHTML = `<td class="p-4 font-bold text-navy text-xs sm:text-sm">${c.title}</td><td class="p-4 text-xs">Class ${c.class}</td><td class="p-4 text-right flex gap-2 justify-end"><button onclick="editCourseItem(${i})" class="text-blue-600 text-xs font-bold bg-blue-50 hover:bg-blue-100 transition-colors px-2 py-1.5 rounded flex items-center justify-center gap-1"><i data-lucide="edit-3" class="w-3.5 h-3.5"></i> Edit</button><button onclick="deleteCourseItem(${i})" class="text-red-500 text-xs font-bold bg-red-50 hover:bg-red-100 transition-colors px-2 py-1.5 rounded flex items-center justify-center gap-1"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Delete</button></td>`;
                 b.appendChild(tr);
             });
         }
@@ -657,7 +683,7 @@
             const b = document.getElementById('videos-table-body'); b.innerHTML = '';
             (globalMasterState.lectures || []).forEach((v, i) => {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `<td class="p-4 text-xs font-bold text-navy">${v.title}</td><td class="p-4 text-right"><button onclick="editVideoItem(${i})" class="text-blue-600 text-xs font-bold bg-blue-50 px-2 py-1 rounded mr-1">✏️ Edit</button><button onclick="deleteVideoItem(${i})" class="text-red-500 text-xs font-bold bg-red-50 px-2 py-1 rounded">🗑 Delete</button></td>`;
+                tr.innerHTML = `<td class="p-4 text-xs font-bold text-navy">${v.title}</td><td class="p-4 text-right flex gap-2 justify-end"><button onclick="editVideoItem(${i})" class="text-blue-600 text-xs font-bold bg-blue-50 hover:bg-blue-100 transition-colors px-2 py-1.5 rounded flex items-center justify-center gap-1"><i data-lucide="edit-3" class="w-3.5 h-3.5"></i> Edit</button><button onclick="deleteVideoItem(${i})" class="text-red-500 text-xs font-bold bg-red-50 hover:bg-red-100 transition-colors px-2 py-1.5 rounded flex items-center justify-center gap-1"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Delete</button></td>`;
                 b.appendChild(tr);
             });
         }
@@ -679,7 +705,7 @@
             const b = document.getElementById('notes-table-body'); b.innerHTML = '';
             (globalMasterState.notes || []).forEach((n, i) => {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `<td class="p-4 text-xs font-bold text-navy">${n.title}</td><td class="p-4 text-right"><button onclick="editNotesItem(${i})" class="text-blue-600 text-xs font-bold bg-blue-50 px-2 py-1 rounded mr-1">✏️ Edit</button><button onclick="deleteNotesItem(${i})" class="text-red-500 text-xs font-bold bg-red-50 px-2 py-1 rounded">🗑 Delete</button></td>`;
+                tr.innerHTML = `<td class="p-4 text-xs font-bold text-navy">${n.title}</td><td class="p-4 text-right flex gap-2 justify-end"><button onclick="editNotesItem(${i})" class="text-blue-600 text-xs font-bold bg-blue-50 hover:bg-blue-100 transition-colors px-2 py-1.5 rounded flex items-center justify-center gap-1"><i data-lucide="edit-3" class="w-3.5 h-3.5"></i> Edit</button><button onclick="deleteNotesItem(${i})" class="text-red-500 text-xs font-bold bg-red-50 hover:bg-red-100 transition-colors px-2 py-1.5 rounded flex items-center justify-center gap-1"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Delete</button></td>`;
                 b.appendChild(tr);
             });
         }
@@ -702,7 +728,7 @@
             const g = document.getElementById('gallery-admin-grid'); g.innerHTML = '';
             (globalMasterState.galleryData || []).forEach((x, i) => {
                 const d = document.createElement('div'); d.className = "bg-white border rounded-xl p-2 text-center shadow-sm flex flex-col justify-between";
-                d.innerHTML = `<img src="${parseGDriveLink(x.image)}" class="w-full aspect-square object-cover rounded mb-2"><p class="text-[10px] text-gray-500 mb-1 truncate">${x.title||''}</p><div class="flex gap-1"><button onclick="editGalleryItem(${i})" class="text-blue-600 bg-blue-50 text-xs font-bold py-1 rounded w-full">✏️ Edit</button><button onclick="deleteGalleryItem(${i})" class="text-red-500 bg-red-50 text-xs font-bold py-1 rounded w-full">🗑</button></div>`;
+                d.innerHTML = `<img src="${parseGDriveLink(x.image)}" class="w-full aspect-square object-cover rounded mb-2"><p class="text-[10px] text-gray-500 mb-1 truncate">${x.title||''}</p><div class="flex gap-2"><button onclick="editGalleryItem(${i})" class="text-blue-600 bg-blue-50 hover:bg-blue-100 transition-colors text-xs font-bold py-1.5 rounded w-full flex items-center justify-center gap-1"><i data-lucide="edit-3" class="w-3.5 h-3.5"></i> Edit</button><button onclick="deleteGalleryItem(${i})" class="text-red-500 bg-red-50 hover:bg-red-100 transition-colors text-xs font-bold py-1.5 rounded w-full flex items-center justify-center gap-1"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Delete</button></div>`;
                 g.appendChild(d);
             });
         }
@@ -721,7 +747,7 @@
             const c = document.getElementById('testimonials-admin-container'); c.innerHTML = '';
             (globalMasterState.testimonialsData || []).forEach((t, i) => {
                 const d = document.createElement('div'); d.className = "bg-white p-4 rounded-xl border shadow-sm flex flex-col justify-between";
-                d.innerHTML = `<div><h4 class="font-bold text-navy text-xs sm:text-sm">${t.name} <span class="font-normal text-[10px] text-gray-400">(${t.class})</span></h4><p class="text-xs text-gray-500 mt-1 italic">"${t.reviewText}"</p></div><div class="flex gap-2 mt-3"><button onclick="editTestimonialItem(${i})" class="text-blue-600 bg-blue-50 text-xs font-bold py-1 rounded w-full">✏️ Edit</button><button onclick="deleteTestimonialItem(${i})" class="text-red-500 bg-red-50 text-xs font-bold py-1 rounded w-full">🗑 Remove</button></div>`;
+                d.innerHTML = `<div><h4 class="font-bold text-navy text-xs sm:text-sm">${t.name} <span class="font-normal text-[10px] text-gray-400">(${t.class})</span></h4><p class="text-xs text-gray-500 mt-1 italic">"${t.reviewText}"</p></div><div class="flex gap-2 mt-3"><button onclick="editTestimonialItem(${i})" class="text-blue-600 bg-blue-50 hover:bg-blue-100 transition-colors text-xs font-bold py-1.5 rounded w-full flex items-center justify-center gap-1"><i data-lucide="edit-3" class="w-3.5 h-3.5"></i> Edit</button><button onclick="deleteTestimonialItem(${i})" class="text-red-500 bg-red-50 hover:bg-red-100 transition-colors text-xs font-bold py-1.5 rounded w-full flex items-center justify-center gap-1"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Remove</button></div>`;
                 c.appendChild(d);
             });
         }

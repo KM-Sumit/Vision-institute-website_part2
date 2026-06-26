@@ -5,8 +5,10 @@ const { sendNotesEmail } = require('./emailService');
 const CASHFREE_APP_ID = (process.env.CASHFREE_APP_ID || '').replace(/^"|"$/g, '').trim();
 const CASHFREE_SECRET_KEY = (process.env.CASHFREE_SECRET_KEY || '').replace(/^"|"$/g, '').trim();
 
-// PRODUCTION MODE - Live payments
-const CASHFREE_API_URL = 'https://api.cashfree.com/pg';
+// Automatically switch between Sandbox (Test) and Production (Live)
+const CASHFREE_API_URL = CASHFREE_APP_ID.startsWith('TEST') 
+    ? 'https://sandbox.cashfree.com/pg' 
+    : 'https://api.cashfree.com/pg';
 const API_VERSION = '2023-08-01';
 
 // In-memory store for order details (to use during verification for sending email)
@@ -92,7 +94,8 @@ async function createOrder(req, res) {
                 status: "SUCCESS",
                 payment_session_id: data.payment_session_id,
                 order_id: data.order_id,
-                order_amount: data.order_amount
+                order_amount: data.order_amount,
+                environment: CASHFREE_APP_ID.startsWith('TEST') ? 'sandbox' : 'production'
             });
         } else {
             console.error("Cashfree Order Error:", JSON.stringify(data));

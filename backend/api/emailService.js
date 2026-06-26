@@ -93,12 +93,41 @@ async function sendNotesEmail(studentEmail, noteDetails, paymentId) {
     </div>
     `;
 
+    // Generate Direct Download URL from Google Drive Link
+    function getGoogleDriveDownloadUrl(url) {
+        if (!url) return null;
+        let fileId = '';
+        const match1 = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+        const match2 = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+        
+        if (match1) fileId = match1[1];
+        else if (match2) fileId = match2[1];
+        
+        if (fileId) {
+            return `https://drive.google.com/uc?export=download&id=${fileId}`;
+        }
+        return null;
+    }
+
     const mailOptions = {
         from: `"The Vision Institute" <${SMTP_EMAIL}>`,
         to: studentEmail,
         subject: `✅ Payment Confirmed - ${title} | The Vision Institute`,
         html: htmlContent
     };
+
+    // Attach PDF if link is available
+    if (pdfLink) {
+        const downloadUrl = getGoogleDriveDownloadUrl(pdfLink);
+        if (downloadUrl) {
+            mailOptions.attachments = [
+                {
+                    filename: `${title ? title.replace(/[^a-zA-Z0-9 ]/g, "") : "Study_Notes"}.pdf`,
+                    path: downloadUrl
+                }
+            ];
+        }
+    }
 
     try {
         const info = await transporter.sendMail(mailOptions);
