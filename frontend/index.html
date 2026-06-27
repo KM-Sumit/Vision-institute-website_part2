@@ -424,46 +424,65 @@
 
                 <div id="testimonials-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-16"></div>
 
-                <!-- ⭐ Student Review Form -->
-                <div class="max-w-2xl mx-auto bg-white rounded-3xl shadow-xl border border-gray-100 p-6 md:p-10">
-                    <div class="text-center mb-6">
-                        <span class="text-3xl">⭐</span>
-                        <h3 class="text-2xl font-bold text-navy mt-2">Apna Review Likho</h3>
-                        <p class="text-sm text-muted mt-1">Aapka review doosre students ki madad karta hai!</p>
-                    </div>
-                    <form id="student-review-form" class="space-y-4">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <input type="text" id="rev-name" placeholder="Aapka Naam *" required
-                                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30">
-                            <input type="text" id="rev-class" placeholder="Class (e.g. Class 10) *" required
-                                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30">
-                        </div>
-                        <!-- Star Rating -->
-                        <div class="flex flex-col items-center gap-2">
-                            <span class="text-xs font-bold uppercase tracking-wider text-gray-500">Rating do *</span>
-                            <div id="star-picker" class="flex gap-2" role="group" aria-label="Star Rating">
-                                <button type="button" data-val="1" class="star-btn text-4xl text-gray-300 hover:text-yellow-400 transition-all duration-150 leading-none">★</button>
-                                <button type="button" data-val="2" class="star-btn text-4xl text-gray-300 hover:text-yellow-400 transition-all duration-150 leading-none">★</button>
-                                <button type="button" data-val="3" class="star-btn text-4xl text-gray-300 hover:text-yellow-400 transition-all duration-150 leading-none">★</button>
-                                <button type="button" data-val="4" class="star-btn text-4xl text-gray-300 hover:text-yellow-400 transition-all duration-150 leading-none">★</button>
-                                <button type="button" data-val="5" class="star-btn text-4xl text-gray-300 hover:text-yellow-400 transition-all duration-150 leading-none">★</button>
-                            </div>
-                            <input type="hidden" id="rev-rating" value="0">
-                            <span id="star-label" class="text-xs font-semibold text-gray-400">Star pe click karo</span>
-                        </div>
-                        <textarea id="rev-text" rows="3" placeholder="Apna experience share karo... (Vision Institute kaise laga?) *" required
-                            class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30 resize-none"></textarea>
-                        <button type="submit"
-                            class="w-full bg-gradient-to-r from-navy to-blue-700 text-white font-bold py-3.5 rounded-xl shadow-lg hover:from-blue-800 hover:to-navy active:scale-95 transition-all flex items-center justify-center gap-2 text-sm uppercase tracking-wide">
-                            ✨ Review Submit Karo
-                        </button>
-                    </form>
-                    <div id="review-success" class="hidden mt-4 bg-emerald-50 border border-emerald-200 text-emerald-700 px-5 py-4 rounded-xl text-sm font-semibold text-center">
-                        🎉 Shukriya! Aapka review submit ho gaya. Admin approval ke baad dikhega.
-                    </div>
+                <div class="text-center mt-6">
+                    <button onclick="document.getElementById('student-review-modal').classList.replace('hidden', 'flex')" 
+                        class="bg-gradient-to-r from-gold to-yellow-500 hover:from-yellow-500 hover:to-gold text-navy font-extrabold px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl active:scale-95 transition-all text-sm uppercase tracking-wider inline-flex items-center gap-2">
+                        ⭐ Apna Review Likhein
+                    </button>
                 </div>
             </div>
         </section>
+
+        <!-- ⭐ Student Review Modal -->
+        <div id="student-review-modal"
+            class="fixed inset-0 z-[200] bg-navy/90 backdrop-blur-md hidden items-center justify-center p-4">
+            <div class="bg-white rounded-3xl p-6 md:p-8 max-w-lg w-full shadow-2xl border border-gray-100 relative">
+                <button onclick="document.getElementById('student-review-modal').classList.replace('flex','hidden')"
+                    class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-all text-xl">✕</button>
+                
+                <div class="text-center mb-4">
+                    <span class="text-3xl">⭐</span>
+                    <h3 class="text-2xl font-bold text-navy mt-2">Apna Review Likhein</h3>
+                    <p class="text-xs text-gray-500 mt-1">Aapka feedback Sudhir Sir aur naye students ke liye bahut valuable hai!</p>
+                </div>
+                
+                <form id="student-review-form" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <input type="text" id="rev-name" placeholder="Aapka Naam *" required
+                            class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50 focus:outline-none focus:border-gold">
+                        <input type="email" id="rev-email" placeholder="Aapki Email ID *" required
+                            class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50 focus:outline-none focus:border-gold">
+                    </div>
+                    <input type="text" id="rev-class" placeholder="Class (e.g. Class 10th ya Class 12th) *" required
+                        class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50 focus:outline-none focus:border-gold">
+                    
+                    <!-- Star Rating -->
+                    <div class="flex flex-col items-center gap-2 py-2 bg-gray-50 rounded-2xl border border-gray-100">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-gray-500">Rating do *</span>
+                        <div id="star-picker" class="flex gap-2" role="group" aria-label="Star Rating">
+                            <button type="button" data-val="1" class="star-btn text-4xl text-gray-300 hover:text-yellow-400 transition-all duration-150 leading-none">★</button>
+                            <button type="button" data-val="2" class="star-btn text-4xl text-gray-300 hover:text-yellow-400 transition-all duration-150 leading-none">★</button>
+                            <button type="button" data-val="3" class="star-btn text-4xl text-gray-300 hover:text-yellow-400 transition-all duration-150 leading-none">★</button>
+                            <button type="button" data-val="4" class="star-btn text-4xl text-gray-300 hover:text-yellow-400 transition-all duration-150 leading-none">★</button>
+                            <button type="button" data-val="5" class="star-btn text-4xl text-gray-300 hover:text-yellow-400 transition-all duration-150 leading-none">★</button>
+                        </div>
+                        <input type="hidden" id="rev-rating" value="0">
+                        <span id="star-label" class="text-xs font-semibold text-gray-400">Star pe click karo</span>
+                    </div>
+                    
+                    <textarea id="rev-text" rows="3" placeholder="Apna experience share karo... (Vision Institute kaise laga?) *" required
+                        class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50 focus:outline-none focus:border-gold resize-none"></textarea>
+                    
+                    <button type="submit"
+                        class="w-full bg-gradient-to-r from-navy to-blue-700 text-white font-bold py-3.5 rounded-xl shadow-lg hover:from-blue-800 hover:to-navy active:scale-95 transition-all flex items-center justify-center gap-2 text-sm uppercase tracking-wide">
+                        ✨ Review Submit Karo
+                    </button>
+                </form>
+                <div id="review-success" class="hidden mt-4 bg-emerald-50 border border-emerald-200 text-emerald-700 px-5 py-4 rounded-xl text-sm font-semibold text-center">
+                    🎉 Shukriya! Review submit ho gaya aur Sudhir Sir ko email bhej diya gaya hai. Admin approval ke baad dikhega.
+                </div>
+            </div>
+        </div>
 
         <section id="contact" class="py-16 md:py-24 bg-white scroll-mt-20">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1130,12 +1149,20 @@
                     e.preventDefault();
                     const rating = parseInt(document.getElementById('rev-rating').value);
                     if (!rating) { alert('⭐ Pehle rating do!'); return; }
+                    
+                    const submitBtn = reviewForm.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '⏳ Submitting...';
+
                     const newReview = {
                         name: document.getElementById('rev-name').value.trim(),
+                        email: document.getElementById('rev-email').value.trim(),
                         class: document.getElementById('rev-class').value.trim(),
                         rating: rating,
                         reviewText: document.getElementById('rev-text').value.trim()
                     };
+                    
                     // Add to backend
                     try {
                         const curList = activeCloudState.testimonialsData || [];
@@ -1146,14 +1173,21 @@
                             headers: {'Content-Type':'application/json'},
                             body: JSON.stringify(newReview)
                         });
-                    } catch(err) { /* silently store locally */ }
+                    } catch(err) { console.error('Failed to submit review:', err); }
+                    
                     reviewForm.reset();
                     ratingInput.value = 0;
                     starBtns.forEach(b => b.style.color = '#d1d5db');
                     starLabel.textContent = 'Star pe click karo';
                     starLabel.className = 'text-xs font-semibold text-gray-400';
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalText;
+                    
                     document.getElementById('review-success').classList.remove('hidden');
-                    setTimeout(() => document.getElementById('review-success').classList.add('hidden'), 5000);
+                    setTimeout(() => {
+                        document.getElementById('review-success').classList.add('hidden');
+                        document.getElementById('student-review-modal').classList.replace('flex', 'hidden');
+                    }, 3500);
                 });
             }
         }

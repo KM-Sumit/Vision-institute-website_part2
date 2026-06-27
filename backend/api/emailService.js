@@ -139,4 +139,71 @@ async function sendNotesEmail(studentEmail, noteDetails, paymentId) {
     }
 }
 
-module.exports = { sendNotesEmail };
+// Send notification to teacher when a new review is submitted
+async function sendReviewNotificationEmail(reviewDetails) {
+    const { name, email, rating, cls, reviewText } = reviewDetails;
+    
+    const htmlContent = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e5e7eb; border-radius: 12px; background-color: #ffffff; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+        <div style="background-color: #1a365d; color: #ffffff; padding: 20px; border-radius: 8px 8px 0 0; text-align: center;">
+            <h2 style="margin: 0; color: #facc15;">⭐ Naya Student Review Mila</h2>
+            <p style="margin: 5px 0 0; font-size: 14px; opacity: 0.9;">The Vision Institute Portal</p>
+        </div>
+        <div style="padding: 20px; color: #374151;">
+            <p>Hello Sudhir Sir,</p>
+            <p>Ek student ne website par review submit kiya hai. Niche details hain:</p>
+            
+            <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+                <tr style="border-bottom: 1px solid #f3f4f6;">
+                    <td style="padding: 10px 0; font-weight: bold; color: #1a365d;">Student Name:</td>
+                    <td style="padding: 10px 0;">${name}</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #f3f4f6;">
+                    <td style="padding: 10px 0; font-weight: bold; color: #1a365d;">Email:</td>
+                    <td style="padding: 10px 0;">${email}</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #f3f4f6;">
+                    <td style="padding: 10px 0; font-weight: bold; color: #1a365d;">Class:</td>
+                    <td style="padding: 10px 0;">${cls}</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #f3f4f6;">
+                    <td style="padding: 10px 0; font-weight: bold; color: #1a365d;">Rating:</td>
+                    <td style="padding: 10px 0; color: #facc15; font-size: 18px;">
+                        ${'★'.repeat(rating)}${'☆'.repeat(5 - rating)} (${rating}/5 Star)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 0; font-weight: bold; color: #1a365d; vertical-align: top;">Review Message:</td>
+                    <td style="padding: 10px 0; font-style: italic; color: #4b5563;">"${reviewText}"</td>
+                </tr>
+            </table>
+
+            <div style="background-color: #f9fafb; border-left: 4px solid #1a365d; padding: 12px; margin-top: 15px; border-radius: 4px; font-size: 13px;">
+                <strong>Note:</strong> Yeh review database me save ho gaya hai. Aap isko <strong>Admin Dashboard</strong> me jaakar edit ya delete kar sakte hain.
+            </div>
+        </div>
+        <div style="background-color: #f3f4f6; padding: 15px; text-align: center; border-radius: 0 0 8px 8px; font-size: 11px; color: #6b7280;">
+            © ${new Date().getFullYear()} The Vision Institute Sehore | Automated Notification
+        </div>
+    </div>
+    `;
+
+    const recipient = `sudhirsilavat12@gmail.com, ${SMTP_EMAIL}`;
+    const mailOptions = {
+        from: `"Vision Institute Portal" <${SMTP_EMAIL}>`,
+        to: recipient,
+        subject: `⭐ New Review: ${name} (Class ${cls})`,
+        html: htmlContent
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+        console.log('📧 Review notification email sent successfully.');
+        return { success: true };
+    } catch (err) {
+        console.error('📧 Review notification email failed:', err.message);
+        return { success: false, error: err.message };
+    }
+}
+
+module.exports = { sendNotesEmail, sendReviewNotificationEmail };

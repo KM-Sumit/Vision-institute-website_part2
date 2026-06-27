@@ -153,7 +153,7 @@ app.post('/api/verify-payment', payment.verifyPayment);
 // ==========================================================
 app.post('/api/submitReview', async (req, res) => {
     try {
-        const { name, class: cls, rating, reviewText } = req.body;
+        const { name, email, class: cls, rating, reviewText } = req.body;
         if (!name || !reviewText) return res.status(400).json({ status: 'ERROR', message: 'Name and review required.' });
 
         let adminSecretKey = (process.env.ADMIN_SECRET_KEY || DEFAULT_KEY).replace(/^\"|\"$/g, '').trim();
@@ -173,7 +173,13 @@ app.post('/api/submitReview', async (req, res) => {
         } catch(e) { currentState = { siteSettings:{}, sliderData:[], courses:[], lectures:[], notes:[], galleryData:[], testimonialsData:[], inquiriesData:[] }; }
 
         if (!currentState.testimonialsData) currentState.testimonialsData = [];
-        currentState.testimonialsData.push({ name, class: cls || '', rating: rating || 5, reviewText });
+        currentState.testimonialsData.push({ 
+            name, 
+            email: email || '',
+            class: cls || '', 
+            rating: rating || 5, 
+            reviewText 
+        });
 
         const encrypted = CryptoJS.AES.encrypt(JSON.stringify(currentState), adminSecretKey).toString();
         if (githubDb.isConfigured) {
@@ -181,6 +187,15 @@ app.post('/api/submitReview', async (req, res) => {
         } else {
             fs.writeFileSync(DATA_FILE_PATH, JSON.stringify({ payload: encrypted }, null, 2), 'utf8');
         }
+
+        // Send email notification to Sudhir Sir
+        try {
+            const { sendReviewNotificationEmail } = require('./api/emailService');
+            await sendReviewNotificationEmail({ name, email: email || 'No email', rating: rating || 5, cls: cls || '', reviewText });
+        } catch (emailErr) {
+            console.error('Failed to send review email notification:', emailErr.message);
+        }
+
         return res.status(200).json({ status: 'SUCCESS', message: 'Review saved!' });
     } catch(err) {
         console.error('Review Error:', err.message);
