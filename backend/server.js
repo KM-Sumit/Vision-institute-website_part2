@@ -142,11 +142,51 @@ app.post('/api/update', async (req, res) => {
 });
 
 // ==========================================================
-// 💳 3. RAZORPAY PAYMENT GATEWAY ROUTES
+// 💳 3. CASHFREE PAYMENT GATEWAY ROUTES
 // ==========================================================
 const payment = require('./api/payment');
 app.post('/api/create-order', payment.createOrder);
 app.post('/api/verify-payment', payment.verifyPayment);
+
+// ==========================================================
+// ⭐ 4. STUDENT REVIEW SUBMISSION (Public — no password needed)
+// ==========================================================
+app.post('/api/submitReview', async (req, res) => {
+    try {
+        const { name, class: cls, rating, reviewText } = req.body;
+        if (!name || !reviewText) return res.status(400).json({ status: 'ERROR', message: 'Name and review required.' });
+
+        let adminSecretKey = (process.env.ADMIN_SECRET_KEY || DEFAULT_KEY).replace(/^\"|\"$/g, '').trim();
+
+        // Read current data
+        let currentState = {};
+        try {
+            if (githubDb.isConfigured) {
+                const gitData = await githubDb.fetchFromGithub();
+                const dec = CryptoJS.AES.decrypt(gitData.payload, adminSecretKey);
+                currentState = JSON.parse(dec.toString(CryptoJS.enc.Utf8));
+            } else {
+                const fileContent = JSON.parse(fs.readFileSync(DATA_FILE_PATH, 'utf8'));
+                const dec = CryptoJS.AES.decrypt(fileContent.payload, adminSecretKey);
+                currentState = JSON.parse(dec.toString(CryptoJS.enc.Utf8));
+            }
+        } catch(e) { currentState = { siteSettings:{}, sliderData:[], courses:[], lectures:[], notes:[], galleryData:[], testimonialsData:[], inquiriesData:[] }; }
+
+        if (!currentState.testimonialsData) currentState.testimonialsData = [];
+        currentState.testimonialsData.push({ name, class: cls || '', rating: rating || 5, reviewText });
+
+        const encrypted = CryptoJS.AES.encrypt(JSON.stringify(currentState), adminSecretKey).toString();
+        if (githubDb.isConfigured) {
+            await githubDb.writeToGithub(encrypted);
+        } else {
+            fs.writeFileSync(DATA_FILE_PATH, JSON.stringify({ payload: encrypted }, null, 2), 'utf8');
+        }
+        return res.status(200).json({ status: 'SUCCESS', message: 'Review saved!' });
+    } catch(err) {
+        console.error('Review Error:', err.message);
+        return res.status(500).json({ status: 'ERROR', message: err.message });
+    }
+});
 
 // ==========================================================
 // 🖥️ 4. SERVE FRONTEND STATIC FILES

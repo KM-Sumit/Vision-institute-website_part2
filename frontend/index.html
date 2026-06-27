@@ -417,13 +417,51 @@
         <section id="testimonials" class="py-16 md:py-24 bg-gray-50 scroll-mt-20">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-                    <h2 class="text-3xl md:text-5xl font-bold text-navy mb-4">What Students & Parents Say About Us</h2>
+                    <h2 class="text-3xl md:text-5xl font-bold text-navy mb-4">Students Ka Experience</h2>
                     <div class="w-24 h-1 bg-gold mx-auto mb-4 rounded"></div>
-                    <p class="text-muted text-sm md:text-base">Real transformational validation from members of our
-                        educational community in Sehore.</p>
+                    <p class="text-muted text-sm md:text-base">Hamare students aur parents ki sachi raaye — Vision Institute, Sehore.</p>
                 </div>
 
-                <div id="testimonials-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"></div>
+                <div id="testimonials-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-16"></div>
+
+                <!-- ⭐ Student Review Form -->
+                <div class="max-w-2xl mx-auto bg-white rounded-3xl shadow-xl border border-gray-100 p-6 md:p-10">
+                    <div class="text-center mb-6">
+                        <span class="text-3xl">⭐</span>
+                        <h3 class="text-2xl font-bold text-navy mt-2">Apna Review Likho</h3>
+                        <p class="text-sm text-muted mt-1">Aapka review doosre students ki madad karta hai!</p>
+                    </div>
+                    <form id="student-review-form" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <input type="text" id="rev-name" placeholder="Aapka Naam *" required
+                                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30">
+                            <input type="text" id="rev-class" placeholder="Class (e.g. Class 10) *" required
+                                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30">
+                        </div>
+                        <!-- Star Rating -->
+                        <div class="flex flex-col items-center gap-2">
+                            <span class="text-xs font-bold uppercase tracking-wider text-gray-500">Rating do *</span>
+                            <div id="star-picker" class="flex gap-2" role="group" aria-label="Star Rating">
+                                <button type="button" data-val="1" class="star-btn text-4xl text-gray-300 hover:text-yellow-400 transition-all duration-150 leading-none">★</button>
+                                <button type="button" data-val="2" class="star-btn text-4xl text-gray-300 hover:text-yellow-400 transition-all duration-150 leading-none">★</button>
+                                <button type="button" data-val="3" class="star-btn text-4xl text-gray-300 hover:text-yellow-400 transition-all duration-150 leading-none">★</button>
+                                <button type="button" data-val="4" class="star-btn text-4xl text-gray-300 hover:text-yellow-400 transition-all duration-150 leading-none">★</button>
+                                <button type="button" data-val="5" class="star-btn text-4xl text-gray-300 hover:text-yellow-400 transition-all duration-150 leading-none">★</button>
+                            </div>
+                            <input type="hidden" id="rev-rating" value="0">
+                            <span id="star-label" class="text-xs font-semibold text-gray-400">Star pe click karo</span>
+                        </div>
+                        <textarea id="rev-text" rows="3" placeholder="Apna experience share karo... (Vision Institute kaise laga?) *" required
+                            class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/30 resize-none"></textarea>
+                        <button type="submit"
+                            class="w-full bg-gradient-to-r from-navy to-blue-700 text-white font-bold py-3.5 rounded-xl shadow-lg hover:from-blue-800 hover:to-navy active:scale-95 transition-all flex items-center justify-center gap-2 text-sm uppercase tracking-wide">
+                            ✨ Review Submit Karo
+                        </button>
+                    </form>
+                    <div id="review-success" class="hidden mt-4 bg-emerald-50 border border-emerald-200 text-emerald-700 px-5 py-4 rounded-xl text-sm font-semibold text-center">
+                        🎉 Shukriya! Aapka review submit ho gaya. Admin approval ke baad dikhega.
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -950,23 +988,38 @@
         function renderNotes(list) {
             const grid = document.getElementById('notes-grid'); grid.innerHTML = '';
             if (!list.length) {
-                grid.innerHTML = `<div class="col-span-full py-12 text-center text-muted font-medium">No materials packets inside sheet matrices rows.</div>`;
+                grid.innerHTML = `<div class="col-span-full py-12 text-center text-muted font-medium">Abhi koi notes available nahi hain.</div>`;
                 return;
             }
             list.forEach(note => {
                 const card = document.createElement('div');
-                card.className = "bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-lg transition-all p-3 flex flex-col group text-center";
+                card.className = "bg-white border border-gray-100 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group overflow-hidden";
                 const imgUrl = note.image ? parseGDriveLink(note.image) : 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600';
                 const s = activeCloudState.siteSettings || {};
-                const hrefWa = `https://wa.me/91${s.whatsapp || '7225902570'}?text=Sir%2C%20I%20need%20Class%20${note.class}%20${encodeURIComponent(note.subject)}%20notes.`;
+                const hrefWa = `https://wa.me/91${s.whatsapp || '7225902570'}?text=Sir%2C%20I%20want%20Class%20${note.class}%20${encodeURIComponent(note.subject)}%20notes.`;
                 card.innerHTML = `
-                    <div class="relative aspect-[3/4] bg-gray-50 rounded-xl overflow-hidden mb-3">
-                        <img src="${imgUrl}" alt="${note.title} - Class ${note.class} ${note.subject} study notes" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="relative aspect-[3/4] bg-gray-50 overflow-hidden">
+                        <img src="${imgUrl}" alt="${note.title}" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent"></div>
+                        <span class="absolute top-2 left-2 bg-gold text-navy text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full shadow">Class ${note.class}</span>
+                        <span class="absolute bottom-2 left-2 right-2 text-white text-xs font-bold line-clamp-2 drop-shadow">${note.title}</span>
                     </div>
-                    <span class="inline-block bg-gold/10 text-gold text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded mb-1.5 mx-auto">Class ${note.class} • ${note.subject}</span>
-                    <h4 class="text-xs sm:text-sm font-bold text-navy mb-3 line-clamp-1">${note.title}</h4>
-                    <button onclick="initiateCashfreePayment('${note.title}', ${note.price}, '${note.class}', '${note.subject}', '${note.link || ''}')" class="w-full mt-auto bg-emerald-600 text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1.5 hover:bg-emerald-700 transition-colors cursor-pointer shadow-sm">💳 Buy Now (₹${note.price})</button>
-                    <a href="${hrefWa}" target="_blank" class="w-full mt-2 bg-navy text-white font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1 hover:bg-gold hover:text-navy transition-colors">📱 WhatsApp Inquiry</a>
+                    <div class="p-3 flex flex-col gap-2 flex-grow">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[10px] font-semibold text-muted uppercase tracking-wide">${note.subject}</span>
+                            <span class="text-emerald-600 font-extrabold text-sm">₹${note.price}</span>
+                        </div>
+                        <button onclick="initiateCashfreePayment('${note.title}', ${note.price}, '${note.class}', '${note.subject}', '${note.link || ''}')"
+                            class="w-full mt-auto bg-gradient-to-r from-emerald-500 to-emerald-700 text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1.5 hover:from-emerald-600 hover:to-emerald-800 active:scale-95 transition-all cursor-pointer shadow-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 6h13M9 19a1 1 0 100 2 1 1 0 000-2zm8 0a1 1 0 100 2 1 1 0 000-2z"/></svg>
+                            Abhi Kharido — ₹${note.price}
+                        </button>
+                        <a href="${hrefWa}" target="_blank"
+                            class="w-full border-2 border-emerald-500 text-emerald-700 font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1.5 hover:bg-emerald-50 transition-all">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 fill-emerald-600" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.99 0c3.196.001 6.199 1.242 8.461 3.496 2.262 2.254 3.501 5.251 3.5 8.447-.003 6.643-5.339 11.99-11.93 11.99-1.994-.001-3.956-.5-5.717-1.446L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.734 1.45 5.432-.001 9.851-4.388 9.853-9.777.001-2.61-1.015-5.064-2.862-6.912C16.467 2.065 14.02 1.04 11.45 1.04c-5.436 0-9.856 4.387-9.859 9.779-.001 1.636.432 3.23 1.254 4.654L1.87 21.134l5.777-1.516z"/></svg>
+                            WhatsApp Poochho
+                        </a>
+                    </div>
                 `;
                 grid.appendChild(card);
             });
@@ -1000,23 +1053,89 @@
             const grid = document.getElementById('testimonials-grid'); grid.innerHTML = '';
             const list = activeCloudState.testimonialsData || [];
             if (!list.length) {
-                grid.innerHTML = `<div class="col-span-full py-6 text-center text-muted">No operational reviews logged yet.</div>`;
+                grid.innerHTML = `<div class="col-span-full py-6 text-center text-muted">Abhi koi review nahi hai. Pehle review likho!</div>`;
                 return;
             }
             list.forEach(test => {
                 const card = document.createElement('div');
-                card.className = "bg-white border border-gray-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between";
+                card.className = "bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between";
                 const userPic = `https://ui-avatars.com/api/?name=${encodeURIComponent(test.name)}&background=1a365d&color=fff`;
+                const stars = parseInt(test.rating) || 5;
+                const starsHtml = Array.from({length:5}, (_,i) =>
+                    `<span class="${i < stars ? 'text-yellow-400' : 'text-gray-200'} text-lg leading-none">★</span>`
+                ).join('');
                 card.innerHTML = `
-                    <p class="text-sm text-gray-600 italic mb-6 leading-relaxed">"${test.reviewText}"</p>
-                    <div class="flex items-center gap-3 pt-4 border-t border-gray-50 mt-auto">
-                        <img src="${userPic}" class="w-10 h-10 rounded-full object-cover shrink-0">
-                        <div><span class="block text-xs font-bold text-navy">${test.name}</span><span class="block text-[10px] text-muted">Class ${test.class}</span></div>
+                    <div class="flex gap-0.5 mb-3">${starsHtml}</div>
+                    <p class="text-sm text-gray-600 italic mb-5 leading-relaxed flex-grow">"${test.reviewText}"</p>
+                    <div class="flex items-center gap-3 pt-4 border-t border-gray-100 mt-auto">
+                        <img src="${userPic}" class="w-10 h-10 rounded-full object-cover shrink-0" alt="${test.name}">
+                        <div>
+                            <span class="block text-xs font-bold text-navy">${test.name}</span>
+                            <span class="block text-[10px] text-muted">${test.class}</span>
+                        </div>
                     </div>
                 `;
                 grid.appendChild(card);
             });
             localStorage.setItem('testimonialsData', JSON.stringify(list));
+
+            // Star picker logic
+            const starBtns = document.querySelectorAll('.star-btn');
+            const ratingInput = document.getElementById('rev-rating');
+            const starLabel = document.getElementById('star-label');
+            const labels = ['', 'Bahut Bura 😞', 'Theek Hai 😐', 'Accha Laga 🙂', 'Bahut Accha 😊', 'Zabardast! 🤩'];
+            starBtns.forEach(btn => {
+                btn.addEventListener('mouseenter', () => {
+                    const v = parseInt(btn.dataset.val);
+                    starBtns.forEach(b => b.style.color = parseInt(b.dataset.val) <= v ? '#facc15' : '#d1d5db');
+                });
+                btn.addEventListener('mouseleave', () => {
+                    const selected = parseInt(ratingInput.value);
+                    starBtns.forEach(b => b.style.color = parseInt(b.dataset.val) <= selected ? '#facc15' : '#d1d5db');
+                });
+                btn.addEventListener('click', () => {
+                    const v = parseInt(btn.dataset.val);
+                    ratingInput.value = v;
+                    starLabel.textContent = labels[v];
+                    starLabel.className = 'text-xs font-semibold text-yellow-500';
+                    starBtns.forEach(b => b.style.color = parseInt(b.dataset.val) <= v ? '#facc15' : '#d1d5db');
+                });
+            });
+
+            // Review form submit
+            const reviewForm = document.getElementById('student-review-form');
+            if (reviewForm && !reviewForm.dataset.bound) {
+                reviewForm.dataset.bound = '1';
+                reviewForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    const rating = parseInt(document.getElementById('rev-rating').value);
+                    if (!rating) { alert('⭐ Pehle rating do!'); return; }
+                    const newReview = {
+                        name: document.getElementById('rev-name').value.trim(),
+                        class: document.getElementById('rev-class').value.trim(),
+                        rating: rating,
+                        reviewText: document.getElementById('rev-text').value.trim()
+                    };
+                    // Add to backend
+                    try {
+                        const curList = activeCloudState.testimonialsData || [];
+                        curList.push(newReview);
+                        activeCloudState.testimonialsData = curList;
+                        await fetch(`${BACKEND_API}/api/submitReview`, {
+                            method: 'POST',
+                            headers: {'Content-Type':'application/json'},
+                            body: JSON.stringify(newReview)
+                        });
+                    } catch(err) { /* silently store locally */ }
+                    reviewForm.reset();
+                    ratingInput.value = 0;
+                    starBtns.forEach(b => b.style.color = '#d1d5db');
+                    starLabel.textContent = 'Star pe click karo';
+                    starLabel.className = 'text-xs font-semibold text-gray-400';
+                    document.getElementById('review-success').classList.remove('hidden');
+                    setTimeout(() => document.getElementById('review-success').classList.add('hidden'), 5000);
+                });
+            }
         }
 
         function renderSocialElements() {
