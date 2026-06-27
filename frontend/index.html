@@ -42,7 +42,7 @@
 
     <!-- ✅ MOBILE & THEME -->
     <meta name="theme-color" content="#1a365d">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="format-detection" content="telephone=yes">
 
@@ -711,13 +711,18 @@
         // Handle email form submission → then start Cashfree payment
         document.getElementById('email-payment-form').addEventListener('submit', async function (e) {
             e.preventDefault();
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const cancelBtn = e.target.querySelector('button[type="button"]');
             const studentName = document.getElementById('pay-student-name').value.trim();
             const studentEmail = document.getElementById('pay-student-email').value.trim();
             const studentPhone = document.getElementById('pay-student-phone').value.trim();
             const { noteTitle, notePrice, noteClass, noteSubject } = pendingPaymentData;
 
-            // Hide modal
-            document.getElementById('email-payment-modal').classList.replace('flex', 'hidden');
+            // Show loading state, disable buttons
+            const originalBtnHtml = submitBtn.innerHTML;
+            submitBtn.innerHTML = `<span>⏳ Processing... Please wait</span>`;
+            submitBtn.disabled = true;
+            if (cancelBtn) cancelBtn.disabled = true;
 
             try {
                 // Step 1: Create order from backend (with email)
@@ -736,7 +741,17 @@
                     })
                 });
                 const resData = await response.json();
-                if (resData.status !== 'SUCCESS') throw new Error(resData.message || 'Order creation failed');
+                
+                if (resData.status !== 'SUCCESS') {
+                    let errMsg = resData.message || 'Order creation failed';
+                    if (errMsg.toLowerCase().includes('authentication failed')) {
+                        throw new Error("authentication Failed.\n\n⚠️ IMPORTANT: Render dashboard me new CASHFREE_APP_ID aur CASHFREE_SECRET_KEY variables save karna zaroori hai! Local .env file github par upload nahi hoti hai.");
+                    }
+                    throw new Error(errMsg);
+                }
+
+                // Hide modal only on success
+                document.getElementById('email-payment-modal').classList.replace('flex', 'hidden');
 
                 // Step 2: Open Cashfree checkout
                 const cashfreeMode = resData.environment || 'production';
@@ -773,6 +788,11 @@
             } catch (err) {
                 console.error('Payment Error:', err);
                 alert(`🔴 Payment Error: ${err.message}`);
+            } finally {
+                // Restore buttons state
+                submitBtn.innerHTML = originalBtnHtml;
+                submitBtn.disabled = false;
+                if (cancelBtn) cancelBtn.disabled = false;
             }
         });
 
