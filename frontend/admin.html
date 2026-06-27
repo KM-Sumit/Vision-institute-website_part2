@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=Source+Sans+3:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         tailwind.config = {
@@ -21,54 +24,88 @@
         }
     </script>
     <style>
-        .sidebar-active { background-color: #d69e2e !important; color: #1a365d !important; font-weight: 700; }
+        .sidebar-active {
+            background-color: #d69e2e !important;
+            color: #1a365d !important;
+            font-weight: 700;
+        }
+
         @media (min-width: 1920px) {
-            html { font-size: 18px; }
+            html {
+                font-size: 18px;
+            }
         }
     </style>
 </head>
+
 <body class="bg-gray-100 flex min-h-screen relative font-sans antialiased">
 
-    <div id="auth-gate-shield" class="fixed inset-0 z-[150] bg-navy flex items-center justify-center text-white font-bold font-mono tracking-widest text-sm text-center px-4">
+    <div id="auth-gate-shield"
+        class="fixed inset-0 z-[150] bg-navy flex items-center justify-center text-white font-bold font-mono tracking-widest text-sm text-center px-4">
         SECURE CONNECTIVITY HANDSHAKE VERIFICATION ACTIVE...
     </div>
 
     <div id="dashboard-layout" class="hidden w-full min-h-screen flex flex-col lg:flex-row">
-        
-        <aside class="w-full lg:w-64 bg-navy text-white flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/5 shrink-0 z-20">
+
+        <aside
+            class="w-full lg:w-64 bg-navy text-white flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/5 shrink-0 z-20">
             <div class="p-6">
                 <div class="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
                     <div class="bg-gold p-2 rounded-lg text-navy"><i data-lucide="sliders" class="w-5 h-5"></i></div>
                     <div>
                         <span class="font-bold text-sm block tracking-wide">Vision Admin</span>
-                        <span class="text-[10px] text-gray-400 tracking-widest uppercase font-mono">v2.0.0-Serverless</span>
+                        <span
+                            class="text-[10px] text-gray-400 tracking-widest uppercase font-mono">v2.0.0-Serverless</span>
                     </div>
                 </div>
-                
-                <nav id="admin-nav" class="space-y-1 flex flex-row lg:flex-col overflow-x-auto no-scrollbar pb-2 lg:pb-0 gap-1 lg:gap-0">
-                    <button data-target="panel-overview" class="whitespace-nowrap text-sm px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5 flex items-center gap-2"><i data-lucide="layout-dashboard" class="w-4 h-4"></i> Overview</button>
-                    <button data-target="panel-settings" class="whitespace-nowrap text-sm px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5 flex items-center gap-2"><i data-lucide="settings" class="w-4 h-4"></i> Settings</button>
-                    <button data-target="panel-slider" class="whitespace-nowrap text-sm px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5 flex items-center gap-2"><i data-lucide="images" class="w-4 h-4"></i> Sliders</button>
-                    <button data-target="panel-courses" class="whitespace-nowrap text-sm px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5 flex items-center gap-2"><i data-lucide="book-open" class="w-4 h-4"></i> Courses</button>
-                    <button data-target="panel-videos" class="whitespace-nowrap text-sm px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5 flex items-center gap-2"><i data-lucide="video" class="w-4 h-4"></i> Lectures</button>
-                    <button data-target="panel-notes" class="whitespace-nowrap text-sm px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5 flex items-center gap-2"><i data-lucide="file-text" class="w-4 h-4"></i> Notes</button>
-                    <button data-target="panel-gallery" class="whitespace-nowrap text-sm px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5 flex items-center gap-2"><i data-lucide="aperture" class="w-4 h-4"></i> Gallery</button>
-                    <button data-target="panel-testimonials" class="whitespace-nowrap text-sm px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5 flex items-center gap-2"><i data-lucide="message-square" class="w-4 h-4"></i> Reviews</button>
-                    <button data-target="panel-inquiries" class="whitespace-nowrap text-sm px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5 flex items-center gap-2"><i data-lucide="inbox" class="w-4 h-4"></i> Inquiries</button>
+
+                <nav id="admin-nav"
+                    class="space-y-1 flex flex-row lg:flex-col overflow-x-auto no-scrollbar pb-2 lg:pb-0 gap-1 lg:gap-0">
+                    <button data-target="panel-overview"
+                        class="whitespace-nowrap text-sm px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5 flex items-center gap-2"><i
+                            data-lucide="layout-dashboard" class="w-4 h-4"></i> Overview</button>
+                    <button data-target="panel-settings"
+                        class="whitespace-nowrap text-sm px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5 flex items-center gap-2"><i
+                            data-lucide="settings" class="w-4 h-4"></i> Settings</button>
+                    <button data-target="panel-slider"
+                        class="whitespace-nowrap text-sm px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5 flex items-center gap-2"><i
+                            data-lucide="images" class="w-4 h-4"></i> Sliders</button>
+                    <button data-target="panel-courses"
+                        class="whitespace-nowrap text-sm px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5 flex items-center gap-2"><i
+                            data-lucide="book-open" class="w-4 h-4"></i> Courses</button>
+                    <button data-target="panel-videos"
+                        class="whitespace-nowrap text-sm px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5 flex items-center gap-2"><i
+                            data-lucide="video" class="w-4 h-4"></i> Lectures</button>
+                    <button data-target="panel-notes"
+                        class="whitespace-nowrap text-sm px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5 flex items-center gap-2"><i
+                            data-lucide="file-text" class="w-4 h-4"></i> Notes</button>
+                    <button data-target="panel-gallery"
+                        class="whitespace-nowrap text-sm px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5 flex items-center gap-2"><i
+                            data-lucide="aperture" class="w-4 h-4"></i> Gallery</button>
+                    <button data-target="panel-testimonials"
+                        class="whitespace-nowrap text-sm px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5 flex items-center gap-2"><i
+                            data-lucide="message-square" class="w-4 h-4"></i> Reviews</button>
+                    <button data-target="panel-inquiries"
+                        class="whitespace-nowrap text-sm px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5 flex items-center gap-2"><i
+                            data-lucide="inbox" class="w-4 h-4"></i> Inquiries</button>
                 </nav>
             </div>
-            
+
             <div class="p-4 border-t border-white/5 bg-black/20 flex items-center justify-between lg:mt-auto">
-                <a href="index.html" class="text-xs text-gold font-bold hover:underline inline-flex items-center gap-1"><i data-lucide="external-link" class="w-3.5 h-3.5"></i> Live Portal</a>
+                <a href="index.html"
+                    class="text-xs text-gold font-bold hover:underline inline-flex items-center gap-1"><i
+                        data-lucide="external-link" class="w-3.5 h-3.5"></i> Live Portal</a>
                 <button id="logout-btn" class="text-xs text-red-400 hover:text-red-500 font-semibold">Exit Node</button>
             </div>
         </aside>
 
         <main class="flex-grow p-4 md:p-8 max-w-7xl mx-auto w-full overflow-x-hidden">
-            
-            <div id="action-toast" class="hidden mb-6 bg-emerald-600 text-white px-6 py-3 rounded-xl shadow-lg text-sm items-center justify-between transition-all">
+
+            <div id="action-toast"
+                class="hidden mb-6 bg-emerald-600 text-white px-6 py-3 rounded-xl shadow-lg text-sm items-center justify-between transition-all">
                 <span id="toast-text">Configuration matrices synchronized.</span>
-                <button onclick="this.parentElement.classList.replace('flex','hidden')" class="text-white"><i data-lucide="x" class="w-4 h-4"></i></button>
+                <button onclick="this.parentElement.classList.replace('flex','hidden')" class="text-white"><i
+                        data-lucide="x" class="w-4 h-4"></i></button>
             </div>
 
             <div id="panel-overview" class="admin-panel space-y-6">
@@ -77,21 +114,37 @@
                     <p class="text-xs text-gray-500 mt-1">System operational metrics snapshot layout modules.</p>
                 </div>
                 <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div class="bg-white p-5 rounded-2xl border border-gray-200/60 shadow-sm flex items-center justify-between">
-                        <div><span class="block text-2xl font-black text-navy" id="stat-courses">0</span><span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Courses</span></div>
-                        <div class="p-2.5 bg-blue-50 text-blue-600 rounded-xl"><i data-lucide="book-open" class="w-5 h-5"></i></div>
+                    <div
+                        class="bg-white p-5 rounded-2xl border border-gray-200/60 shadow-sm flex items-center justify-between">
+                        <div><span class="block text-2xl font-black text-navy" id="stat-courses">0</span><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Courses</span>
+                        </div>
+                        <div class="p-2.5 bg-blue-50 text-blue-600 rounded-xl"><i data-lucide="book-open"
+                                class="w-5 h-5"></i></div>
                     </div>
-                    <div class="bg-white p-5 rounded-2xl border border-gray-200/60 shadow-sm flex items-center justify-between">
-                        <div><span class="block text-2xl font-black text-navy" id="stat-videos">0</span><span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Lectures</span></div>
-                        <div class="p-2.5 bg-red-50 text-red-600 rounded-xl"><i data-lucide="video" class="w-5 h-5"></i></div>
+                    <div
+                        class="bg-white p-5 rounded-2xl border border-gray-200/60 shadow-sm flex items-center justify-between">
+                        <div><span class="block text-2xl font-black text-navy" id="stat-videos">0</span><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Lectures</span>
+                        </div>
+                        <div class="p-2.5 bg-red-50 text-red-600 rounded-xl"><i data-lucide="video" class="w-5 h-5"></i>
+                        </div>
                     </div>
-                    <div class="bg-white p-5 rounded-2xl border border-gray-200/60 shadow-sm flex items-center justify-between">
-                        <div><span class="block text-2xl font-black text-navy" id="stat-notes">0</span><span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Notes Packages</span></div>
-                        <div class="p-2.5 bg-amber-50 text-amber-600 rounded-xl"><i data-lucide="file-text" class="w-5 h-5"></i></div>
+                    <div
+                        class="bg-white p-5 rounded-2xl border border-gray-200/60 shadow-sm flex items-center justify-between">
+                        <div><span class="block text-2xl font-black text-navy" id="stat-notes">0</span><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Notes
+                                Packages</span></div>
+                        <div class="p-2.5 bg-amber-50 text-amber-600 rounded-xl"><i data-lucide="file-text"
+                                class="w-5 h-5"></i></div>
                     </div>
-                    <div class="bg-white p-5 rounded-2xl border border-gray-200/60 shadow-sm flex items-center justify-between">
-                        <div><span class="block text-2xl font-black text-navy" id="stat-inquiries">0</span><span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Inquiries Received</span></div>
-                        <div class="p-2.5 bg-purple-50 text-purple-600 rounded-xl"><i data-lucide="inbox" class="w-5 h-5"></i></div>
+                    <div
+                        class="bg-white p-5 rounded-2xl border border-gray-200/60 shadow-sm flex items-center justify-between">
+                        <div><span class="block text-2xl font-black text-navy" id="stat-inquiries">0</span><span
+                                class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Inquiries
+                                Received</span></div>
+                        <div class="p-2.5 bg-purple-50 text-purple-600 rounded-xl"><i data-lucide="inbox"
+                                class="w-5 h-5"></i></div>
                     </div>
                 </div>
             </div>
@@ -100,43 +153,74 @@
                 <h2 class="text-xl font-bold text-navy">Global Branding & Strings Parameters</h2>
                 <form id="settings-form" class="bg-white p-5 md:p-6 rounded-2xl border space-y-5">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div><label class="block text-xs font-bold text-gray-500 mb-1">Institute Name</label><input type="text" id="set-inst-name" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm"></div>
-                        <div><label class="block text-xs font-bold text-gray-500 mb-1">Lead Educator Name</label><input type="text" id="set-teacher-name" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm"></div>
+                        <div><label class="block text-xs font-bold text-gray-500 mb-1">Institute Name</label><input
+                                type="text" id="set-inst-name"
+                                class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm"></div>
+                        <div><label class="block text-xs font-bold text-gray-500 mb-1">Lead Educator Name</label><input
+                                type="text" id="set-teacher-name"
+                                class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm"></div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div><label class="block text-xs font-bold text-gray-500 mb-1">Call Number</label><input type="text" id="set-phone" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm"></div>
-                        <div><label class="block text-xs font-bold text-gray-500 mb-1">WhatsApp Target</label><input type="text" id="set-whatsapp" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm"></div>
-                        <div><label class="block text-xs font-bold text-gray-500 mb-1">Contact Email</label><input type="email" id="set-email" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm"></div>
+                        <div><label class="block text-xs font-bold text-gray-500 mb-1">Call Number</label><input
+                                type="text" id="set-phone"
+                                class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm"></div>
+                        <div><label class="block text-xs font-bold text-gray-500 mb-1">WhatsApp Target</label><input
+                                type="text" id="set-whatsapp"
+                                class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm"></div>
+                        <div><label class="block text-xs font-bold text-gray-500 mb-1">Contact Email</label><input
+                                type="email" id="set-email"
+                                class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm"></div>
                     </div>
-                    <div><label class="block text-xs font-bold text-gray-500 mb-1">Campus Physical Address</label><input type="text" id="set-address" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm"></div>
-                    <div><label class="block text-xs font-bold text-gray-500 mb-1">Brand Logo Image Link</label><input type="url" id="set-logo" placeholder="https://images.unsplash.com/..." class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-mono"></div>
+                    <div><label class="block text-xs font-bold text-gray-500 mb-1">Campus Physical Address</label><input
+                            type="text" id="set-address"
+                            class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm"></div>
+                    <div><label class="block text-xs font-bold text-gray-500 mb-1">Brand Logo Image Link</label><input
+                            type="url" id="set-logo" placeholder="https://images.unsplash.com/..."
+                            class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-mono"></div>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div><label class="block text-xs font-bold text-gray-500 mb-1">YouTube Link</label><input type="url" id="set-youtube" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-mono"></div>
-                        <div><label class="block text-xs font-bold text-gray-500 mb-1">Instagram Link</label><input type="url" id="set-instagram" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-mono"></div>
-                        <div><label class="block text-xs font-bold text-gray-500 mb-1">Facebook Link</label><input type="url" id="set-facebook" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-mono"></div>
+                        <div><label class="block text-xs font-bold text-gray-500 mb-1">YouTube Link</label><input
+                                type="url" id="set-youtube"
+                                class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-mono"></div>
+                        <div><label class="block text-xs font-bold text-gray-500 mb-1">Instagram Link</label><input
+                                type="url" id="set-instagram"
+                                class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-mono"></div>
+                        <div><label class="block text-xs font-bold text-gray-500 mb-1">Facebook Link</label><input
+                                type="url" id="set-facebook"
+                                class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-mono"></div>
                     </div>
-                    <button type="submit" class="bg-navy text-white text-xs font-bold px-6 py-3 rounded-xl">Commit Configurations</button>
+                    <button type="submit" class="bg-navy text-white text-xs font-bold px-6 py-3 rounded-xl">Commit
+                        Configurations</button>
                 </form>
             </div>
 
             <div id="panel-slider" class="admin-panel hidden space-y-6">
                 <div class="flex justify-between items-center flex-wrap gap-2">
                     <h2 class="text-xl font-bold text-navy">Hero Splash Carousels</h2>
-                    <button id="add-slide-btn" type="button" class="bg-navy text-white text-xs font-bold px-4 py-2 rounded-xl">Add Banner Slide</button>
+                    <button id="add-slide-btn" type="button"
+                        class="bg-navy text-white text-xs font-bold px-4 py-2 rounded-xl">Add Banner Slide</button>
                 </div>
                 <form id="slider-form" class="bg-white p-5 rounded-2xl border space-y-4 hidden animate-fade-in">
                     <input type="hidden" id="slider-edit-id">
                     <input type="hidden" id="slide-title" value="Slide">
-                    <input type="url" id="slide-image" placeholder="Image Link URL" required class="border p-2.5 rounded-xl text-sm font-mono w-full bg-gray-50">
-                    <textarea id="slide-desc" placeholder="Banner Subtext Content" class="w-full border p-2.5 rounded-xl text-sm bg-gray-50"></textarea>
+                    <input type="url" id="slide-image" placeholder="Image Link URL" required
+                        class="border p-2.5 rounded-xl text-sm font-mono w-full bg-gray-50">
+                    <textarea id="slide-desc" placeholder="Banner Subtext Content"
+                        class="w-full border p-2.5 rounded-xl text-sm bg-gray-50"></textarea>
                     <div class="flex gap-2 justify-end">
-                        <button type="button" onclick="document.getElementById('slider-form').classList.add('hidden')" class="border px-4 py-2 rounded-xl text-xs">Discard</button>
-                        <button type="submit" class="bg-gold text-navy font-bold px-4 py-2 rounded-xl text-xs">Commit Slide Data</button>
+                        <button type="button" onclick="document.getElementById('slider-form').classList.add('hidden')"
+                            class="border px-4 py-2 rounded-xl text-xs">Discard</button>
+                        <button type="submit" class="bg-gold text-navy font-bold px-4 py-2 rounded-xl text-xs">Commit
+                            Slide Data</button>
                     </div>
                 </form>
                 <div class="bg-white rounded-2xl border overflow-x-auto shadow-sm">
                     <table class="w-full text-left text-sm min-w-[500px]">
-                        <thead class="bg-gray-50 text-xs font-bold uppercase text-gray-500 border-b"><tr><th class="p-4">Heading Sequence</th><th class="p-4 text-right">Actions</th></tr></thead>
+                        <thead class="bg-gray-50 text-xs font-bold uppercase text-gray-500 border-b">
+                            <tr>
+                                <th class="p-4">Heading Sequence</th>
+                                <th class="p-4 text-right">Actions</th>
+                            </tr>
+                        </thead>
                         <tbody id="slider-table-body" class="divide-y"></tbody>
                     </table>
                 </div>
@@ -145,7 +229,9 @@
             <div id="panel-courses" class="admin-panel hidden space-y-6">
                 <div class="flex justify-between items-center flex-wrap gap-2">
                     <h2 class="text-xl font-bold text-navy">Academic Syllabus Courses</h2>
-                    <button id="add-course-btn" type="button" class="bg-navy text-white text-xs font-bold px-4 py-2 rounded-xl">Create Academic Stream</button>
+                    <button id="add-course-btn" type="button"
+                        class="bg-navy text-white text-xs font-bold px-4 py-2 rounded-xl">Create Academic
+                        Stream</button>
                 </div>
                 <form id="course-form" class="bg-white p-5 rounded-2xl border space-y-4 hidden animate-fade-in">
                     <input type="hidden" id="course-edit-id">
@@ -153,80 +239,136 @@
                     <input type="hidden" id="course-fee" value="">
                     <input type="hidden" id="course-duration" value="">
                     <input type="hidden" id="course-desc" value="">
-                    <input type="text" id="course-title" placeholder="Course Title" required class="w-full border p-2.5 rounded-xl text-sm bg-gray-50">
+                    <input type="text" id="course-title" placeholder="Course Title" required
+                        class="w-full border p-2.5 rounded-xl text-sm bg-gray-50">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <select id="course-class" class="border p-2.5 rounded-xl text-sm bg-gray-50"><option value="10">Class 10</option><option value="11">Class 11</option><option value="12">Class 12</option></select>
-                        <input type="text" id="course-teacher" placeholder="Educator Name" required class="border p-2.5 rounded-xl text-sm bg-gray-50">
+                        <select id="course-class" class="border p-2.5 rounded-xl text-sm bg-gray-50">
+                            <option value="10">Class 10</option>
+                            <option value="11">Class 11</option>
+                            <option value="12">Class 12</option>
+                        </select>
+                        <input type="text" id="course-teacher" placeholder="Educator Name" required
+                            class="border p-2.5 rounded-xl text-sm bg-gray-50">
                     </div>
-                    <input type="url" id="course-image" placeholder="Cover Art Thumbnail Image Link" required class="w-full border p-2.5 rounded-xl text-sm font-mono bg-gray-50">
+                    <input type="url" id="course-image" placeholder="Cover Art Thumbnail Image Link" required
+                        class="w-full border p-2.5 rounded-xl text-sm font-mono bg-gray-50">
                     <div class="flex gap-2 justify-end">
-                        <button type="button" onclick="document.getElementById('course-form').classList.add('hidden')" class="border px-4 py-2 rounded-xl text-xs">Cancel</button>
-                        <button type="submit" class="bg-navy text-white font-bold px-4 py-2 rounded-xl text-xs">Commit Course Data</button>
+                        <button type="button" onclick="document.getElementById('course-form').classList.add('hidden')"
+                            class="border px-4 py-2 rounded-xl text-xs">Cancel</button>
+                        <button type="submit" class="bg-navy text-white font-bold px-4 py-2 rounded-xl text-xs">Commit
+                            Course Data</button>
                     </div>
                 </form>
-                <div class="bg-white rounded-2xl border overflow-x-auto shadow-sm"><table class="w-full text-left text-sm min-w-[600px]"><tbody id="courses-table-body" class="divide-y"></tbody></table></div>
+                <div class="bg-white rounded-2xl border overflow-x-auto shadow-sm">
+                    <table class="w-full text-left text-sm min-w-[600px]">
+                        <tbody id="courses-table-body" class="divide-y"></tbody>
+                    </table>
+                </div>
             </div>
 
             <div id="panel-videos" class="admin-panel hidden space-y-6">
                 <div class="flex justify-between items-center flex-wrap gap-2">
                     <h2 class="text-xl font-bold text-navy">YouTube Video Catalog Matrix</h2>
-                    <button id="add-video-btn" type="button" class="bg-navy text-white text-xs font-bold px-4 py-2 rounded-xl">Add Reference Video</button>
+                    <button id="add-video-btn" type="button"
+                        class="bg-navy text-white text-xs font-bold px-4 py-2 rounded-xl">Add Reference Video</button>
                 </div>
                 <form id="video-form" class="bg-white p-5 rounded-2xl border space-y-4 hidden animate-fade-in">
                     <input type="hidden" id="vid-edit-id">
-                    <input type="url" id="vid-url" placeholder="YouTube URL link String" required class="w-full border p-2.5 rounded-xl text-sm font-mono bg-gray-50">
-                    <input type="text" id="vid-title" placeholder="Lecture Title Context String" required class="w-full border p-2.5 rounded-xl text-sm bg-gray-50">
+                    <input type="url" id="vid-url" placeholder="YouTube URL link String" required
+                        class="w-full border p-2.5 rounded-xl text-sm font-mono bg-gray-50">
+                    <input type="text" id="vid-title" placeholder="Lecture Title Context String" required
+                        class="w-full border p-2.5 rounded-xl text-sm bg-gray-50">
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        <select id="vid-class" class="border p-2.5 rounded-xl text-sm bg-gray-50"><option value="10">Class 10</option><option value="11">Class 11</option><option value="12">Class 12</option></select>
-                        <input type="text" id="vid-subject" placeholder="Subject Tag" required class="border p-2.5 rounded-xl text-sm bg-gray-50">
-                        <input type="text" id="vid-topic" placeholder="Topic Tag" required class="border p-2.5 rounded-xl text-sm bg-gray-50">
+                        <select id="vid-class" class="border p-2.5 rounded-xl text-sm bg-gray-50">
+                            <option value="10">Class 10</option>
+                            <option value="11">Class 11</option>
+                            <option value="12">Class 12</option>
+                        </select>
+                        <input type="text" id="vid-subject" placeholder="Subject Tag" required
+                            class="border p-2.5 rounded-xl text-sm bg-gray-50">
+                        <input type="text" id="vid-topic" placeholder="Topic Tag" required
+                            class="border p-2.5 rounded-xl text-sm bg-gray-50">
                     </div>
-                    <textarea id="vid-desc" placeholder="Brief Lecture Sub-description..." class="w-full border p-2.5 rounded-xl text-sm bg-gray-50"></textarea>
+                    <textarea id="vid-desc" placeholder="Brief Lecture Sub-description..."
+                        class="w-full border p-2.5 rounded-xl text-sm bg-gray-50"></textarea>
                     <div class="flex gap-2 justify-end">
-                        <button type="button" onclick="document.getElementById('video-form').classList.add('hidden')" class="border px-4 py-2 rounded-xl text-xs">Cancel</button>
-                        <button type="submit" class="bg-navy text-white font-bold px-4 py-2 rounded-xl text-xs">Commit Video Data</button>
+                        <button type="button" onclick="document.getElementById('video-form').classList.add('hidden')"
+                            class="border px-4 py-2 rounded-xl text-xs">Cancel</button>
+                        <button type="submit" class="bg-navy text-white font-bold px-4 py-2 rounded-xl text-xs">Commit
+                            Video Data</button>
                     </div>
                 </form>
-                <div class="bg-white rounded-2xl border overflow-x-auto shadow-sm"><table class="w-full text-left text-sm min-w-[600px]"><tbody id="videos-table-body" class="divide-y"></tbody></table></div>
+                <div class="bg-white rounded-2xl border overflow-x-auto shadow-sm">
+                    <table class="w-full text-left text-sm min-w-[600px]">
+                        <tbody id="videos-table-body" class="divide-y"></tbody>
+                    </table>
+                </div>
             </div>
 
             <div id="panel-notes" class="admin-panel hidden space-y-6">
                 <div class="flex justify-between items-center flex-wrap gap-2">
                     <h2 class="text-xl font-bold text-navy">Premium Digital Revision Assets</h2>
-                    <button id="add-notes-btn" type="button" class="bg-navy text-white text-xs font-bold px-4 py-2 rounded-xl">Add Study Material</button>
+                    <button id="add-notes-btn" type="button"
+                        class="bg-navy text-white text-xs font-bold px-4 py-2 rounded-xl">Add Study Material</button>
                 </div>
                 <form id="notes-form" class="bg-white p-5 rounded-2xl border space-y-4 hidden animate-fade-in">
                     <input type="hidden" id="note-edit-id">
                     <input type="hidden" id="note-desc" value="">
-                    <input type="text" id="note-title" placeholder="Study Pack Title" required class="w-full border p-2.5 rounded-xl text-sm bg-gray-50">
+                    <input type="text" id="note-title" placeholder="Study Pack Title" required
+                        class="w-full border p-2.5 rounded-xl text-sm bg-gray-50">
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        <select id="note-class" class="border p-2.5 rounded-xl text-sm bg-gray-50"><option value="10">Class 10</option><option value="11">Class 11</option><option value="12">Class 12</option></select>
-                        <input type="text" id="note-subject" placeholder="Subject Category" required class="border p-2.5 rounded-xl text-sm bg-gray-50">
-                        <input type="number" id="note-price" placeholder="Price (INR)" required class="border p-2.5 rounded-xl text-sm bg-gray-50">
+                        <select id="note-class" class="border p-2.5 rounded-xl text-sm bg-gray-50">
+                            <option value="English Speaking">English Speaking</option>
+                            <option value="8">Class 8</option>
+                            <option value="9">Class 9</option>
+                            <option value="10">Class 10</option>
+                            <option value="11">Class 11</option>
+                            <option value="12">Class 12</option>
+                        </select>
+                        <input type="text" id="note-subject" placeholder="Subject Category" required
+                            class="border p-2.5 rounded-xl text-sm bg-gray-50">
+                        <input type="number" id="note-price" placeholder="Price (INR)" required
+                            class="border p-2.5 rounded-xl text-sm bg-gray-50">
                     </div>
-                    <input type="url" id="note-image" placeholder="Cover Image Link" required class="w-full border p-2.5 rounded-xl text-sm font-mono bg-gray-50">
-                    <input type="url" id="note-pdf" placeholder="Google Drive PDF Link (Sent to student via Email)" required class="w-full border p-2.5 rounded-xl text-sm font-mono bg-emerald-50 border-emerald-200">
+                    <input type="url" id="note-image" placeholder="Cover Image Link" required
+                        class="w-full border p-2.5 rounded-xl text-sm font-mono bg-gray-50">
+                    <input type="url" id="note-pdf" placeholder="Google Drive PDF Link (Sent to student via Email)"
+                        required
+                        class="w-full border p-2.5 rounded-xl text-sm font-mono bg-emerald-50 border-emerald-200">
                     <div class="flex gap-2 justify-end">
-                        <button type="button" onclick="document.getElementById('notes-form').classList.add('hidden')" class="border px-4 py-2 rounded-xl text-xs">Cancel</button>
-                        <button type="submit" class="bg-navy text-white font-bold px-4 py-2 rounded-xl text-xs">Commit Notes Pack</button>
+                        <button type="button" onclick="document.getElementById('notes-form').classList.add('hidden')"
+                            class="border px-4 py-2 rounded-xl text-xs">Cancel</button>
+                        <button type="submit" class="bg-navy text-white font-bold px-4 py-2 rounded-xl text-xs">Commit
+                            Notes Pack</button>
                     </div>
                 </form>
-                <div class="bg-white rounded-2xl border overflow-x-auto shadow-sm"><table class="w-full text-left text-sm min-w-[600px]"><tbody id="notes-table-body" class="divide-y"></tbody></table></div>
+                <div class="bg-white rounded-2xl border overflow-x-auto shadow-sm">
+                    <table class="w-full text-left text-sm min-w-[600px]">
+                        <tbody id="notes-table-body" class="divide-y"></tbody>
+                    </table>
+                </div>
             </div>
 
             <div id="panel-gallery" class="admin-panel hidden space-y-6">
                 <div class="flex justify-between items-center flex-wrap gap-2">
                     <h2 class="text-xl font-bold text-navy">Campus Documentation Grid Photo</h2>
-                    <button id="add-gal-btn" type="button" class="bg-navy text-white text-xs font-bold px-4 py-2 rounded-xl">Add Picture Entry</button>
+                    <button id="add-gal-btn" type="button"
+                        class="bg-navy text-white text-xs font-bold px-4 py-2 rounded-xl">Add Picture Entry</button>
                 </div>
                 <form id="gallery-form" class="bg-white p-5 rounded-2xl border space-y-4 hidden animate-fade-in">
                     <input type="hidden" id="gal-edit-id">
-                    <input type="text" id="gal-title" placeholder="Asset Identity Label" required class="border p-2.5 rounded-xl text-sm w-full bg-gray-50">
-                    <input type="url" id="gal-image" placeholder="Raw Image Link URL" required class="border p-2.5 rounded-xl text-sm w-full font-mono bg-gray-50">
-                    <input type="text" id="gal-caption" placeholder="Student Success Framework Metric Caption" class="border p-2.5 rounded-xl text-sm w-full bg-gray-50">
+                    <input type="text" id="gal-title" placeholder="Asset Identity Label" required
+                        class="border p-2.5 rounded-xl text-sm w-full bg-gray-50">
+                    <input type="url" id="gal-image" placeholder="Raw Image Link URL" required
+                        class="border p-2.5 rounded-xl text-sm w-full font-mono bg-gray-50">
+                    <input type="text" id="gal-caption" placeholder="Student Success Framework Metric Caption"
+                        class="border p-2.5 rounded-xl text-sm w-full bg-gray-50">
                     <div class="flex gap-2 justify-end">
-                        <button type="button" onclick="document.getElementById('gallery-form').classList.add('hidden')" class="border px-4 py-2 rounded-xl text-xs">Cancel</button>
-                        <button type="submit" class="bg-navy text-white font-bold px-4 py-2 rounded-xl text-xs">Serialize Image Unit</button>
+                        <button type="button" onclick="document.getElementById('gallery-form').classList.add('hidden')"
+                            class="border px-4 py-2 rounded-xl text-xs">Cancel</button>
+                        <button type="submit"
+                            class="bg-navy text-white font-bold px-4 py-2 rounded-xl text-xs">Serialize Image
+                            Unit</button>
                     </div>
                 </form>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" id="gallery-admin-grid"></div>
@@ -235,18 +377,25 @@
             <div id="panel-testimonials" class="admin-panel hidden space-y-6">
                 <div class="flex justify-between items-center flex-wrap gap-2">
                     <h2 class="text-xl font-bold text-navy">Ecosystem Evaluation Testimonials</h2>
-                    <button id="add-test-btn" type="button" class="bg-navy text-white text-xs font-bold px-4 py-2 rounded-xl">Create Validation Log</button>
+                    <button id="add-test-btn" type="button"
+                        class="bg-navy text-white text-xs font-bold px-4 py-2 rounded-xl">Create Validation Log</button>
                 </div>
                 <form id="testimonial-form" class="bg-white p-5 rounded-2xl border space-y-4 hidden animate-fade-in">
                     <input type="hidden" id="test-edit-id">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <input type="text" id="test-name" placeholder="Student/Parent Name" required class="border p-2.5 rounded-xl text-sm w-full bg-gray-50">
-                        <input type="text" id="test-class" placeholder="Class/Batch context tag" required class="border p-2.5 rounded-xl text-sm w-full bg-gray-50">
+                        <input type="text" id="test-name" placeholder="Student/Parent Name" required
+                            class="border p-2.5 rounded-xl text-sm w-full bg-gray-50">
+                        <input type="text" id="test-class" placeholder="Class/Batch context tag" required
+                            class="border p-2.5 rounded-xl text-sm w-full bg-gray-50">
                     </div>
-                    <textarea id="test-text" placeholder="Verification Review String text body..." required class="border p-2.5 rounded-xl text-sm w-full font-sans bg-gray-50" rows="3"></textarea>
+                    <textarea id="test-text" placeholder="Verification Review String text body..." required
+                        class="border p-2.5 rounded-xl text-sm w-full font-sans bg-gray-50" rows="3"></textarea>
                     <div class="flex gap-2 justify-end">
-                        <button type="button" onclick="document.getElementById('testimonial-form').classList.add('hidden')" class="border px-4 py-2 rounded-xl text-xs">Cancel</button>
-                        <button type="submit" class="bg-navy text-white font-bold px-4 py-2 rounded-xl text-xs">Commit Review Profile</button>
+                        <button type="button"
+                            onclick="document.getElementById('testimonial-form').classList.add('hidden')"
+                            class="border px-4 py-2 rounded-xl text-xs">Cancel</button>
+                        <button type="submit" class="bg-navy text-white font-bold px-4 py-2 rounded-xl text-xs">Commit
+                            Review Profile</button>
                     </div>
                 </form>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6" id="testimonials-admin-container"></div>
@@ -255,25 +404,36 @@
             <div id="panel-inquiries" class="admin-panel hidden space-y-6">
                 <div class="flex justify-between items-center flex-wrap gap-2">
                     <h2 class="text-xl font-bold text-navy">Captured Form Intent Logs</h2>
-                    <button id="export-csv-btn" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2 rounded-xl">Export Database (.CSV)</button>
+                    <button id="export-csv-btn"
+                        class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2 rounded-xl">Export
+                        Database (.CSV)</button>
                 </div>
-                <div class="bg-white rounded-2xl border overflow-x-auto shadow-sm"><table class="w-full text-left text-sm min-w-[700px]"><tbody id="inquiries-table-body" class="divide-y"></tbody></table></div>
+                <div class="bg-white rounded-2xl border overflow-x-auto shadow-sm">
+                    <table class="w-full text-left text-sm min-w-[700px]">
+                        <tbody id="inquiries-table-body" class="divide-y"></tbody>
+                    </table>
+                </div>
             </div>
 
         </main>
     </div>
 
-    <div id="drive-auth-modal" class="fixed inset-0 z-[200] bg-navy/95 backdrop-blur-md hidden items-center justify-center p-4">
-        <div class="bg-white rounded-3xl p-6 md:p-8 max-w-sm w-full shadow-2xl border border-gray-100 text-center relative">
+    <div id="drive-auth-modal"
+        class="fixed inset-0 z-[200] bg-navy/95 backdrop-blur-md hidden items-center justify-center p-4">
+        <div
+            class="bg-white rounded-3xl p-6 md:p-8 max-w-sm w-full shadow-2xl border border-gray-100 text-center relative">
             <div class="w-12 h-12 bg-gold/10 text-gold rounded-full flex items-center justify-center mx-auto mb-4">
                 <i data-lucide="cloud-lightning" class="w-6 h-6"></i>
             </div>
             <h3 class="text-xl font-bold text-navy mb-1">System Authentication</h3>
-            <p class="text-xs text-gray-500 mb-6">Verifying secure isolated API keys directly from Vercel dynamic platform nodes.</p>
-            
+            <p class="text-xs text-gray-500 mb-6">Verifying secure isolated API keys directly from Vercel dynamic
+                platform nodes.</p>
+
             <form id="drive-auth-form" class="space-y-4">
-                <input type="password" id="drive-auth-input" placeholder="Enter System Password" required class="w-full border border-gray-200 rounded-xl px-4 py-3 text-center tracking-widest focus:outline-none focus:border-gold text-sm bg-gray-50">
-                <button type="submit" id="drive-auth-submit" class="w-full bg-navy hover:bg-navy-light text-white font-bold py-3 rounded-xl transition-all shadow flex items-center justify-center gap-2 text-sm uppercase tracking-wide">
+                <input type="password" id="drive-auth-input" placeholder="Enter System Password" required
+                    class="w-full border border-gray-200 rounded-xl px-4 py-3 text-center tracking-widest focus:outline-none focus:border-gold text-sm bg-gray-50">
+                <button type="submit" id="drive-auth-submit"
+                    class="w-full bg-navy hover:bg-navy-light text-white font-bold py-3 rounded-xl transition-all shadow flex items-center justify-center gap-2 text-sm uppercase tracking-wide">
                     Verify Identity
                 </button>
             </form>
@@ -286,11 +446,11 @@
         function parseGDriveLink(url) {
             if (!url) return 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600';
             if (url.includes('drive.google.com/thumbnail') || url.includes('images.unsplash.com')) return url;
-            
+
             let fileId = '';
             const match1 = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
             const match2 = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
-            
+
             if (match1) fileId = match1[1];
             else if (match2) fileId = match2[1];
             else return url;
@@ -299,8 +459,8 @@
         }
 
         // 🔴 CONNECTED PROXY HUB ENDPOINT: Othewise fallback manually to vercel endpoints strings
-        const BACKEND_API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-            ? 'http://localhost:3000' 
+        const BACKEND_API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:3000'
             : window.location.origin;
 
         // Central state schema to wrap structural variables smoothly into single JSON body
@@ -324,12 +484,12 @@
 
             if (cachedToken) {
                 activeAdminPassword = atob(cachedToken).split('_')[0];
-                if(shield) shield.remove();
-                if(layout) layout.classList.remove('hidden');
+                if (shield) shield.remove();
+                if (layout) layout.classList.remove('hidden');
                 initDashboardEngine();
             } else if (isAdminRequested) {
-                if(shield) shield.remove();
-                if(modal) modal.classList.replace('hidden', 'flex');
+                if (shield) shield.remove();
+                if (modal) modal.classList.replace('hidden', 'flex');
                 setupAuthFormHandshake();
             } else {
                 alert("Unauthorized Gate Entry Access Denied.");
@@ -341,18 +501,18 @@
             document.getElementById('drive-auth-form').addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const pwd = document.getElementById('drive-auth-input').value.trim();
-                
+
                 try {
                     const response = await fetch(`${BACKEND_API}/api/getData?cb=${Date.now()}&pwd=${encodeURIComponent(pwd)}`);
                     const resData = await response.json();
-                    
-                    if(resData.payload) {
+
+                    if (resData.payload) {
                         const decryptedBytes = CryptoJS.AES.decrypt(resData.payload, pwd);
                         const cleanJsonString = decryptedBytes.toString(CryptoJS.enc.Utf8);
-                        if(!cleanJsonString) throw new Error("Invalid password");
+                        if (!cleanJsonString) throw new Error("Invalid password");
                         JSON.parse(cleanJsonString);
                     }
-                    
+
                     activeAdminPassword = pwd;
                     localStorage.setItem('admin_session_token', btoa(pwd + '_verified_2026'));
                     alert("Handshake Complete. Session tracking matrix structuralized.");
@@ -364,7 +524,7 @@
         }
 
         document.getElementById('logout-btn').addEventListener('click', () => {
-            localStorage.removeItem('admin_session_token'); 
+            localStorage.removeItem('admin_session_token');
             window.location.href = 'index.html';
         });
 
@@ -385,7 +545,7 @@
             const toast = document.getElementById('action-toast');
             document.getElementById('toast-text').textContent = msg;
             toast.classList.replace('hidden', 'flex');
-            setTimeout(() => toast.classList.replace('flex','hidden'), 4000);
+            setTimeout(() => toast.classList.replace('flex', 'hidden'), 4000);
         }
 
         // ==========================================================
@@ -404,7 +564,7 @@
                 const resData = await response.json();
                 if (resData.status === "SUCCESS") {
                     triggerSystemNotification("✅ Success! Data synchronized to Cloud.");
-                    
+
                     // Hide all dynamically opened forms
                     document.getElementById('slider-form').classList.add('hidden');
                     document.getElementById('course-form').classList.add('hidden');
@@ -422,7 +582,7 @@
                     renderGalleryAdminGrid();
                     renderTestimonialsAdminContainer();
                     renderInquiriesAdminTable();
-                    
+
                     // Refresh Lucide icons for new elements
                     if (window.lucide) {
                         lucide.createIcons();
@@ -430,7 +590,7 @@
                 } else {
                     throw new Error(resData.message || "Proxy refusal mapping parameters.");
                 }
-            } catch(err) {
+            } catch (err) {
                 console.error(err);
                 alert(`🔴 Transaction Failed: ${err.message}`);
             }
@@ -440,13 +600,13 @@
             try {
                 const pwd = activeAdminPassword || '';
                 const response = await fetch(`${BACKEND_API}/api/getData?cb=${Date.now()}&pwd=${encodeURIComponent(pwd)}`);
-                if(response.ok) {
+                if (response.ok) {
                     const rawEncryptedPayload = await response.json();
-                    if(rawEncryptedPayload.payload) {
+                    if (rawEncryptedPayload.payload) {
                         const aesSharedKeyString = activeAdminPassword;
                         const decryptedBytes = CryptoJS.AES.decrypt(rawEncryptedPayload.payload, aesSharedKeyString);
                         const cleanJsonString = decryptedBytes.toString(CryptoJS.enc.Utf8);
-                        if(cleanJsonString) {
+                        if (cleanJsonString) {
                             globalMasterState = JSON.parse(cleanJsonString);
                             // Auto patch local storage schemas fallback synchronizations cleanly
                             localStorage.setItem('siteSettings', JSON.stringify(globalMasterState.siteSettings || {}));
@@ -460,7 +620,7 @@
                         }
                     }
                 }
-            } catch(e) {
+            } catch (e) {
                 console.log("Local browser offline buffer engines operational safety fallback.");
                 globalMasterState.siteSettings = JSON.parse(localStorage.getItem('siteSettings')) || {};
                 globalMasterState.sliderData = JSON.parse(localStorage.getItem('sliderData')) || [];
@@ -486,7 +646,7 @@
             renderTestimonialsAdminContainer();
             renderInquiriesAdminTable();
             registerFormsSubmitHandlers();
-            
+
             // Render lucide icons for all the loaded tables initially
             if (window.lucide) {
                 lucide.createIcons();
@@ -549,15 +709,15 @@
                     image: document.getElementById('slide-image').value,
                     description: document.getElementById('slide-desc').value
                 };
-                if(!globalMasterState.sliderData) globalMasterState.sliderData = [];
+                if (!globalMasterState.sliderData) globalMasterState.sliderData = [];
                 const editId = document.getElementById('slider-edit-id').value;
-                if(editId !== '') { globalMasterState.sliderData[parseInt(editId)] = item; }
+                if (editId !== '') { globalMasterState.sliderData[parseInt(editId)] = item; }
                 else { globalMasterState.sliderData.push(item); }
                 commitStateToVercelCloud();
             });
 
-            document.getElementById('add-course-btn').addEventListener('click', () => { document.getElementById('course-form').classList.remove('hidden'); document.getElementById('course-form').reset(); document.getElementById('course-edit-id').value=''; });
-            document.getElementById('course-form').addEventListener('submit', function(e) {
+            document.getElementById('add-course-btn').addEventListener('click', () => { document.getElementById('course-form').classList.remove('hidden'); document.getElementById('course-form').reset(); document.getElementById('course-edit-id').value = ''; });
+            document.getElementById('course-form').addEventListener('submit', function (e) {
                 e.preventDefault();
                 const item = {
                     title: document.getElementById('course-title').value,
@@ -569,15 +729,15 @@
                     description: document.getElementById('course-desc').value,
                     image: document.getElementById('course-image').value
                 };
-                if(!globalMasterState.courses) globalMasterState.courses = [];
+                if (!globalMasterState.courses) globalMasterState.courses = [];
                 const editId = document.getElementById('course-edit-id').value;
-                if(editId !== '') { globalMasterState.courses[parseInt(editId)] = item; }
+                if (editId !== '') { globalMasterState.courses[parseInt(editId)] = item; }
                 else { globalMasterState.courses.push(item); }
                 commitStateToVercelCloud();
             });
 
-            document.getElementById('add-video-btn').addEventListener('click', () => { document.getElementById('video-form').classList.remove('hidden'); document.getElementById('video-form').reset(); document.getElementById('vid-edit-id').value=''; });
-            document.getElementById('video-form').addEventListener('submit', function(e) {
+            document.getElementById('add-video-btn').addEventListener('click', () => { document.getElementById('video-form').classList.remove('hidden'); document.getElementById('video-form').reset(); document.getElementById('vid-edit-id').value = ''; });
+            document.getElementById('video-form').addEventListener('submit', function (e) {
                 e.preventDefault();
                 const item = {
                     title: document.getElementById('vid-title').value,
@@ -587,15 +747,15 @@
                     url: document.getElementById('vid-url').value,
                     description: document.getElementById('vid-desc').value
                 };
-                if(!globalMasterState.lectures) globalMasterState.lectures = [];
+                if (!globalMasterState.lectures) globalMasterState.lectures = [];
                 const editId = document.getElementById('vid-edit-id').value;
-                if(editId !== '') { globalMasterState.lectures[parseInt(editId)] = item; }
+                if (editId !== '') { globalMasterState.lectures[parseInt(editId)] = item; }
                 else { globalMasterState.lectures.push(item); }
                 commitStateToVercelCloud();
             });
 
-            document.getElementById('add-notes-btn').addEventListener('click', () => { document.getElementById('notes-form').classList.remove('hidden'); document.getElementById('notes-form').reset(); document.getElementById('note-edit-id').value=''; });
-            document.getElementById('notes-form').addEventListener('submit', function(e) {
+            document.getElementById('add-notes-btn').addEventListener('click', () => { document.getElementById('notes-form').classList.remove('hidden'); document.getElementById('notes-form').reset(); document.getElementById('note-edit-id').value = ''; });
+            document.getElementById('notes-form').addEventListener('submit', function (e) {
                 e.preventDefault();
                 const item = {
                     title: document.getElementById('note-title').value,
@@ -606,31 +766,31 @@
                     link: document.getElementById('note-pdf').value,
                     description: document.getElementById('note-desc').value
                 };
-                if(!globalMasterState.notes) globalMasterState.notes = [];
+                if (!globalMasterState.notes) globalMasterState.notes = [];
                 const editId = document.getElementById('note-edit-id').value;
-                if(editId !== '') { globalMasterState.notes[parseInt(editId)] = item; }
+                if (editId !== '') { globalMasterState.notes[parseInt(editId)] = item; }
                 else { globalMasterState.notes.push(item); }
                 commitStateToVercelCloud();
             });
 
-            document.getElementById('add-gal-btn').addEventListener('click', () => { document.getElementById('gallery-form').classList.remove('hidden'); document.getElementById('gallery-form').reset(); document.getElementById('gal-edit-id').value=''; });
+            document.getElementById('add-gal-btn').addEventListener('click', () => { document.getElementById('gallery-form').classList.remove('hidden'); document.getElementById('gallery-form').reset(); document.getElementById('gal-edit-id').value = ''; });
             document.getElementById('gallery-form').addEventListener('submit', (e) => {
                 e.preventDefault();
                 const item = { title: document.getElementById('gal-title').value, image: document.getElementById('gal-image').value, caption: document.getElementById('gal-caption').value };
-                if(!globalMasterState.galleryData) globalMasterState.galleryData = [];
+                if (!globalMasterState.galleryData) globalMasterState.galleryData = [];
                 const editId = document.getElementById('gal-edit-id').value;
-                if(editId !== '') { globalMasterState.galleryData[parseInt(editId)] = item; }
+                if (editId !== '') { globalMasterState.galleryData[parseInt(editId)] = item; }
                 else { globalMasterState.galleryData.push(item); }
                 commitStateToVercelCloud();
             });
 
-            document.getElementById('add-test-btn').addEventListener('click', () => { document.getElementById('testimonial-form').classList.remove('hidden'); document.getElementById('testimonial-form').reset(); document.getElementById('test-edit-id').value=''; });
+            document.getElementById('add-test-btn').addEventListener('click', () => { document.getElementById('testimonial-form').classList.remove('hidden'); document.getElementById('testimonial-form').reset(); document.getElementById('test-edit-id').value = ''; });
             document.getElementById('testimonial-form').addEventListener('submit', (e) => {
                 e.preventDefault();
                 const item = { name: document.getElementById('test-name').value, class: document.getElementById('test-class').value, reviewText: document.getElementById('test-text').value };
-                if(!globalMasterState.testimonialsData) globalMasterState.testimonialsData = [];
+                if (!globalMasterState.testimonialsData) globalMasterState.testimonialsData = [];
                 const editId = document.getElementById('test-edit-id').value;
-                if(editId !== '') { globalMasterState.testimonialsData[parseInt(editId)] = item; }
+                if (editId !== '') { globalMasterState.testimonialsData[parseInt(editId)] = item; }
                 else { globalMasterState.testimonialsData.push(item); }
                 commitStateToVercelCloud();
             });
@@ -644,15 +804,15 @@
                 b.appendChild(tr);
             });
         }
-        window.deleteSliderItem = function(i) { if(!confirm('Delete karna hai?')) return; globalMasterState.sliderData.splice(i,1); commitStateToVercelCloud(); };
-        window.editSliderItem = function(i) {
+        window.deleteSliderItem = function (i) { if (!confirm('Delete karna hai?')) return; globalMasterState.sliderData.splice(i, 1); commitStateToVercelCloud(); };
+        window.editSliderItem = function (i) {
             const s = globalMasterState.sliderData[i];
             document.getElementById('slide-title').value = s.title || '';
             document.getElementById('slide-image').value = s.image || '';
             document.getElementById('slide-desc').value = s.description || '';
             document.getElementById('slider-edit-id').value = i;
             document.getElementById('slider-form').classList.remove('hidden');
-            document.getElementById('slider-form').scrollIntoView({behavior:'smooth'});
+            document.getElementById('slider-form').scrollIntoView({ behavior: 'smooth' });
         };
 
         function renderCoursesAdminTable() {
@@ -663,8 +823,8 @@
                 b.appendChild(tr);
             });
         }
-        window.deleteCourseItem = function(i) { if(!confirm('Delete karna hai?')) return; globalMasterState.courses.splice(i,1); commitStateToVercelCloud(); };
-        window.editCourseItem = function(i) {
+        window.deleteCourseItem = function (i) { if (!confirm('Delete karna hai?')) return; globalMasterState.courses.splice(i, 1); commitStateToVercelCloud(); };
+        window.editCourseItem = function (i) {
             const c = globalMasterState.courses[i];
             document.getElementById('course-title').value = c.title || '';
             document.getElementById('course-class').value = c.class || '10';
@@ -676,7 +836,7 @@
             document.getElementById('course-image').value = c.image || '';
             document.getElementById('course-edit-id').value = i;
             document.getElementById('course-form').classList.remove('hidden');
-            document.getElementById('course-form').scrollIntoView({behavior:'smooth'});
+            document.getElementById('course-form').scrollIntoView({ behavior: 'smooth' });
         };
 
         function renderVideosAdminTable() {
@@ -687,8 +847,8 @@
                 b.appendChild(tr);
             });
         }
-        window.deleteVideoItem = function(i) { if(!confirm('Delete karna hai?')) return; globalMasterState.lectures.splice(i,1); commitStateToVercelCloud(); };
-        window.editVideoItem = function(i) {
+        window.deleteVideoItem = function (i) { if (!confirm('Delete karna hai?')) return; globalMasterState.lectures.splice(i, 1); commitStateToVercelCloud(); };
+        window.editVideoItem = function (i) {
             const v = globalMasterState.lectures[i];
             document.getElementById('vid-url').value = v.url || '';
             document.getElementById('vid-title').value = v.title || '';
@@ -698,7 +858,7 @@
             document.getElementById('vid-desc').value = v.description || '';
             document.getElementById('vid-edit-id').value = i;
             document.getElementById('video-form').classList.remove('hidden');
-            document.getElementById('video-form').scrollIntoView({behavior:'smooth'});
+            document.getElementById('video-form').scrollIntoView({ behavior: 'smooth' });
         };
 
         function renderNotesAdminTable() {
@@ -709,8 +869,8 @@
                 b.appendChild(tr);
             });
         }
-        window.deleteNotesItem = function(i) { if(!confirm('Delete karna hai?')) return; globalMasterState.notes.splice(i,1); commitStateToVercelCloud(); };
-        window.editNotesItem = function(i) {
+        window.deleteNotesItem = function (i) { if (!confirm('Delete karna hai?')) return; globalMasterState.notes.splice(i, 1); commitStateToVercelCloud(); };
+        window.editNotesItem = function (i) {
             const n = globalMasterState.notes[i];
             document.getElementById('note-title').value = n.title || '';
             document.getElementById('note-class').value = n.class || '10';
@@ -721,26 +881,26 @@
             document.getElementById('note-desc').value = n.description || '';
             document.getElementById('note-edit-id').value = i;
             document.getElementById('notes-form').classList.remove('hidden');
-            document.getElementById('notes-form').scrollIntoView({behavior:'smooth'});
+            document.getElementById('notes-form').scrollIntoView({ behavior: 'smooth' });
         };
 
         function renderGalleryAdminGrid() {
             const g = document.getElementById('gallery-admin-grid'); g.innerHTML = '';
             (globalMasterState.galleryData || []).forEach((x, i) => {
                 const d = document.createElement('div'); d.className = "bg-white border rounded-xl p-2 text-center shadow-sm flex flex-col justify-between";
-                d.innerHTML = `<img src="${parseGDriveLink(x.image)}" class="w-full aspect-square object-cover rounded mb-2"><p class="text-[10px] text-gray-500 mb-1 truncate">${x.title||''}</p><div class="flex gap-2"><button onclick="editGalleryItem(${i})" class="text-blue-600 bg-blue-50 hover:bg-blue-100 transition-colors text-xs font-bold py-1.5 rounded w-full flex items-center justify-center gap-1"><i data-lucide="edit-3" class="w-3.5 h-3.5"></i> Edit</button><button onclick="deleteGalleryItem(${i})" class="text-red-500 bg-red-50 hover:bg-red-100 transition-colors text-xs font-bold py-1.5 rounded w-full flex items-center justify-center gap-1"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Delete</button></div>`;
+                d.innerHTML = `<img src="${parseGDriveLink(x.image)}" class="w-full aspect-square object-cover rounded mb-2"><p class="text-[10px] text-gray-500 mb-1 truncate">${x.title || ''}</p><div class="flex gap-2"><button onclick="editGalleryItem(${i})" class="text-blue-600 bg-blue-50 hover:bg-blue-100 transition-colors text-xs font-bold py-1.5 rounded w-full flex items-center justify-center gap-1"><i data-lucide="edit-3" class="w-3.5 h-3.5"></i> Edit</button><button onclick="deleteGalleryItem(${i})" class="text-red-500 bg-red-50 hover:bg-red-100 transition-colors text-xs font-bold py-1.5 rounded w-full flex items-center justify-center gap-1"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Delete</button></div>`;
                 g.appendChild(d);
             });
         }
-        window.deleteGalleryItem = function(i) { if(!confirm('Delete karna hai?')) return; globalMasterState.galleryData.splice(i,1); commitStateToVercelCloud(); };
-        window.editGalleryItem = function(i) {
+        window.deleteGalleryItem = function (i) { if (!confirm('Delete karna hai?')) return; globalMasterState.galleryData.splice(i, 1); commitStateToVercelCloud(); };
+        window.editGalleryItem = function (i) {
             const x = globalMasterState.galleryData[i];
             document.getElementById('gal-title').value = x.title || '';
             document.getElementById('gal-image').value = x.image || '';
             document.getElementById('gal-caption').value = x.caption || '';
             document.getElementById('gal-edit-id').value = i;
             document.getElementById('gallery-form').classList.remove('hidden');
-            document.getElementById('gallery-form').scrollIntoView({behavior:'smooth'});
+            document.getElementById('gallery-form').scrollIntoView({ behavior: 'smooth' });
         };
 
         function renderTestimonialsAdminContainer() {
@@ -751,21 +911,21 @@
                 c.appendChild(d);
             });
         }
-        window.deleteTestimonialItem = function(i) { if(!confirm('Delete karna hai?')) return; globalMasterState.testimonialsData.splice(i,1); commitStateToVercelCloud(); };
-        window.editTestimonialItem = function(i) {
+        window.deleteTestimonialItem = function (i) { if (!confirm('Delete karna hai?')) return; globalMasterState.testimonialsData.splice(i, 1); commitStateToVercelCloud(); };
+        window.editTestimonialItem = function (i) {
             const t = globalMasterState.testimonialsData[i];
             document.getElementById('test-name').value = t.name || '';
             document.getElementById('test-class').value = t.class || '';
             document.getElementById('test-text').value = t.reviewText || '';
             document.getElementById('test-edit-id').value = i;
             document.getElementById('testimonial-form').classList.remove('hidden');
-            document.getElementById('testimonial-form').scrollIntoView({behavior:'smooth'});
+            document.getElementById('testimonial-form').scrollIntoView({ behavior: 'smooth' });
         };
 
         function renderInquiriesAdminTable() {
             const b = document.getElementById('inquiries-table-body'); b.innerHTML = '';
             const inqList = globalMasterState.inquiriesData || [];
-            if(!inqList.length) { b.innerHTML = `<tr><td class="p-4 text-center text-xs text-gray-400">Zero database rows compiled.</td></tr>`; return; }
+            if (!inqList.length) { b.innerHTML = `<tr><td class="p-4 text-center text-xs text-gray-400">Zero database rows compiled.</td></tr>`; return; }
             inqList.forEach((inq, i) => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `<td class="p-4 text-xs font-bold text-navy">${inq.name} <span class="block text-[10px] font-mono text-gray-400">${inq.phone}</span></td><td class="p-4 text-xs text-gray-500 max-w-xs truncate">${inq.message || '—'}</td><td class="p-4 text-right"><button onclick="deleteInquiryItem(${i})" class="text-red-500"><i data-lucide="trash-2" class="w-4 h-4 inline"></i></button></td>`;
@@ -773,11 +933,11 @@
             });
             lucide.createIcons();
         }
-        window.deleteInquiryItem = function(i) { globalMasterState.inquiriesData.splice(i,1); commitStateToVercelCloud(); };
+        window.deleteInquiryItem = function (i) { globalMasterState.inquiriesData.splice(i, 1); commitStateToVercelCloud(); };
 
         document.getElementById('export-csv-btn').addEventListener('click', () => {
             const inqList = globalMasterState.inquiriesData || [];
-            if(!inqList.length) return alert("Empty stack dataset layers.");
+            if (!inqList.length) return alert("Empty stack dataset layers.");
             let rows = [["Name", "Phone", "Class", "Subject", "Message"]];
             inqList.forEach(i => rows.push([i.name, i.phone, i.class, i.subject, i.message]));
             const content = "data:text/csv;charset=utf-8," + rows.map(e => e.join(",")).join("\n");
@@ -786,4 +946,5 @@
         });
     </script>
 </body>
+
 </html>
