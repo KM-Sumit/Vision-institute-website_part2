@@ -30,6 +30,18 @@ async function createOrder(req, res) {
         const orderId = `order_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`;
         const customerId = `cust_${Date.now()}`;
 
+        let baseOrigin = req.headers.origin || req.headers.referer || 'https://visioninstitutemp.in';
+        baseOrigin = baseOrigin.replace(/\/$/, '');
+
+        // Cashfree production mode requires HTTPS return_url.
+        if (!CASHFREE_APP_ID.startsWith('TEST') && baseOrigin.startsWith('http:')) {
+            if (baseOrigin.startsWith('http://localhost') || baseOrigin.startsWith('http://127.0.0.1')) {
+                baseOrigin = 'https://visioninstitutemp.in';
+            } else {
+                baseOrigin = baseOrigin.replace(/^http:/, 'https:');
+            }
+        }
+
         const orderPayload = {
             order_id: orderId,
             order_amount: parseFloat(amount),
@@ -41,7 +53,7 @@ async function createOrder(req, res) {
                 customer_email: customerEmail
             },
             order_meta: {
-                return_url: `${req.headers.origin || req.headers.referer || 'http://localhost:8080'}/index.html?order_id=${orderId}&order_status={order_status}`
+                return_url: `${baseOrigin}/index.html?order_id=${orderId}&order_status={order_status}`
             },
             order_note: `${noteTitle || 'Notes'} - Class ${noteClass || ''} ${noteSubject || ''}`
         };
