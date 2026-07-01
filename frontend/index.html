@@ -289,7 +289,37 @@
                 aria-label="Slide indicators"></div>
         </section>
 
-        <section id="courses" class="py-16 md:py-24 bg-gray-50 scroll-mt-20">
+        <section id="videos" class="py-16 md:py-24 bg-gray-50 scroll-mt-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl md:text-5xl font-bold text-navy mb-4">Free Video Lectures</h2>
+                    <div class="w-24 h-1 bg-gold mx-auto mb-4 rounded"></div>
+                    <p class="text-muted text-sm md:text-base">Access our high-yield video lectures directly curated
+                        from our primary platforms.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-12 max-w-4xl mx-auto">
+                    <select id="video-filter-class"
+                        class="w-full bg-gray-50 border border-gray-200 text-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-gold">
+                        <option value="all">All Courses</option>
+                        <option value="English Speaking">English Speaking Courses</option>
+                        <option value="8">Class 8 Courses</option>
+                        <option value="9">Class 9 Courses</option>
+                        <option value="10">Class 10</option>
+                        <option value="11">Class 11</option>
+                        <option value="12">Class 12</option>
+                    </select>
+                    <input id="video-filter-subject" type="text" placeholder="Filter by Subject (e.g. Maths)"
+                        class="w-full bg-gray-50 border border-gray-200 text-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-gold">
+                    <input id="video-filter-topic" type="text" placeholder="Filter by Topic"
+                        class="w-full bg-gray-50 border border-gray-200 text-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-gold">
+                </div>
+
+                <div id="videos-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"></div>
+            </div>
+        </section>
+
+        <section id="courses" class="py-16 md:py-24 bg-white scroll-mt-20">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
                     <h2 class="text-3xl md:text-5xl font-bold text-navy mb-4">Our Coaching Programs in Sehore</h2>
@@ -304,16 +334,16 @@
                         Courses</button>
 
                     <button data-filter="English Speaking"
-                        class="course-tab px-5 py-2 rounded-full font-semibold text-sm transition-all shadow-sm bg-navy text-white">English
+                        class="course-tab px-5 py-2 rounded-full font-semibold text-sm transition-all shadow-sm bg-white text-navy hover:bg-gray-100">English
                         Speaking
                         Courses</button>
                     <button data-filter="8"
-                        class="course-tab px-5 py-2 rounded-full font-semibold text-sm transition-all shadow-sm bg-navy text-white">Class
+                        class="course-tab px-5 py-2 rounded-full font-semibold text-sm transition-all shadow-sm bg-white text-navy hover:bg-gray-100">Class
                         8
                         Courses</button>
 
                     <button data-filter="9"
-                        class="course-tab px-5 py-2 rounded-full font-semibold text-sm transition-all shadow-sm bg-navy text-white">Class
+                        class="course-tab px-5 py-2 rounded-full font-semibold text-sm transition-all shadow-sm bg-white text-navy hover:bg-gray-100">Class
                         9
                         Courses</button>
 
@@ -329,36 +359,6 @@
                 </div>
 
                 <div id="courses-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"></div>
-            </div>
-        </section>
-
-        <section id="videos" class="py-16 md:py-24 bg-white scroll-mt-20">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-12">
-                    <h2 class="text-3xl md:text-5xl font-bold text-navy mb-4">Free Video Lectures</h2>
-                    <div class="w-24 h-1 bg-gold mx-auto mb-4 rounded"></div>
-                    <p class="text-muted text-sm md:text-base">Access our high-yield video lectures directly curated
-                        from our primary platforms.</p>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-12 max-w-4xl mx-auto">
-                    <select id="video-filter-class"
-                        class="w-full bg-gray-50 border border-gray-200 text-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-gold">
-                        <option value="all">All Classes</option>
-                        <option value="Englishspoking">English Speking</option>
-                        <option value="8">Class 8</option>
-                        <option value="8">Class 9</option>
-                        <option value="10">Class 10</option>
-                        <option value="11">Class 11</option>
-                        <option value="12">Class 12</option>
-                    </select>
-                    <input id="video-filter-subject" type="text" placeholder="Filter by Subject (e.g. Maths)"
-                        class="w-full bg-gray-50 border border-gray-200 text-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-gold">
-                    <input id="video-filter-topic" type="text" placeholder="Filter by Topic"
-                        class="w-full bg-gray-50 border border-gray-200 text-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-gold">
-                </div>
-
-                <div id="videos-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"></div>
             </div>
         </section>
 
@@ -574,6 +574,9 @@
                                         Stream <span class="text-red-500">*</span></label>
                                     <select id="form-class" required
                                         class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold text-sm bg-gray-50 text-gray-700">
+                                        <option value="English Speaking">English Speaking</option>
+                                        <option value="8">Class 8</option>
+                                        <option value="9">Class 9</option>
                                         <option value="10">Class 10</option>
                                         <option value="11">Class 11</option>
                                         <option value="12">Class 12</option>
@@ -967,7 +970,7 @@
                 card.innerHTML = `
                     <div class="relative overflow-hidden aspect-video bg-gray-100">
                         <img src="${imgUrl}" alt="${course.title} - Class ${course.class} ${course.subject} coaching at Vision Institute Sehore" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                        <span class="absolute top-4 left-4 bg-navy text-white text-xs font-bold uppercase px-3 py-1.5 rounded-lg">Class ${course.class}</span>
+                        <span class="absolute top-4 left-4 bg-navy text-white text-xs font-bold uppercase px-3 py-1.5 rounded-lg">${course.class.toLowerCase().includes('english') ? course.class : 'Class ' + course.class}</span>
                     </div>
                     <div class="p-5 flex flex-col flex-grow">
                         <span class="text-xs font-bold text-gold uppercase tracking-wider mb-1">${course.subject}</span>
@@ -1009,7 +1012,7 @@
                                 <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                             </div>
                         </div>
-                        <span class="absolute bottom-3 right-3 bg-black/70 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Class ${vid.class}</span>
+                        <span class="absolute bottom-3 right-3 bg-black/70 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">${vid.class.toLowerCase().includes('english') ? vid.class : 'Class ' + vid.class}</span>
                     </div>
                     <div class="p-4 flex flex-col flex-grow">
                         <div class="flex gap-1.5 flex-wrap mb-2">
@@ -1040,7 +1043,7 @@
                     <div class="relative aspect-[3/4] bg-gray-50 overflow-hidden">
                         <img src="${imgUrl}" alt="${note.title}" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent"></div>
-                        <span class="absolute top-2 left-2 bg-gold text-navy text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full shadow">Class ${note.class}</span>
+                        <span class="absolute top-2 left-2 bg-gold text-navy text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full shadow">${note.class.toLowerCase().includes('english') ? note.class : 'Class ' + note.class}</span>
                         <span class="absolute bottom-2 left-2 right-2 text-white text-xs font-bold line-clamp-2 drop-shadow">${note.title}</span>
                     </div>
                     <div class="p-3 flex flex-col gap-2 flex-grow">

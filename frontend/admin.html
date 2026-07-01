@@ -246,6 +246,9 @@
                         class="w-full border p-2.5 rounded-xl text-sm bg-gray-50">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <select id="course-class" class="border p-2.5 rounded-xl text-sm bg-gray-50">
+                            <option value="English Speaking">English Speaking</option>
+                            <option value="8">Class 8</option>
+                            <option value="9">Class 9</option>
                             <option value="10">Class 10</option>
                             <option value="11">Class 11</option>
                             <option value="12">Class 12</option>
@@ -283,6 +286,9 @@
                         class="w-full border p-2.5 rounded-xl text-sm bg-gray-50">
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                         <select id="vid-class" class="border p-2.5 rounded-xl text-sm bg-gray-50">
+                            <option value="English Speaking">English Speaking</option>
+                            <option value="8">Class 8</option>
+                            <option value="9">Class 9</option>
                             <option value="10">Class 10</option>
                             <option value="11">Class 11</option>
                             <option value="12">Class 12</option>
@@ -822,7 +828,7 @@
             const b = document.getElementById('courses-table-body'); b.innerHTML = '';
             (globalMasterState.courses || []).forEach((c, i) => {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `<td class="p-4 font-bold text-navy text-xs sm:text-sm">${c.title}</td><td class="p-4 text-xs">Class ${c.class}</td><td class="p-4 text-right flex gap-2 justify-end"><button onclick="editCourseItem(${i})" class="text-blue-600 text-xs font-bold bg-blue-50 hover:bg-blue-100 transition-colors px-2 py-1.5 rounded flex items-center justify-center gap-1"><i data-lucide="edit-3" class="w-3.5 h-3.5"></i> Edit</button><button onclick="deleteCourseItem(${i})" class="text-red-500 text-xs font-bold bg-red-50 hover:bg-red-100 transition-colors px-2 py-1.5 rounded flex items-center justify-center gap-1"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Delete</button></td>`;
+                tr.innerHTML = `<td class="p-4 font-bold text-navy text-xs sm:text-sm">${c.title}</td><td class="p-4 text-xs">${c.class.toLowerCase().includes('english') ? c.class : 'Class ' + c.class}</td><td class="p-4 text-right flex gap-2 justify-end"><button onclick="editCourseItem(${i})" class="text-blue-600 text-xs font-bold bg-blue-50 hover:bg-blue-100 transition-colors px-2 py-1.5 rounded flex items-center justify-center gap-1"><i data-lucide="edit-3" class="w-3.5 h-3.5"></i> Edit</button><button onclick="deleteCourseItem(${i})" class="text-red-500 text-xs font-bold bg-red-50 hover:bg-red-100 transition-colors px-2 py-1.5 rounded flex items-center justify-center gap-1"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Delete</button></td>`;
                 b.appendChild(tr);
             });
         }
