@@ -813,7 +813,7 @@
                 b.appendChild(tr);
             });
         }
-        window.deleteSliderItem = function (i) { if (!confirm('Delete karna hai?')) return; globalMasterState.sliderData.splice(i, 1); commitStateToVercelCloud(); };
+        window.deleteSliderItem = function (i) { if (!confirm('Are you sure you want to delete this?')) return; globalMasterState.sliderData.splice(i, 1); commitStateToVercelCloud(); };
         window.editSliderItem = function (i) {
             const s = globalMasterState.sliderData[i];
             document.getElementById('slide-title').value = s.title || '';
@@ -832,7 +832,7 @@
                 b.appendChild(tr);
             });
         }
-        window.deleteCourseItem = function (i) { if (!confirm('Delete karna hai?')) return; globalMasterState.courses.splice(i, 1); commitStateToVercelCloud(); };
+        window.deleteCourseItem = function (i) { if (!confirm('Are you sure you want to delete this?')) return; globalMasterState.courses.splice(i, 1); commitStateToVercelCloud(); };
         window.editCourseItem = function (i) {
             const c = globalMasterState.courses[i];
             document.getElementById('course-title').value = c.title || '';
@@ -856,7 +856,7 @@
                 b.appendChild(tr);
             });
         }
-        window.deleteVideoItem = function (i) { if (!confirm('Delete karna hai?')) return; globalMasterState.lectures.splice(i, 1); commitStateToVercelCloud(); };
+        window.deleteVideoItem = function (i) { if (!confirm('Are you sure you want to delete this?')) return; globalMasterState.lectures.splice(i, 1); commitStateToVercelCloud(); };
         window.editVideoItem = function (i) {
             const v = globalMasterState.lectures[i];
             document.getElementById('vid-url').value = v.url || '';
@@ -878,7 +878,7 @@
                 b.appendChild(tr);
             });
         }
-        window.deleteNotesItem = function (i) { if (!confirm('Delete karna hai?')) return; globalMasterState.notes.splice(i, 1); commitStateToVercelCloud(); };
+        window.deleteNotesItem = function (i) { if (!confirm('Are you sure you want to delete this?')) return; globalMasterState.notes.splice(i, 1); commitStateToVercelCloud(); };
         window.editNotesItem = function (i) {
             const n = globalMasterState.notes[i];
             document.getElementById('note-title').value = n.title || '';
@@ -901,7 +901,7 @@
                 g.appendChild(d);
             });
         }
-        window.deleteGalleryItem = function (i) { if (!confirm('Delete karna hai?')) return; globalMasterState.galleryData.splice(i, 1); commitStateToVercelCloud(); };
+        window.deleteGalleryItem = function (i) { if (!confirm('Are you sure you want to delete this?')) return; globalMasterState.galleryData.splice(i, 1); commitStateToVercelCloud(); };
         window.editGalleryItem = function (i) {
             const x = globalMasterState.galleryData[i];
             document.getElementById('gal-title').value = x.title || '';
@@ -920,7 +920,7 @@
                 c.appendChild(d);
             });
         }
-        window.deleteTestimonialItem = function (i) { if (!confirm('Delete karna hai?')) return; globalMasterState.testimonialsData.splice(i, 1); commitStateToVercelCloud(); };
+        window.deleteTestimonialItem = function (i) { if (!confirm('Are you sure you want to delete this?')) return; globalMasterState.testimonialsData.splice(i, 1); commitStateToVercelCloud(); };
         window.editTestimonialItem = function (i) {
             const t = globalMasterState.testimonialsData[i];
             document.getElementById('test-name').value = t.name || '';

@@ -1,8 +1,8 @@
 const nodemailer = require('nodemailer');
 
 // Gmail SMTP Configuration
-// ⚠️ Aapko Gmail me "App Password" generate karni hogi (2-Step Verification ON karke)
-// Google Account → Security → 2-Step Verification → App Passwords → "Mail" select karo
+// ⚠️ You need to generate an "App Password" in Gmail (by turning ON 2-Step Verification)
+// Google Account → Security → 2-Step Verification → App Passwords → select "Mail"
 const SMTP_EMAIL = (process.env.SMTP_EMAIL || '').replace(/^"|"$/g, '').trim();
 const SMTP_PASSWORD = (process.env.SMTP_PASSWORD || '').replace(/^"|"$/g, '').trim();
 
@@ -32,7 +32,7 @@ async function sendNotesEmail(studentEmail, noteDetails, paymentId) {
             <h2 style="color: #1a365d; margin-top: 0;">✅ Payment Successful!</h2>
             <p style="color: #4a5568; line-height: 1.6;">
                 Dear Student,<br>
-                Aapka payment successfully receive ho gaya hai. Neeche aapke notes ki details hain:
+                Your payment has been successfully received. Below are the details of your study notes:
             </p>
 
             <!-- Order Details Card -->
@@ -71,14 +71,14 @@ async function sendNotesEmail(studentEmail, noteDetails, paymentId) {
             ` : `
             <div style="background: #fefce8; border: 1px solid #fde68a; border-radius: 12px; padding: 15px; text-align: center; margin: 20px 0;">
                 <p style="color: #92400e; margin: 0; font-size: 14px;">
-                    📋 Aapke notes jaldi hi aapko WhatsApp ya Email par bhej diye jayenge. <br>
-                    Kripya apna WhatsApp check karte rahein.
+                    📋 Your notes will be sent to you shortly via WhatsApp or Email. <br>
+                    Please keep checking your WhatsApp.
                 </p>
             </div>
             `}
 
             <p style="color: #4a5568; font-size: 13px; line-height: 1.6;">
-                Agar koi problem aaye toh hume contact karein:<br>
+                If you face any issues, please contact us:<br>
                 📞 <strong>7225902570</strong> | 📧 <strong>sudhirsilavat12@gmail.com</strong>
             </p>
         </div>
@@ -146,12 +146,12 @@ async function sendReviewNotificationEmail(reviewDetails) {
     const htmlContent = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e5e7eb; border-radius: 12px; background-color: #ffffff; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
         <div style="background-color: #1a365d; color: #ffffff; padding: 20px; border-radius: 8px 8px 0 0; text-align: center;">
-            <h2 style="margin: 0; color: #facc15;">⭐ Naya Student Review Mila</h2>
+            <h2 style="margin: 0; color: #facc15;">⭐ New Student Review Received</h2>
             <p style="margin: 5px 0 0; font-size: 14px; opacity: 0.9;">The Vision Institute Portal</p>
         </div>
         <div style="padding: 20px; color: #374151;">
-            <p>Hello Sudhir Sir,</p>
-            <p>Ek student ne website par review submit kiya hai. Niche details hain:</p>
+            <p>Dear Sudhir Sir,</p>
+            <p>A student has submitted a review on the website. Below are the details:</p>
             
             <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
                 <tr style="border-bottom: 1px solid #f3f4f6;">
@@ -179,7 +179,7 @@ async function sendReviewNotificationEmail(reviewDetails) {
             </table>
 
             <div style="background-color: #f9fafb; border-left: 4px solid #1a365d; padding: 12px; margin-top: 15px; border-radius: 4px; font-size: 13px;">
-                <strong>Note:</strong> Yeh review database me save ho gaya hai. Aap isko <strong>Admin Dashboard</strong> me jaakar edit ya delete kar sakte hain.
+                <strong>Note:</strong> This review has been saved to the database. You can manage, edit, or delete it from the <strong>Admin Dashboard</strong>.
             </div>
         </div>
         <div style="background-color: #f3f4f6; padding: 15px; text-align: center; border-radius: 0 0 8px 8px; font-size: 11px; color: #6b7280;">
