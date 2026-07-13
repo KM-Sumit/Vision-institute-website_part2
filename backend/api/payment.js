@@ -55,7 +55,12 @@ async function createOrder(req, res) {
             order_meta: {
                 return_url: `${baseOrigin}/index.html?order_id=${orderId}&order_status={order_status}`
             },
-            order_note: `${noteTitle || 'Notes'} - Class ${noteClass || ''} ${noteSubject || ''}`
+            order_note: `${noteTitle || 'Notes'} - Class ${noteClass || ''} ${noteSubject || ''}`,
+            order_tags: {
+                noteTitle: noteTitle ? noteTitle.substring(0, 200) : "N/A",
+                noteClass: noteClass ? noteClass.substring(0, 200) : "N/A",
+                noteSubject: noteSubject ? noteSubject.substring(0, 200) : "N/A"
+            }
         };
 
         const response = await fetch(`${CASHFREE_API_URL}/orders`, {
@@ -144,20 +149,48 @@ async function verifyPayment(req, res) {
             let emailResult = { success: false };
             const storedOrder = orderStore[order_id];
 
-            if (storedOrder && storedOrder.email) {
+            const customerEmail = data.customer_details?.customer_email || (storedOrder && storedOrder.email);
+            const noteTitle = data.order_tags?.noteTitle !== "N/A" ? data.order_tags?.noteTitle : (storedOrder && storedOrder.noteTitle) || "Notes";
+            const noteClass = data.order_tags?.noteClass !== "N/A" ? data.order_tags?.noteClass : (storedOrder && storedOrder.noteClass) || "";
+            const noteSubject = data.order_tags?.noteSubject !== "N/A" ? data.order_tags?.noteSubject : (storedOrder && storedOrder.noteSubject) || "";
+            const price = data.order_amount || (storedOrder && storedOrder.price);
+
+            let actualPdfLink = storedOrder ? storedOrder.pdfLink : "";
+
+            if (customerEmail && !actualPdfLink) {
+                try {
+                    const filePath = process.env.DATA_PATH || require('path').join(__dirname, '..', 'data.json');
+                    let defaultKey = process.env.ADMIN_SECRET_KEY || '';
+                    defaultKey = defaultKey.replace(/^"|"$/g, '').trim();
+                    if (require('fs').existsSync(filePath)) {
+                        const fileContent = JSON.parse(require('fs').readFileSync(filePath, 'utf8'));
+                        const decryptedBytes = require('crypto-js').AES.decrypt(fileContent.payload, defaultKey);
+                        const dbState = JSON.parse(decryptedBytes.toString(require('crypto-js').enc.Utf8));
+                        
+                        const targetNote = dbState.notes?.find(n => n.title === noteTitle && n.class === noteClass);
+                        if (targetNote && targetNote.link) {
+                            actualPdfLink = targetNote.link;
+                        }
+                    }
+                } catch(e) {
+                    console.error("Failed to extract secure PDF link from DB in verify:", e.message);
+                }
+            }
+
+            if (customerEmail) {
                 emailResult = await sendNotesEmail(
-                    storedOrder.email,
+                    customerEmail,
                     {
-                        title: storedOrder.noteTitle,
-                        subject: storedOrder.noteSubject,
-                        noteClass: storedOrder.noteClass,
-                        price: storedOrder.price,
-                        pdfLink: storedOrder.pdfLink
+                        title: noteTitle,
+                        subject: noteSubject,
+                        noteClass: noteClass,
+                        price: price,
+                        pdfLink: actualPdfLink
                     },
                     order_id
                 );
-                // Clean up stored order
-                delete orderStore[order_id];
+                // Clean up stored order fallback
+                if (storedOrder) delete orderStore[order_id];
             }
 
             return res.status(200).json({
