@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <title>Administrative Dashboard Node - The Vision Institute</title>
-    <link rel="icon" type="image/png" href="/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/logo.png">
     <link rel="manifest" href="/site.webmanifest">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -177,7 +177,7 @@
                     <div><label class="block text-xs font-bold text-gray-500 mb-1">Campus Physical Address</label><input
                             type="text" id="set-address"
                             class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm"></div>
-                    <div><label class="block text-xs font-bold text-gray-500 mb-1">Brand Logo Image Link</label><input
+                    <div><label class="block text-xs font-bold text-gray-500 mb-1">Brand Logo Image Link (Rec: 512x512px)</label><input
                             type="url" id="set-logo" placeholder="https://images.unsplash.com/..."
                             class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-mono"></div>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -205,6 +205,7 @@
                 <form id="slider-form" class="bg-white p-5 rounded-2xl border space-y-4 hidden animate-fade-in">
                     <input type="hidden" id="slider-edit-id">
                     <input type="hidden" id="slide-title" value="Slide">
+                    <label class="block text-xs font-bold text-gray-500 -mb-2">Banner Image (Rec: 1200x600px)</label>
                     <input type="url" id="slide-image" placeholder="Image Link URL" required
                         class="border p-2.5 rounded-xl text-sm font-mono w-full bg-gray-50">
                     <textarea id="slide-desc" placeholder="Banner Subtext Content"
@@ -256,6 +257,7 @@
                         <input type="text" id="course-teacher" placeholder="Educator Name" required
                             class="border p-2.5 rounded-xl text-sm bg-gray-50">
                     </div>
+                    <label class="block text-xs font-bold text-gray-500 -mb-2">Course Thumbnail (Rec: 800x450px)</label>
                     <input type="url" id="course-image" placeholder="Cover Art Thumbnail Image Link" required
                         class="w-full border p-2.5 rounded-xl text-sm font-mono bg-gray-50">
                     <div class="flex gap-2 justify-end">
@@ -339,6 +341,7 @@
                         <input type="number" id="note-price" placeholder="Price (INR)" required
                             class="border p-2.5 rounded-xl text-sm bg-gray-50">
                     </div>
+                    <label class="block text-xs font-bold text-gray-500 -mb-2">Notes Cover (Rec: 600x800px)</label>
                     <input type="url" id="note-image" placeholder="Cover Image Link" required
                         class="w-full border p-2.5 rounded-xl text-sm font-mono bg-gray-50">
                     <input type="url" id="note-pdf" placeholder="Google Drive PDF Link (Sent to student via Email)"
@@ -368,6 +371,7 @@
                     <input type="hidden" id="gal-edit-id">
                     <input type="text" id="gal-title" placeholder="Asset Identity Label" required
                         class="border p-2.5 rounded-xl text-sm w-full bg-gray-50">
+                    <label class="block text-xs font-bold text-gray-500 -mb-2">Gallery Image (Rec: 800x800px)</label>
                     <input type="url" id="gal-image" placeholder="Raw Image Link URL" required
                         class="border p-2.5 rounded-xl text-sm w-full font-mono bg-gray-50">
                     <input type="text" id="gal-caption" placeholder="Student Success Framework Metric Caption"
