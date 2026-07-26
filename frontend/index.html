@@ -950,7 +950,7 @@
         function syncBranding() {
             const s = activeCloudState.siteSettings || {};
             const logoSrc = parseGDriveLink(s.logo);
-            document.getElementById('nav-logo').src = s.logo ? logoSrc : 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=150';
+            document.getElementById('nav-logo').src = s.logo ? logoSrc : '/logo.png';
             document.getElementById('nav-inst-name').textContent = s.instituteName || "The Vision Institute";
             document.getElementById('nav-teacher-name').textContent = s.teacherName || "Sudhir Shivam Sir";
             document.getElementById('footer-inst-name').textContent = s.instituteName || "The Vision Institute";
@@ -980,7 +980,7 @@
             ];
 
             list.forEach((slide, idx) => {
-                const bgImg = slide.image ? parseGDriveLink(slide.image) : 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200';
+                const bgImg = slide.image ? parseGDriveLink(slide.image) : '/poster.png';
                 const slideEl = document.createElement('div');
                 slideEl.className = `absolute inset-0 w-full h-full transition-opacity duration-1000 flex items-center ${idx === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`;
                 slideEl.innerHTML = `
