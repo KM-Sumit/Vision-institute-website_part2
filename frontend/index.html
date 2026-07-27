@@ -886,8 +886,7 @@
         const BACKEND_API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:'
             ? 'http://localhost:3000'
             : window.location.origin;
-        const DECRYPTION_KEY_MATRIX = "ImranSir@VisionEncryption2026NodeKey";
-
+            
         // Global master database layers references
         let activeCloudState = { siteSettings: {}, sliderData: [], courses: [], lectures: [], notes: [], galleryData: [], testimonialsData: [] };
 
@@ -904,18 +903,10 @@
             document.getElementById('notes-grid').innerHTML = '<div class="col-span-full py-8 text-center text-navy font-bold animate-pulse">Syncing premium study assets from Encrypted Cloud JSON...</div>';
 
             try {
-                const response = await fetch(`${BACKEND_API}/api/getData?cb=${Date.now()}`);
+                const response = await fetch(`${BACKEND_API}/api/getPublicData?cb=${Date.now()}`);
                 if (!response.ok) throw new Error("Cloud encryption handshake proxy system timeout.");
 
-                const responseData = await response.json();
-                if (!responseData.payload) throw new Error("Invalid payload fingerprint structural integrity damage.");
-
-                // DECRYPT DATA LIVE ON RUNTIME CLIENT SCOPE
-                const bytes = CryptoJS.AES.decrypt(responseData.payload, DECRYPTION_KEY_MATRIX);
-                const rawJsonString = bytes.toString(CryptoJS.enc.Utf8);
-
-                if (!rawJsonString) throw new Error("Token mismatch alignment configuration signature error.");
-                activeCloudState = JSON.parse(rawJsonString);
+                activeCloudState = await response.json();
 
                 // Run Interface compilation sequences loops
                 syncBranding();
@@ -949,8 +940,7 @@
 
         function syncBranding() {
             const s = activeCloudState.siteSettings || {};
-            const logoSrc = parseGDriveLink(s.logo);
-            document.getElementById('nav-logo').src = s.logo ? logoSrc : '/logo.png';
+            document.getElementById('nav-logo').src = '/logo.png';
             document.getElementById('nav-inst-name').textContent = s.instituteName || "The Vision Institute";
             document.getElementById('nav-teacher-name').textContent = s.teacherName || "Sudhir Shivam Sir";
             document.getElementById('footer-inst-name').textContent = s.instituteName || "The Vision Institute";
@@ -975,9 +965,12 @@
             if (!track || !dotsContainer) return;
             track.innerHTML = ''; dotsContainer.innerHTML = '';
 
-            const list = activeCloudState.sliderData && activeCloudState.sliderData.length ? activeCloudState.sliderData : [
+            const list = [
                 { title: "Empowering Minds, Shaping Futures", description: "Targeted systemic instructional pathways for board excellence under Sudhir Sir.", image: "" }
             ];
+            if (activeCloudState.sliderData && activeCloudState.sliderData.length > 0) {
+                activeCloudState.sliderData.forEach(slide => list.push(slide));
+            }
 
             list.forEach((slide, idx) => {
                 const bgImg = slide.image ? parseGDriveLink(slide.image) : '/poster.png';
@@ -1318,10 +1311,10 @@
 
                 // Push locally parsed inquiry matrix logs to local database through background process
                 try {
-                    await fetch(`${BACKEND_API}/api/update`, {
+                    await fetch(`${BACKEND_API}/api/submitInquiry`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ password: "ImranSir@VisionEncryption2026NodeKey", data: activeCloudState })
+                        body: JSON.stringify(newInquiry)
                     });
                 } catch (err) { console.log("Background synchronization delay buffer."); }
 

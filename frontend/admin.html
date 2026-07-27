@@ -486,7 +486,6 @@
         // ⚡ ISOLATED ?admin TRACKER LOGIC ENGINE
         // ==========================================================
         (function verifySystemLockGate() {
-            const cachedToken = localStorage.getItem('admin_session_token');
             const urlParams = new URLSearchParams(window.location.search);
             const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:';
             const isAdminRequested = urlParams.has('admin') || isLocal;
@@ -495,12 +494,7 @@
             const layout = document.getElementById('dashboard-layout');
             const modal = document.getElementById('drive-auth-modal');
 
-            if (cachedToken) {
-                activeAdminPassword = atob(cachedToken).split('_')[0];
-                if (shield) shield.remove();
-                if (layout) layout.classList.remove('hidden');
-                initDashboardEngine();
-            } else if (isAdminRequested) {
+            if (isAdminRequested) {
                 if (shield) shield.remove();
                 if (modal) modal.classList.replace('hidden', 'flex');
                 setupAuthFormHandshake();
@@ -527,9 +521,11 @@
                     }
 
                     activeAdminPassword = pwd;
-                    localStorage.setItem('admin_session_token', btoa(pwd + '_verified_2026'));
+                    // Removed localStorage save to force password every time
                     alert("Handshake Complete. Session tracking matrix structuralized.");
-                    window.location.reload();
+                    document.getElementById('drive-auth-modal').classList.replace('flex', 'hidden');
+                    document.getElementById('dashboard-layout').classList.remove('hidden');
+                    initDashboardEngine();
                 } catch (err) {
                     alert("❌ Access Denied: Incorrect Password!");
                 }

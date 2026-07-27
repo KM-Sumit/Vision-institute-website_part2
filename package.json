@@ -1,0 +1,11 @@
+{
+  "name": "vision-institute-website",
+  "version": "1.0.0",
+  "description": "Vision Institute Web Application",
+  "scripts": {
+    "start": "node backend/server.js",
+    "backend": "cd backend && node server.js",
+    "frontend": "cd frontend && npx serve -l 5000"
+  },
+  "dependencies": {}
+}

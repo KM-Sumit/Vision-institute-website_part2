@@ -1,12 +1,3 @@
-// 🔐 OBFUSCATED TOKEN STORAGE CHUNKS (Inspect element matrix bypass logic)
-const _chunkAlpha = "ImranSir";
-const _chunkBeta = "@Vision";
-const _chunkGamma = "Encryption2026NodeKey";
-
-function reassembleSecretKey() {
-    return `${_chunkAlpha}${_chunkBeta}${_chunkGamma}`;
-}
-
 // 🔴 CHANGE THIS TO YOUR LIVE DEPLOYED API ADDRESS:
 const VERCEL_PRODUCTION_API = "https://vision-institute-website-part2.onrender.com"; 
 
@@ -17,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 async function fetchDecryptedCloudData() {
     const statusBox = document.getElementById('status-node');
     const cacheBusterTimestamp = Date.now();
-    const endpointTarget = `${VERCEL_PRODUCTION_API}/api/getData?cb=${cacheBusterTimestamp}`;
+    const endpointTarget = `${VERCEL_PRODUCTION_API}/api/getPublicData?cb=${cacheBusterTimestamp}`;
 
     try {
         const response = await fetch(endpointTarget, {
@@ -26,19 +17,8 @@ async function fetchDecryptedCloudData() {
         });
 
         if (!response.ok) throw new Error("Proxy Hub Stream connection dropped.");
-        const data = await response.json();
+        const cleanDataset = await response.json();
 
-        if (!data.payload) throw new Error("Encrypted payload footprint parsing fault.");
-
-        const runtimeAESKey = reassembleSecretKey();
-
-        // 🔓 DECRYPTION DE-SERIALIZATION CONTEXT ENGINE
-        const decryptedBytes = CryptoJS.AES.decrypt(data.payload, runtimeAESKey);
-        const rawJsonString = decryptedBytes.toString(CryptoJS.enc.Utf8);
-
-        if (!rawJsonString) throw new Error("Decryption mismatch footprint signature error.");
-
-        const cleanDataset = JSON.parse(rawJsonString);
         renderExtensionDOM(cleanDataset);
         statusBox.textContent = "🔒 SECURE ENCRYPTED NODE DATA SYNCHRONIZED";
         
