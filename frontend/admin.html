@@ -177,9 +177,9 @@
                     <div><label class="block text-xs font-bold text-gray-500 mb-1">Campus Physical Address</label><input
                             type="text" id="set-address"
                             class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm"></div>
-                    <div><label class="block text-xs font-bold text-gray-500 mb-1">Brand Logo Image Link (Rec: 512x512px)</label><input
-                            type="url" id="set-logo" placeholder="https://images.unsplash.com/..."
-                            class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-mono"></div>
+                    <div><label class="block text-xs font-bold text-gray-500 mb-1">Brand Logo (Permanently Locked By System)</label><input
+                            type="url" id="set-logo" disabled placeholder="Hardcoded to /logo.png"
+                            class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-mono bg-gray-100 cursor-not-allowed text-gray-400"></div>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div><label class="block text-xs font-bold text-gray-500 mb-1">YouTube Link</label><input
                                 type="url" id="set-youtube"
@@ -807,7 +807,12 @@
 
         function renderSliderAdminTable() {
             const b = document.getElementById('slider-table-body'); b.innerHTML = '';
-            (globalMasterState.sliderData || []).forEach((s, i) => {
+            const data = globalMasterState.sliderData || [];
+            if (data.length === 0) {
+                b.innerHTML = '<tr><td colspan="2" class="p-8 text-center text-gray-400 italic">No custom slides added yet. The default permanent slide is currently active.</td></tr>';
+                return;
+            }
+            data.forEach((s, i) => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `<td class="p-4 font-bold text-navy text-xs sm:text-sm">${s.title}</td><td class="p-4 text-right flex gap-2 justify-end"><button onclick="editSliderItem(${i})" class="text-blue-600 text-xs font-bold bg-blue-50 hover:bg-blue-100 transition-colors px-2 py-1.5 rounded flex items-center justify-center gap-1"><i data-lucide="edit-3" class="w-3.5 h-3.5"></i> Edit</button><button onclick="deleteSliderItem(${i})" class="text-red-500 text-xs font-bold bg-red-50 hover:bg-red-100 transition-colors px-2 py-1.5 rounded flex items-center justify-center gap-1"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Delete</button></td>`;
                 b.appendChild(tr);
@@ -826,7 +831,12 @@
 
         function renderCoursesAdminTable() {
             const b = document.getElementById('courses-table-body'); b.innerHTML = '';
-            (globalMasterState.courses || []).forEach((c, i) => {
+            const data = globalMasterState.courses || [];
+            if (data.length === 0) {
+                b.innerHTML = '<tr><td colspan="3" class="p-8 text-center text-gray-400 italic">No courses available. Add a course to display it here.</td></tr>';
+                return;
+            }
+            data.forEach((c, i) => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `<td class="p-4 font-bold text-navy text-xs sm:text-sm">${c.title}</td><td class="p-4 text-xs">${c.class.toLowerCase().includes('english') ? c.class : 'Class ' + c.class}</td><td class="p-4 text-right flex gap-2 justify-end"><button onclick="editCourseItem(${i})" class="text-blue-600 text-xs font-bold bg-blue-50 hover:bg-blue-100 transition-colors px-2 py-1.5 rounded flex items-center justify-center gap-1"><i data-lucide="edit-3" class="w-3.5 h-3.5"></i> Edit</button><button onclick="deleteCourseItem(${i})" class="text-red-500 text-xs font-bold bg-red-50 hover:bg-red-100 transition-colors px-2 py-1.5 rounded flex items-center justify-center gap-1"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Delete</button></td>`;
                 b.appendChild(tr);
@@ -850,7 +860,11 @@
 
         function renderVideosAdminTable() {
             const b = document.getElementById('videos-table-body'); b.innerHTML = '';
-            (globalMasterState.lectures || []).forEach((v, i) => {
+            const data = globalMasterState.lectures || [];
+            if (data.length === 0) {
+                b.innerHTML = '<tr><td colspan="2" class="p-8 text-center text-gray-400 italic">No YouTube reference videos added yet.</td></tr>';
+            }
+            data.forEach((v, i) => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `<td class="p-4 text-xs font-bold text-navy">${v.title}</td><td class="p-4 text-right flex gap-2 justify-end"><button onclick="editVideoItem(${i})" class="text-blue-600 text-xs font-bold bg-blue-50 hover:bg-blue-100 transition-colors px-2 py-1.5 rounded flex items-center justify-center gap-1"><i data-lucide="edit-3" class="w-3.5 h-3.5"></i> Edit</button><button onclick="deleteVideoItem(${i})" class="text-red-500 text-xs font-bold bg-red-50 hover:bg-red-100 transition-colors px-2 py-1.5 rounded flex items-center justify-center gap-1"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Delete</button></td>`;
                 b.appendChild(tr);
