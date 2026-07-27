@@ -596,6 +596,10 @@
                     if (window.lucide) {
                         lucide.createIcons();
                     }
+                } else if (response.status === 401 || resData.status === "MISMATCH") {
+                    alert("⚠️ Session expired or invalid password cache detected. Forcing reload to secure the system.");
+                    localStorage.removeItem('admin_session_token');
+                    window.location.reload(true);
                 } else {
                     throw new Error(resData.message || "Proxy refusal mapping parameters.");
                 }
